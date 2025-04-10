@@ -1,10 +1,38 @@
 [
   {
+    "objectID": "documents.html#document2",
+    "href": "documents.html#document2",
+    "title": "Documents",
+    "section": "Document2",
+    "text": "Document2"
+  },
+  {
+    "objectID": "documents.html#document3",
+    "href": "documents.html#document3",
+    "title": "Documents",
+    "section": "Document3",
+    "text": "Document3"
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "About Me",
+    "title": "JACKIE ERNEST",
     "section": "",
-    "text": "Thanks for checking out my web site!"
+    "text": "degree info here\n\n\n\n\n\njob info here\n\nThanks for checking out my website!"
+  },
+  {
+    "objectID": "index.html#education",
+    "href": "index.html#education",
+    "title": "JACKIE ERNEST",
+    "section": "",
+    "text": "degree info here"
+  },
+  {
+    "objectID": "index.html#experience",
+    "href": "index.html#experience",
+    "title": "JACKIE ERNEST",
+    "section": "",
+    "text": "job info here\n\nThanks for checking out my website!"
   },
   {
     "objectID": "projects.html#project-2",
@@ -19,5 +47,33 @@
     "title": "Projects",
     "section": "Project 3",
     "text": "Project 3"
+  },
+  {
+    "objectID": "publications.html#publication2",
+    "href": "publications.html#publication2",
+    "title": "Publications",
+    "section": "Publication2",
+    "text": "Publication2"
+  },
+  {
+    "objectID": "publications.html#publication3",
+    "href": "publications.html#publication3",
+    "title": "Publications",
+    "section": "Publication3",
+    "text": "Publication3"
+  },
+  {
+    "objectID": "applications.html#application2",
+    "href": "applications.html#application2",
+    "title": "Applications",
+    "section": "Application2",
+    "text": "Application2"
+  },
+  {
+    "objectID": "applications.html#application3",
+    "href": "applications.html#application3",
+    "title": "Applications",
+    "section": "Application3",
+    "text": "Application3"
   }
 ]

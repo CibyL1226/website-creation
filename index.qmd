@@ -1,19 +1,26 @@
 ---
-title: "About Me"
-about:
-  id: me
-  template: broadside
-  image: img/profile.png
+title: ""
+format: html
 ---
 
-:::{#me}
+:::{.columns}
+::: {.column width="30%"}
 
-## Goals
-
-## Education
-
-## Experience
+<img src="https://raw.githubusercontent.com/CibyL1226/website-creation/main/img/jackie_profile.png" width="170px" alt="Jackie profile photo" style="border-radius: 12px;">
 
 :::
 
-Thanks for checking out my web site!
+::: {.column width="70%"}
+
+## Education
+
+- degree info here  
+
+## Experience
+
+- job info here  
+
+Thanks for checking out my website!
+
+:::
+:::

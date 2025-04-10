@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>About Me – JACKIE ERNEST</title>
+<title>JACKIE ERNEST</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -33,6 +33,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
@@ -69,7 +70,7 @@ ul.task-list li input[type="checkbox"] {
 
 </head>
 
-<body class="nav-fixed fullcontent">
+<body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -94,11 +95,29 @@ ul.task-list li input[type="checkbox"] {
     <a class="nav-link" href="./projects.html"> 
 <span class="menu-text">Projects</span></a>
   </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./documents.html"> 
+<span class="menu-text">Documents</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./applications.html"> 
+<span class="menu-text">Applications</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./publications.html"> 
+<span class="menu-text">Publications</span></a>
+  </li>  
 </ul>
           </div> <!-- /navcollapse -->
-            <div class="quarto-navbar-tools">
-    <a href="https://twitter.com/" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-twitter"></i></a>
+            <div class="quarto-navbar-tools tools-wide">
     <a href="https://github.com/CibyL1226/website-creation" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+    <a href="mailto:your.email@example.com" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-envelope"></i></a>
+    <a href="https://www.linkedin.com/in/yourusername" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-linkedin"></i></a>
+    <a href="https://scholar.google.com/citations?user=YOUR_ID" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-google-scholar"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -107,38 +126,34 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
+    </div>
 <!-- main -->
-<main class="content page-columns page-full" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
 
 
 
 
-<div class="quarto-about-broadside column-page">
-  <div class="about-main">
-    <div class="about-entity" style="background-image: url('img/profile.png')"></div>
-    <div class="about-contents"><header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">About Me</h1>
-</div>
-<div class="quarto-title-meta">
-  </div>
-</header><div id="me">
-<section id="goals" class="level2">
-<h2 data-anchor-id="goals">Goals</h2>
-</section>
+<div class="columns">
+<div class="column" style="width:30%;">
+<p><img src="https://raw.githubusercontent.com/CibyL1226/website-creation/main/img/jackie_profile.png" width="170px" alt="Jackie profile photo" style="border-radius: 12px;"></p>
+</div><div class="column" style="width:70%;">
 <section id="education" class="level2">
-<h2 data-anchor-id="education">Education</h2>
+<h2 class="anchored" data-anchor-id="education">Education</h2>
+<ul>
+<li>degree info here</li>
+</ul>
 </section>
 <section id="experience" class="level2">
-<h2 data-anchor-id="experience">Experience</h2>
+<h2 class="anchored" data-anchor-id="experience">Experience</h2>
+<ul>
+<li>job info here</li>
+</ul>
+<p>Thanks for checking out my website!</p>
 </section>
-</div></div>
-  </div>
 </div>
-
-<p>Thanks for checking out my web site!</p>
-
+</div>
 
 
 
@@ -163,6 +178,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
   toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
   const isCodeAnnotation = (el) => {
     for (const clz of el.classList) {
       if (clz.startsWith('code-annotation-')) {                     
@@ -560,7 +582,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>© Copyright 2023, Jackie Ernest</p>
+<p>© Copyright 2025, Jackie Ernest</p>
 </div>   
     <div class="nav-footer-center">
       &nbsp;
