@@ -1,0 +1,1 @@
+<img src="https://raw.githubusercontent.com/CibyL1226/website-creation/main/img/jackie_profile.png" width="170px" alt="Jackie profile photo" style="border-radius: 12px;">

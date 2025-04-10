@@ -28,7 +28,7 @@ website:
 
 format:
   html:
-    theme: cerulean
+    theme: flatly
     toc: true
 
 editor: source
