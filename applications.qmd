@@ -3,8 +3,28 @@ title: "Applications"
 format: html
 ---
 
-## Application1
+All code and data can be found on Github linked in upper right corner. 
 
-## Application2
+If you have any questions regarding the applications, please reach out through email linked in the upper right corner. Thank you!
 
-## Application3
+## [CR Simulator](https://simplab.shinyapps.io/cr_simulator/){target="_blank"}
+
+**Responses over Concentration profile**
+
+![](img/cr_simulator.png){width=100% fig-align="center"}
+
+## [PK Simulator](https://simplab.shinyapps.io/pk_simulator/){target="_blank"}
+
+**PK profile over time(h)**
+
+![](img/pk_simulator.png){width=100% fig-align="center"}
+
+
+## [Bootcamp PK Simulator](https://simplab.shinyapps.io/bootcamp_pk_app/){target="_blank"}
+This contains changes to PK simulator R shiny app specific to bootcamp 2020
+
+**PK profile over time with new features**
+
+![](img/bootcamp_pk.png){width=100% fig-align="center"}
+
+[Dataset here (.csv)](https://github.com/CibyL1226/website-creation/blob/f4f6a125a29e5f99444a744c7f36f4fd8137b7cf/bootcamp_PK_app/simtab.csv){target="_blank"}

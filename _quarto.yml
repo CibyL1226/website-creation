@@ -8,20 +8,17 @@ website:
     left:
       - href: index.qmd
         text: Home
-      - projects.qmd
       - about.qmd
       - documents.qmd
       - applications.qmd
       - publications.qmd
     tools:
       - icon: github
-        href: https://github.com/CibyL1226/website-creation
+        href: https://github.com/jackieernest
       - icon: envelope
-        href: mailto:your.email@example.com
-      - icon: linkedin
-        href: https://www.linkedin.com/in/yourusername
-      - icon: google-scholar
-        href: https://scholar.google.com/citations?user=YOUR_ID
+        href: mailto:jackieernest3@gmail.com
+      - icon: book
+        href: https://scholar.google.com/citations?user=A0sm6T4AAAAJ&hl=en
   page-footer:
     right: "Built with [Quarto](https://quarto.org/)"
     left: "&copy; Copyright 2025, Jackie Ernest"
@@ -30,6 +27,7 @@ format:
   html:
     theme: flatly
     toc: true
+    css: style.css
 
 editor: source
 

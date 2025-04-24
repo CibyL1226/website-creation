@@ -1,26 +1,40 @@
 ---
 title: ""
-format: html
+format:
+  html:
+    page-layout: full
+    theme: flatly
+    toc: false
+    css: style.css
+    anchor-sections: false
+    code-tools: false
+    link-external-newwindow: true
+    body-class: homepage
 ---
 
-:::{.columns}
-::: {.column width="30%"}
+```{=html}
+<div id="banner-wrapper">
+  <div class="full-width-banner">
+    <div class="banner-text">
+      <h1>Welcome to Jackie Ernest’s Website</h1>
+      <p>Explore research, applications, and more.</p>
+    </div>
+  </div>
+</div>
+```
 
-<img src="https://raw.githubusercontent.com/CibyL1226/website-creation/main/img/jackie_profile.png" width="170px" alt="Jackie profile photo" style="border-radius: 12px;">
+```{=html}
+<script>
+  window.addEventListener('scroll', function () {
+    const navbar = document.querySelector('.navbar');
+    if (window.scrollY > 50) {
+      navbar.classList.add('scrolled');
+    } else {
+      navbar.classList.remove('scrolled');
+    }
+  });
+</script>
+```
 
-:::
 
-::: {.column width="70%"}
 
-## Education
-
-- degree info here  
-
-## Experience
-
-- job info here  
-
-Thanks for checking out my website!
-
-:::
-:::

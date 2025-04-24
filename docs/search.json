@@ -14,25 +14,39 @@
     "text": "Document3"
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "JACKIE ERNEST",
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
     "section": "",
     "text": "degree info here\n\n\n\n\n\njob info here\n\nThanks for checking out my website!"
   },
   {
-    "objectID": "index.html#education",
-    "href": "index.html#education",
-    "title": "JACKIE ERNEST",
+    "objectID": "about.html#about-me",
+    "href": "about.html#about-me",
+    "title": "About",
+    "section": "",
+    "text": "degree info here\n\n\n\n\n\njob info here\n\nThanks for checking out my website!"
+  },
+  {
+    "objectID": "about.html#education",
+    "href": "about.html#education",
+    "title": "About",
     "section": "",
     "text": "degree info here"
   },
   {
-    "objectID": "index.html#experience",
-    "href": "index.html#experience",
-    "title": "JACKIE ERNEST",
+    "objectID": "about.html#experience",
+    "href": "about.html#experience",
+    "title": "About",
     "section": "",
     "text": "job info here\n\nThanks for checking out my website!"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Welcome to Jackie Ernest’s Website",
+    "section": "",
+    "text": "Welcome to Jackie Ernest’s Website\n      Explore research, applications, and more."
   },
   {
     "objectID": "projects.html#project-2",
@@ -63,17 +77,31 @@
     "text": "Publication3"
   },
   {
-    "objectID": "applications.html#application2",
-    "href": "applications.html#application2",
+    "objectID": "applications.html",
+    "href": "applications.html",
     "title": "Applications",
-    "section": "Application2",
-    "text": "Application2"
+    "section": "",
+    "text": "All code and data can be found on Github linked in upper right corner.\nIf you have any questions regarding the applications, please reach out through email linked in the upper right corner. Thank you!"
   },
   {
-    "objectID": "applications.html#application3",
-    "href": "applications.html#application3",
+    "objectID": "applications.html#cr-simulator",
+    "href": "applications.html#cr-simulator",
     "title": "Applications",
-    "section": "Application3",
-    "text": "Application3"
+    "section": "CR Simulator",
+    "text": "CR Simulator\nResponses over Concentration profile"
+  },
+  {
+    "objectID": "applications.html#pk-simulator",
+    "href": "applications.html#pk-simulator",
+    "title": "Applications",
+    "section": "PK Simulator",
+    "text": "PK Simulator\nPK profile over time(h)"
+  },
+  {
+    "objectID": "applications.html#bootcamp-pk-simulator",
+    "href": "applications.html#bootcamp-pk-simulator",
+    "title": "Applications",
+    "section": "Bootcamp PK Simulator",
+    "text": "Bootcamp PK Simulator\nThis contains changes to PK simulator R shiny app specific to bootcamp 2020\nPK profile over time with new features\n\n\n\n\n\nDataset here (.csv)"
   }
 ]
