@@ -7,7 +7,7 @@ All code and data can be found on Github linked in upper right corner.
 
 If you have any questions regarding the applications, please reach out through email linked in the upper right corner. Thank you!
 
-## [CR Simulator](https://simplab.shinyapps.io/cr_simulator/){target="_blank"}
+## [CR Simulator](https://cr.sim.jackieernest.com){target="_blank"}
 
 **Responses over Concentration profile**
 
