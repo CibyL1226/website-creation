@@ -1,0 +1,107 @@
+[
+  {
+    "objectID": "documents.html#document2",
+    "href": "documents.html#document2",
+    "title": "Documents",
+    "section": "Document2",
+    "text": "Document2"
+  },
+  {
+    "objectID": "documents.html#document3",
+    "href": "documents.html#document3",
+    "title": "Documents",
+    "section": "Document3",
+    "text": "Document3"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "degree info here\n\n\n\n\n\njob info here\n\nThanks for checking out my website!"
+  },
+  {
+    "objectID": "about.html#about-me",
+    "href": "about.html#about-me",
+    "title": "About",
+    "section": "",
+    "text": "degree info here\n\n\n\n\n\njob info here\n\nThanks for checking out my website!"
+  },
+  {
+    "objectID": "about.html#education",
+    "href": "about.html#education",
+    "title": "About",
+    "section": "",
+    "text": "degree info here"
+  },
+  {
+    "objectID": "about.html#experience",
+    "href": "about.html#experience",
+    "title": "About",
+    "section": "",
+    "text": "job info here\n\nThanks for checking out my website!"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Welcome to Jackie Ernest’s Website",
+    "section": "",
+    "text": "Welcome to Jackie Ernest’s Website\n      Explore research, applications, and more."
+  },
+  {
+    "objectID": "projects.html#project-2",
+    "href": "projects.html#project-2",
+    "title": "Projects",
+    "section": "Project 2",
+    "text": "Project 2"
+  },
+  {
+    "objectID": "projects.html#project-3",
+    "href": "projects.html#project-3",
+    "title": "Projects",
+    "section": "Project 3",
+    "text": "Project 3"
+  },
+  {
+    "objectID": "publications.html#publication2",
+    "href": "publications.html#publication2",
+    "title": "Publications",
+    "section": "Publication2",
+    "text": "Publication2"
+  },
+  {
+    "objectID": "publications.html#publication3",
+    "href": "publications.html#publication3",
+    "title": "Publications",
+    "section": "Publication3",
+    "text": "Publication3"
+  },
+  {
+    "objectID": "applications.html",
+    "href": "applications.html",
+    "title": "Applications",
+    "section": "",
+    "text": "All code and data can be found on Github linked in upper right corner.\nIf you have any questions regarding the applications, please reach out through email linked in the upper right corner. Thank you!"
+  },
+  {
+    "objectID": "applications.html#cr-simulator",
+    "href": "applications.html#cr-simulator",
+    "title": "Applications",
+    "section": "CR Simulator",
+    "text": "CR Simulator\nResponses over Concentration profile"
+  },
+  {
+    "objectID": "applications.html#pk-simulator",
+    "href": "applications.html#pk-simulator",
+    "title": "Applications",
+    "section": "PK Simulator",
+    "text": "PK Simulator\nPK profile over time(h)"
+  },
+  {
+    "objectID": "applications.html#bootcamp-pk-simulator",
+    "href": "applications.html#bootcamp-pk-simulator",
+    "title": "Applications",
+    "section": "Bootcamp PK Simulator",
+    "text": "Bootcamp PK Simulator\nThis contains changes to PK simulator R shiny app specific to bootcamp 2020\nPK profile over time with new features\n\n\n\n\n\nDataset here (.csv)"
+  }
+]
