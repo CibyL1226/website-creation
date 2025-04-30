@@ -3,10 +3,328 @@ title: "Publications"
 format: html
 ---
 
-## Publication1
-
-## Publication2
-
-## Publication3
+*All publications can be found on Google Scholar page linked in upper right corner*
 
 
+``` {=html}
+<div class="row mb-4">
+  <div class="col-md-4">
+    <label class="form-label">Sort by:</label>
+    <select class="form-select" id="sortDropdown" onchange="sortCards()">
+      <option value="default">Default</option>
+      <option value="year">Year (Newest First)</option>
+      <option value="citations">Citations (Highest First)</option>
+    </select>
+  </div>
+</div>
+
+<div class="row" id="cardsContainer">
+  <div class="col-md-4 mb-4" data-year="2020" data-citations="135">
+    <div class="card h-100 text-white bg-dark">
+      <div class="card-body">
+        <h5 class="card-title"><strong>Optimizing hydroxychloroquine dosing for patients with COVID‐19: an integrative modeling approach for effective drug repurposing</strong></h5>
+        <p class="card-text">Authors: Maria Garcia‐Cremades, Belen P Solans, Emma Hughes, Jacqueline P Ernest, Erika Wallender, Francesca Aweeka, Anne F Luetkemeyer, Radojka M Savic</p>
+        <p class="card-text"><strong>Year:</strong> 2028<br><strong>Journal:</strong>Clinical Pharmacology & Therapeutics</p>
+      </div>
+      <div class="card-footer">
+        <a href="https://ascpt.onlinelibrary.wiley.com/doi/abs/10.1002/cpt.1856" class="btn btn-primary w-100">View Publication</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4 mb-4" data-year="2021" data-citations="42">
+    <div class="card h-100 text-white bg-dark">
+      <div class="card-body">
+        <h5 class="card-title"><strong>Development of new tuberculosis drugs: translation to regimen composition for drug-sensitive and multidrug-resistant tuberculosis</strong></h5>
+        <p class="card-text">Authors: Jacqueline P Ernest, Natasha Strydom, Qianwen Wang, Nan Zhang, Eric Nuermberger, Véronique Dartois, Rada M Savic</p>
+        <p class="card-text"><strong>Year:</strong> 2021<br><strong>Source:</strong> Annual review of pharmacology and toxicology</p>
+      </div>
+      <div class="card-footer">
+        <a href="https://www.annualreviews.org/content/journals/10.1146/annurev-pharmtox-030920-011143" class="btn btn-primary w-100">View Publication</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4 mb-4" data-year="2021" data-citations="31">
+    <div class="card h-100 text-white bg-dark">
+      <div class="card-body">
+        <h5 class="card-title"><strong>Lesion penetration and activity limit the utility of second-line injectable agents in pulmonary tuberculosis</strong></h5>
+        <p class="card-text">Authors: Jacqueline P Ernest, Jansy Sarathy, Ning Wang, Firat Kaya, Matthew D Zimmerman, Natasha Strydom, Han Wang, Min Xie, Martin Gengenbacher, Laura E Via, Clifton E Barry III, Claire L Carter, Radojka M Savic, Véronique Dartois</p>
+        <p class="card-text"><strong>Year:</strong> 2021<br><strong>Journal:</strong> Antimicrobial agents and chemotherapy</p>
+      </div>
+      <div class="card-footer">
+        <a href="https://journals.asm.org/doi/abs/10.1128/aac.00506-21" class="btn btn-primary w-100">View Publication</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4 mb-4" data-year="2017" data-citations="28">
+    <div class="card h-100 text-white bg-dark">
+      <div class="card-body">
+        <h5 class="card-title"><strong>Discovery of novel brain permeable and G protein-biased beta-1 adrenergic receptor partial agonists for the treatment of neurocognitive disorders</strong></h5>
+        <p class="card-text">Authors: Bitna Yi, Alam Jahangir, Andrew K Evans, Denise Briggs, Kristine Ravina, Jacqueline Ernest, Amir B Farimani, Wenchao Sun, Jayakumar Rajadas, Michael Green, Evan N Feinberg, Vijay S Pande, Mehrdad Shamloo</p>
+        <p class="card-text"><strong>Year:</strong> 2017<br><strong>Journal:</strong> PLoS One</p>
+      </div>
+      <div class="card-footer">
+        <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0180319" class="btn btn-primary w-100">View Publication</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4 mb-4" data-year="2022" data-citations="19">
+    <div class="card h-100 text-white bg-dark">
+      <div class="card-body">
+        <h5 class="card-title"><strong>A rabbit model to study antibiotic penetration at the site of infection for nontuberculous mycobacterial lung disease: macrolide case study</strong></h5>
+        <p class="card-text">Authors: Firat Kaya, Jacqueline P Ernest, Katherine LoMauro, Martin Gengenbacher, Abdeldjalil Madani, Wassihun Wedajo Aragaw, Matthew D Zimmerman, Jansy P Sarathy, Nadine Alvarez, Isaac Daudelin, Han Wang, Faye Lanni, Danielle M Weiner, Laura E Via, Clifton E Barry III, Kenneth N Olivier, Thomas Dick, Brendan K Podell, Radojka M Savic, Véronique Dartois</p>
+        <p class="card-text"><strong>Year:</strong> 2022<br><strong>Journal:</strong> Antimicrobial agents and chemotherapy</p>
+      </div>
+      <div class="card-footer">
+        <a href="https://journals.asm.org/doi/abs/10.1128/aac.02212-21" class="btn btn-primary w-100">View Publication</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4 mb-4" data-year="2023" data-citations="17">
+    <div class="card h-100 text-white bg-dark">
+      <div class="card-body">
+        <h5 class="card-title"><strong>Lung microenvironments harbor Mycobacterium tuberculosis phenotypes with distinct treatment responses</strong></h5>
+        <p class="card-text">Authors: Nicholas D Walter, Jackie P Ernest, Christian Dide-Agossou, Allison A Bauman, Michelle E Ramey, Karen Rossmassler, Lisa M Massoudi, Samantha Pauly, Reem Al Mubarak, Martin I Voskuil, Firat Kaya, Jansy P Sarathy, Matthew D Zimmerman, Véronique Dartois, Brendan K Podell, Radojka M Savic, Gregory T Robertson</p>
+        <p class="card-text"><strong>Year:</strong> 2023<br><strong>Journal:</strong> Antimicrobial agents and chemotherapy</p>
+      </div>
+      <div class="card-footer">
+        <a href="https://journals.asm.org/doi/abs/10.1128/aac.00284-23" class="btn btn-primary w-100">View Publication</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4 mb-4" data-year="2022" data-citations="13">
+    <div class="card h-100 text-white bg-dark">
+      <div class="card-body">
+        <h5 class="card-title"><strong>Pharmacometrics in tuberculosis: progress and opportunities</strong></h5>
+        <p class="card-text">Authors: Author E, Author F</p>
+        <p class="card-text"><strong>Year:</strong> 2022<br><strong>Source:</strong> 
+International Journal of Antimicrobial Agents</p>
+      </div>
+      <div class="card-footer">
+        <a href="https://www.sciencedirect.com/science/article/pii/S0924857922001327" class="btn btn-primary w-100">View Publication</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4 mb-4" data-year="2023" data-citations="11">
+    <div class="card h-100 text-white bg-dark">
+      <div class="card-body">
+        <h5 class="card-title"><strong>Translational predictions of phase 2a first-in-patient efficacy studies for antituberculosis drugs</strong></h5>
+        <p class="card-text">Authors: Jacqueline P Ernest, Janice Jia Ni Goh, Natasha Strydom, Qianwen Wang, Rob C van Wijk, Nan Zhang, Amelia Deitchman, Eric Nuermberger, Rada M Savic</p>
+        <p class="card-text"><strong>Year:</strong> 2023<br><strong>Journal:</strong> European Respiratory Journal</p>
+      </div>
+      <div class="card-footer">
+        <a href="https://publications.ersnet.org/content/erj/62/2/2300165.abstract" class="btn btn-primary w-100">View Publication</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4 mb-4" data-year="2021" data-citations="7">
+    <div class="card h-100 text-white bg-dark">
+      <div class="card-body">
+        <h5 class="card-title"><strong>Comparative efficacy of rifapentine alone and in combination with isoniazid for latent tuberculosis infection: a translational pharmacokinetic-pharmacodynamic modeling study</strong></h5>
+        <p class="card-text">Authors: Kendra K Radtke, Jacqueline P Ernest, Nan Zhang, Nicole C Ammerman, Eric Nuermberger, Robert Belknap, Rosanna Boyd, Timothy R Sterling, Rada M Savic</p>
+        <p class="card-text"><strong>Year:</strong> 2021<br><strong>Journal:</strong> Antimicrobial agents and chemotherapy</p>
+      </div>
+      <div class="card-footer">
+        <a href="https://journals.asm.org/doi/abs/10.1128/aac.01705-21" class="btn btn-primary w-100">View Publication</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4 mb-4" data-year="2024" data-citations="6">
+    <div class="card h-100 text-white bg-dark">
+      <div class="card-body">
+        <h5 class="card-title"><strong>Dose optimization of TBI-223 for enhanced therapeutic benefit compared to linezolid in antituberculosis regimen</strong></h5>
+        <p class="card-text">Authors: Natasha Strydom, Jacqueline P Ernest, Marjorie Imperial, Belén P Solans, Qianwen Wang, Rokeya Tasneen, Sandeep Tyagi, Heena Soni, Andrew Garcia, Kristina Bigelow, Martin Gengenbacher, Matthew Zimmerman, Min Xie, Jansy P Sarathy, Tian J Yang, Véronique Dartois, Eric L Nuermberger, Radojka M Savic</p>
+        <p class="card-text"><strong>Year:</strong> 2024<br><strong>Journal:</strong> Nature communications</p>
+      </div>
+      <div class="card-footer">
+        <a href="https://www.nature.com/articles/s41467-024-50781-4" class="btn btn-primary w-100">View Publication</a>
+      </div>
+    </div>
+  </div>
+  
+  <div class="col-md-4 mb-4" data-year="2020" data-citations="6">
+    <div class="card h-100 text-white bg-dark">
+      <div class="card-body">
+        <h5 class="card-title"><strong>Optimizing Hydroxychloroquine Dosing for Patients With COVID‐19: An Integrative Modeling Approach for Effective Drug Repurposing</strong></h5>
+        <p class="card-text">Authors: Garcia‐Cremades Maria, P Solans Belen, Hughes Emma, P Ernest Jacqueline, Wallender Erika, Aweeka Francesca, Luetkemeyer Annie, M Savic Radojka</p>
+        <p class="card-text"><strong>Year:</strong> 2020<br><strong>Journal:</strong> Clin Pharmacol Ther</p>
+      </div>
+      <div class="card-footer">
+        <a href="https://covid-19.conacyt.mx/jspui/handle/1000/3834" class="btn btn-primary w-100">View Publication</a>
+      </div>
+    </div>
+  </div>
+  
+  <div class="col-md-4 mb-4" data-year="2020" data-citations="2">
+    <div class="card h-100 text-white bg-dark">
+      <div class="card-body">
+        <h5 class="card-title"><strong>PREDICTING THE EARLY BACTERICIDAL ACTIVITY (EBA) OF TUBERCULOSIS (TB) DRUGS FOR THE PHASE IIA FIRST-IN-PATIENTS STUDIES.</strong></h5>
+        <p class="card-text">Authors: N Zhang, N Strydom, Q Wang, J Ernest, E Nuermberger, R Savic</p>
+        <p class="card-text"><strong>Year:</strong> 2020<br><strong>Conference:</strong> CLINICAL PHARMACOLOGY & THERAPEUTICS</p>
+      </div>
+      <div class="card-footer">
+        <a href="https://scholar.google.com/scholar?cluster=11864000840722202980&hl=en&oi=scholarr" class="btn btn-primary w-100">View Publication</a>
+      </div>
+    </div>
+  </div>
+  
+  <div class="col-md-4 mb-4" data-year="2021" data-citations="1">
+    <div class="card h-100 text-white bg-dark">
+      <div class="card-body">
+        <h5 class="card-title"><strong>LIMITED PENETRATION AND EFFICACY OF AMINOGLYCOSIDES IN LESIONS OF TUBERCULOSIS: A TRANSLATIONAL SITE-OF-ACTION PKPD MODELING STUDY.</strong></h5>
+        <p class="card-text">Authors: J Ernest, N Strydom, J Sarathy, M Zimmerman, V Dartois, R Savic</p>
+        <p class="card-text"><strong>Year:</strong> 2021<br><strong>Journal:</strong> Journal Twelve</p>
+      </div>
+      <div class="card-footer">
+        <a href="https://scholar.google.com/scholar?cluster=16057014703917006119&hl=en&oi=scholarr" class="btn btn-primary w-100">View Publication</a>
+      </div>
+    </div>
+  </div>
+  
+  <div class="col-md-4 mb-4" data-year="2025" data-citations="0">
+    <div class="card h-100 text-white bg-dark">
+      <div class="card-body">
+        <h5 class="card-title"><strong>Contribution of front-line, standard-of-care drugs to bactericidal responses, resistance emergence, and cure in murine models of easy-or hard-to-treat tuberculosis disease</strong></h5>
+        <p class="card-text">Authors: Nathan Peroutka-Bigus, Elizabeth J Brooks, Michelle E Ramey, Hope D'Erasmo, Jackie P Ernest, Allison A Bauman, Lisa K Woolhiser, Radojka M Savic, Anne J Lenaerts, Bree B Aldridge, Jansy P Sarathy, Gregory T Robertson</p>
+        <p class="card-text"><strong>Year:</strong> 2025<br><strong>Journal:</strong> Antimicrobial Agents and Chemotherapy</p>
+      </div>
+      <div class="card-footer">
+        <a href="https://journals.asm.org/doi/abs/10.1128/aac.01901-24" class="btn btn-primary w-100">View Publication</a>
+      </div>
+    </div>
+  </div>
+  
+  <div class="col-md-4 mb-4" data-year="2025" data-citations="0">
+    <div class="card h-100 text-white bg-dark">
+      <div class="card-body">
+        <h5 class="card-title"><strong>Translational Modeling of BTZ-043 to Predict Phase 2A Efficacy and Evaluate Drug-Drug Interactions With Bedaquiline, Pretomanid, and Linezolid in Murine Models</strong></h5>
+        <p class="card-text">Authors: Bernard Ngara, Lorenzo Flori, Rob Christiaan van Wijk, Jacqueline P Ernest, Sandeep Tyagi, Heena Soni, Christoph Hölscher, Kerstin Walter, Julia Dreisbach, Michael Hoelscher, Eric L Nuermberger, Radojka M Savic</p>
+        <p class="card-text"><strong>Year:</strong> 2025<br><strong>Journal:</strong> The Journal of Infectious Diseases</p>
+      </div>
+      <div class="card-footer">
+        <a href="https://academic.oup.com/jid/advance-article-abstract/doi/10.1093/infdis/jiaf088/8016390" class="btn btn-primary w-100">View Publication</a>
+      </div>
+    </div>
+  </div>
+  
+  <div class="col-md-4 mb-4" data-year="2025" data-citations="0">
+    <div class="card h-100 text-white bg-dark">
+      <div class="card-body">
+        <h5 class="card-title"><strong>Selection and prioritization of candidate combination regimens for the treatment of tuberculosis</strong></h5>
+        <p class="card-text">Authors: Natasha Strydom, Rob C van Wijk, Qianwen Wang, Jacqueline P Ernest, Linda Chaba, Ziran Li, Eric L Nuermberger, Radojka M Savic</p>
+        <p class="card-text"><strong>Year:</strong> 2025<br><strong>Journal:</strong> Science Translational Medicine</p>
+      </div>
+      <div class="card-footer">
+        <a href="https://www.science.org/doi/abs/10.1126/scitranslmed.adi4000" class="btn btn-primary w-100">View Publication</a>
+      </div>
+    </div>
+  </div>
+  
+  <div class="col-md-4 mb-4" data-year="2024" data-citations="0">
+    <div class="card h-100 text-white bg-dark">
+      <div class="card-body">
+        <h5 class="card-title"><strong>The kinetics of bedaquiline diffusion in tuberculous cavities opens a window for emergence of resistance</strong></h5>
+        <p class="card-text">Authors: Annamarie E Bustion, Jacqueline P Ernest, Firat Kaya, Connie Silva, Jansy Sarathy, Landry Blanc, Marjorie Imperial, Martin Gengenbacher, Min Xie, Matthew Zimmerman, Gregory T Robertson, Danielle Weiner, Laura E Via, Clifton E Barry, Radojka M Savic, Véronique Dartois</p>
+        <p class="card-text"><strong>Year:</strong> 2024<br><strong>Journal:</strong> bioRxiv</p>
+      </div>
+      <div class="card-footer">
+        <a href="https://www.biorxiv.org/content/10.1101/2024.10.09.617456.abstract" class="btn btn-primary w-100">View Publication</a>
+      </div>
+    </div>
+  </div>
+  
+  <div class="col-md-4 mb-4" data-year="2023" data-citations="0">
+    <div class="card h-100 text-white bg-dark">
+      <div class="card-body">
+        <h5 class="card-title"><strong>It's That Time of Year-Give Yourself the Gift of SCIENCE!</strong></h5>
+        <p class="card-text">Authors: Jacqueline Ernest</p>
+        <p class="card-text"><strong>Year:</strong> 2023<br><strong>Source:</strong> CLINICAL PHARMACOLOGY & THERAPEUTICS</p>
+      </div>
+      <div class="card-footer">
+        <a href="https://scholar.google.com/scholar?cluster=3855697888486883058&hl=en&oi=scholarr" class="btn btn-primary w-100">View Publication</a>
+      </div>
+    </div>
+  </div>
+  
+  <div class="col-md-4 mb-4" data-year="2023" data-citations="0">
+    <div class="card h-100 text-white bg-dark">
+      <div class="card-body">
+        <h5 class="card-title"><strong>GATIFLOXACIN EXPOSURE IN THE LESION AS TARGET SITE OF GATIFLOXACIN IN A RABBIT MODEL OF TUBERCULOSIS: COMPARISON WITH THE OUTCOMES FROM THE PHASE III OFLOTUB TRIAL.</strong></h5>
+        <p class="card-text">Authors: L Flori, J Ernest, M Zimmerman, V Dartois, R Savic</p>
+        <p class="card-text"><strong>Year:</strong> 2023<br><strong>Source:</strong> CLINICAL PHARMACOLOGY & THERAPEUTICS</p>
+      </div>
+      <div class="card-footer">
+        <a href="https://scholar.google.com/scholar?cluster=14930813403764597275&hl=en&oi=scholarr" class="btn btn-primary w-100">View Publication</a>
+      </div>
+    </div>
+  </div>
+  
+  <div class="col-md-4 mb-4" data-year="2023" data-citations="0">
+    <div class="card h-100 text-white bg-dark">
+      <div class="card-body">
+        <h5 class="card-title"><strong>A LESION-CENTRIC AND TARGET-SPECIFIC PKPD MODEL OF PYRAZINOIC ACID IN PATIENTS WITH TUBERCULOSIS</strong></h5>
+        <p class="card-text">Authors: A Fochesato, J Ernest, V Dartois, R Savic</p>
+        <p class="card-text"><strong>Year:</strong> 2023<br><strong>Conference:</strong> CLINICAL PHARMACOLOGY & THERAPEUTICS</p>
+      </div>
+      <div class="card-footer">
+        <a href="https://scholar.google.com/scholar?cluster=3279118170219483391&hl=en&oi=scholarr" class="btn btn-primary w-100">View Publication</a>
+      </div>
+    </div>
+  </div>
+  
+  <div class="col-md-4 mb-4" data-year="2022" data-citations="0">
+    <div class="card h-100 text-white bg-dark">
+      <div class="card-body">
+        <h5 class="card-title"><strong>Translating Nonclinical Findings to Prioritize Sterilizing Multi-Drug Regimens for the Treatment of Tuberculosis</strong></h5>
+        <p class="card-text">Authors: Jacqueline Ernest</p>
+        <p class="card-text"><strong>Year:</strong> 2022<br><strong>Institution:</strong> University of California, San Francisco</p>
+      </div>
+      <div class="card-footer">
+        <a href="https://search.proquest.com/openview/74236dc744ca6107f88bc3babb54e17d/1?pq-origsite=gscholar&cbl=18750&diss=y" class="btn btn-primary w-100">View Publication</a>
+      </div>
+    </div>
+  </div>
+  
+  <div class="col-md-4 mb-4" data-year="2020" data-citations="0">
+    <div class="card h-100 text-white bg-dark">
+      <div class="card-body">
+        <h5 class="card-title"><strong>Response to “Quantitative Clinical Pharmacology INPUT to SARS‐CoV‐2 Therapeutics Should be Based on Robust Data”</strong></h5>
+        <p class="card-text">Authors: Maria Garcia‐Cremades, Belen P Solans, Emma Hughes, Jacqueline P Ernest, Erika Wallender, Radojka M Savic</p>
+        <p class="card-text"><strong>Year:</strong> 2020<br><strong>Journal:</strong> Clinical Pharmacology and Therapeutics</p>
+      </div>
+      <div class="card-footer">
+        <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC7267305/" class="btn btn-primary w-100">View Publication</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+  function sortCards() {
+    const container = document.getElementById("cardsContainer");
+    const cards = Array.from(container.children);
+    const sortBy = document.getElementById("sortDropdown").value;
+
+    cards.sort((a, b) => {
+      if (sortBy === "year") {
+        return b.dataset.year - a.dataset.year;
+      } else if (sortBy === "citations") {
+        return b.dataset.citations - a.dataset.citations;
+      } else {
+        return 0;
+      }
+    });
+
+    cards.forEach(card => container.appendChild(card));
+  }
+</script>
+```
