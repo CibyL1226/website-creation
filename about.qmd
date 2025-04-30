@@ -14,15 +14,7 @@ format: html
 
 ::: {.column width="90%"}
 
-## Education
 
-- degree info here  
-
-## Experience
-
-- job info here  
-
-Thanks for checking out my website!
 
 :::
 :::
