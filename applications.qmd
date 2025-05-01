@@ -20,7 +20,7 @@ If you have any questions regarding the applications, please reach out through e
 ![](img/pk_simulator.png){width=100% fig-align="center"}
 
 
-## [Bootcamp PK Simulator](https://jackieernest.com/applications/bootcamp_pk_simulator){target="_blank"}
+## [Bootcamp PK Simulator](https://jackieernest.com/applications/bootcamp_pk_app){target="_blank"}
 This contains changes to PK simulator R shiny app specific to bootcamp 2020
 
 **PK profile over time with new features**
