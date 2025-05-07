@@ -1,0 +1,23 @@
+<body>
+  <div id="sidebar">
+    <input type="text" id="filter" placeholder="Filter...">
+    <ul id="sidebar-list"></ul>
+  </div>
+  <div id="viewer">
+    <iframe id="docFrame" src=""></iframe>
+  </div>
+
+  <script>
+    function loadDoc(file) {
+      document.getElementById('docFrame').src = `html_docs/${file}`;
+    }
+
+    // Add filtering (optional)
+    document.getElementById('filter').addEventListener('input', function() {
+      const query = this.value.toLowerCase();
+      [...document.querySelectorAll('#sidebar-list li')].forEach(li => {
+        li.style.display = li.textContent.toLowerCase().includes(query) ? '' : 'none';
+      });
+    });
+  </script>
+</body>
