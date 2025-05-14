@@ -2,6 +2,9 @@ project:
   type: website
   output-dir: docs
   
+env:
+  QUARTO_PYTHON: "false"
+  
 execute:
   python: .venv/bin/python
   
