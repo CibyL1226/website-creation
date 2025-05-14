@@ -1,11 +1,125 @@
 ---
-title: "Documents"
+title: "Installing NONMEM"
 format: html
 ---
 
-## Document1
 
-## Document2
+<style>
+pre, pre code {
+  background-color: #e0e0e0;
+  padding: 1em;
+  border-radius: 8px;
+}
+</style>
 
-## Document3
+## MacOS
+This instruction works with macOS13 (Ventura) and later versions. Not all steps are necessary depending on your Mac's existing configuration. All commands can be executed in terminal, such as Terminal.app, Mac's built-in terminal, and VSCode.
 
+### Install XCode Command Line Tools
+```{bash}
+xcode-select --install
+```
+
+### Install and configure GCC
+GCC is a collections of tools required to install NONMEM. NONMEM is only compatible with GCC version 11 or earlier. 
+
+To install GCC Ver.11, we need to install Homebrew first, which is a package management tool for MacOS and Linux. Run the command in the terminal:
+
+```{bash}
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+Once Homebrew is installed. Run this command to install GCC Ver.11:
+```{bash}
+brew install gcc@11
+```
+
+GCC@11 installs `gcc-11` and `gfortran-11` commands, which are necessary to compile NONMEM source files. However, NONMEM only recognize `gcc` and `gfortran` commands. You can use either methods below to resolve this issue:
+
+#### Method 1: Symlink
+We can create symbolic links to make `gcc` and `gfortran` point to `gcc-11` and `gcc-fortran` using the following commands:
+```{bash}
+sudo ln -s $(which gcc-11) /usr/local/bin/gcc
+sudo ln -s $(which gfortran-11) /usr/local/bin/gfortran
+```
+
+Run this command to verify the symbolic links:
+```{bash}
+which gcc
+which gfortran
+```
+
+The following messages should return:
+```{bash}
+/usr/local/bin/gcc
+/usr/local/bin/gfortran
+```
+#### Method 2: Alias
+
+We can set gcc and gfortran as aliases for gcc-11 and gfortran-11 using the following commands:
+```{bash}
+echo 'alias gcc="gcc-11"' >> ~/.zprofile
+echo 'alias gfortran="gfortran-11"' >> ~/.zprofile
+```
+
+Reload shell configuration for alias to take effect:
+```{bash}
+source ~/.zprofile
+```
+
+Verify the configuration:
+```{bash}
+which gcc
+which gfortran
+```
+These messages should show up:
+```{bash}
+gcc: aliased to gcc-11
+gfortran: aliased to gfortran-11
+```
+
+
+### Disable MacOS Gatekeeper
+If MacOS flagged NONMEM as an application from an unverified developer and triggered Gatekeeper security preventing installation. We can temporarily disable Gatekeeper:
+```{bash}
+sudo spctl --global-disable
+```
+
+### Install NONMEM
+Assuming the NONMEM source file folder is located at ~/Downloads/NM751CD, and the target installation location is /opt/nm751.
+
+We first navigate to the NONMEM source directory:
+
+```{bash}
+cd ~/Downloads/NM751CD 
+```
+
+Run the command below to initiate the NONMEM installation:
+```{bash}
+sudo /bin/bash ./SETUP75 ~/Downloads/NM751CD /opt/nm751 gfortran
+```
+
+You will be prompted to enter your password, after which you can follow the installation wizard to complete the process.
+
+Finally, after the installation is complete, remember to re-enable Gatekeeper:
+```{bash}
+sudo spctl --global-enable
+```
+
+*As of Dec 2024, the following configurations have been successfully tested.
+
+|           Device          |  macOS   |   GCC  | NONMEM|
+|---------------------------|----------|--------|-------|
+|  Macbook Pro (M1, 2020)   | Big Sur  |10.2 x86| 7.5.1 |
+|  Macbook Pro (M1, 2020)   | Monterey |11.3 ARM| 7.5.1 |
+|  Macbook Pro (M1, 2020)   |  Ventura |11.5 ARM| 7.5.1 |
+| Macbook Pro (M3 Pro, 2023)|  Sonoma  |11.3 x86| 7.5.1 |
+| Macbook Pro (M3 Pro, 2023)|  Sequoia |11.5 ARM| 7.5.1 |
+| Macbook Pro (M4 Pro, 2024)|  Sequoia |11.5 ARM| 7.6.0 |
+
+
+## Windows
+NONMEM allows one-click installations for Windows environment. You can find the file on NONMEM's official page `https://nonmem.iconplc.com/#/nonmem751` by copying and pasting the link to your browser. The file name should be similar in format to `NONMEM751_64gfortran463.exe`.
+
+
+Additional documents can be found in "Additional Documents" in dropdown menu

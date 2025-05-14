@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Documents – JACKIE ERNEST</title>
+<title>Installing NONMEM – JACKIE ERNEST</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -96,10 +96,21 @@ ul.task-list li input[type="checkbox"] {
     <a class="nav-link" href="./about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link active" href="./documents.html" aria-current="page"> 
-<span class="menu-text">Documents</span></a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-documents" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Documents</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-documents">    
+        <li>
+    <a class="dropdown-item" href="./documents.html">
+ <span class="dropdown-text">NONMEM Installation</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="./html_docs/viewer.html">
+ <span class="dropdown-text">Additional Documents</span></a>
+  </li>  
+    </ul>
+  </li>
   <li class="nav-item">
     <a class="nav-link" href="./applications.html"> 
 <span class="menu-text">Applications</span></a>
@@ -127,9 +138,14 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#document1" id="toc-document1" class="nav-link active" data-scroll-target="#document1">Document1</a></li>
-  <li><a href="#document2" id="toc-document2" class="nav-link" data-scroll-target="#document2">Document2</a></li>
-  <li><a href="#document3" id="toc-document3" class="nav-link" data-scroll-target="#document3">Document3</a></li>
+  <li><a href="#macos" id="toc-macos" class="nav-link active" data-scroll-target="#macos">MacOS</a>
+  <ul class="collapse">
+  <li><a href="#install-xcode-command-line-tools" id="toc-install-xcode-command-line-tools" class="nav-link" data-scroll-target="#install-xcode-command-line-tools">Install XCode Command Line Tools</a></li>
+  <li><a href="#install-and-configure-gcc" id="toc-install-and-configure-gcc" class="nav-link" data-scroll-target="#install-and-configure-gcc">Install and configure GCC</a></li>
+  <li><a href="#disable-macos-gatekeeper" id="toc-disable-macos-gatekeeper" class="nav-link" data-scroll-target="#disable-macos-gatekeeper">Disable MacOS Gatekeeper</a></li>
+  <li><a href="#install-nonmem" id="toc-install-nonmem" class="nav-link" data-scroll-target="#install-nonmem">Install NONMEM</a></li>
+  </ul></li>
+  <li><a href="#windows" id="toc-windows" class="nav-link" data-scroll-target="#windows">Windows</a></li>
   </ul>
 </nav>
     </div>
@@ -138,7 +154,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Documents</h1>
+<h1 class="title">Installing NONMEM</h1>
 </div>
 
 
@@ -155,14 +171,125 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="document1" class="level2">
-<h2 class="anchored" data-anchor-id="document1">Document1</h2>
+<style>
+pre, pre code {
+  background-color: #e0e0e0;
+  padding: 1em;
+  border-radius: 8px;
+}
+</style>
+<section id="macos" class="level2">
+<h2 class="anchored" data-anchor-id="macos">MacOS</h2>
+<p>This instruction works with macOS13 (Ventura) and later versions. Not all steps are necessary depending on your Mac’s existing configuration. All commands can be executed in terminal, such as Terminal.app, Mac’s built-in terminal, and VSCode.</p>
+<section id="install-xcode-command-line-tools" class="level3">
+<h3 class="anchored" data-anchor-id="install-xcode-command-line-tools">Install XCode Command Line Tools</h3>
+<pre class="{bash}"><code>xcode-select --install</code></pre>
 </section>
-<section id="document2" class="level2">
-<h2 class="anchored" data-anchor-id="document2">Document2</h2>
+<section id="install-and-configure-gcc" class="level3">
+<h3 class="anchored" data-anchor-id="install-and-configure-gcc">Install and configure GCC</h3>
+<p>GCC is a collections of tools required to install NONMEM. NONMEM is only compatible with GCC version 11 or earlier.</p>
+<p>To install GCC Ver.11, we need to install Homebrew first, which is a package management tool for MacOS and Linux. Run the command in the terminal:</p>
+<pre class="{bash}"><code>/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"</code></pre>
+<p>Once Homebrew is installed. Run this command to install GCC Ver.11:</p>
+<pre class="{bash}"><code>brew install gcc@11</code></pre>
+<p>GCC@11 installs <code>gcc-11</code> and <code>gfortran-11</code> commands, which are necessary to compile NONMEM source files. However, NONMEM only recognize <code>gcc</code> and <code>gfortran</code> commands. You can use either methods below to resolve this issue:</p>
+<section id="method-1-symlink" class="level4">
+<h4 class="anchored" data-anchor-id="method-1-symlink">Method 1: Symlink</h4>
+<p>We can create symbolic links to make <code>gcc</code> and <code>gfortran</code> point to <code>gcc-11</code> and <code>gcc-fortran</code> using the following commands:</p>
+<pre class="{bash}"><code>sudo ln -s $(which gcc-11) /usr/local/bin/gcc
+sudo ln -s $(which gfortran-11) /usr/local/bin/gfortran</code></pre>
+<p>Run this command to verify the symbolic links:</p>
+<pre class="{bash}"><code>which gcc
+which gfortran</code></pre>
+<p>The following messages should return:</p>
+<pre class="{bash}"><code>/usr/local/bin/gcc
+/usr/local/bin/gfortran</code></pre>
 </section>
-<section id="document3" class="level2">
-<h2 class="anchored" data-anchor-id="document3">Document3</h2>
+<section id="method-2-alias" class="level4">
+<h4 class="anchored" data-anchor-id="method-2-alias">Method 2: Alias</h4>
+<p>We can set gcc and gfortran as aliases for gcc-11 and gfortran-11 using the following commands:</p>
+<pre class="{bash}"><code>echo 'alias gcc="gcc-11"' &gt;&gt; ~/.zprofile
+echo 'alias gfortran="gfortran-11"' &gt;&gt; ~/.zprofile</code></pre>
+<p>Reload shell configuration for alias to take effect:</p>
+<pre class="{bash}"><code>source ~/.zprofile</code></pre>
+<p>Verify the configuration:</p>
+<pre class="{bash}"><code>which gcc
+which gfortran</code></pre>
+<p>These messages should show up:</p>
+<pre class="{bash}"><code>gcc: aliased to gcc-11
+gfortran: aliased to gfortran-11</code></pre>
+</section>
+</section>
+<section id="disable-macos-gatekeeper" class="level3">
+<h3 class="anchored" data-anchor-id="disable-macos-gatekeeper">Disable MacOS Gatekeeper</h3>
+<p>If MacOS flagged NONMEM as an application from an unverified developer and triggered Gatekeeper security preventing installation. We can temporarily disable Gatekeeper:</p>
+<pre class="{bash}"><code>sudo spctl --global-disable</code></pre>
+</section>
+<section id="install-nonmem" class="level3">
+<h3 class="anchored" data-anchor-id="install-nonmem">Install NONMEM</h3>
+<p>Assuming the NONMEM source file folder is located at ~/Downloads/NM751CD, and the target installation location is /opt/nm751.</p>
+<p>We first navigate to the NONMEM source directory:</p>
+<pre class="{bash}"><code>cd ~/Downloads/NM751CD </code></pre>
+<p>Run the command below to initiate the NONMEM installation:</p>
+<pre class="{bash}"><code>sudo /bin/bash ./SETUP75 ~/Downloads/NM751CD /opt/nm751 gfortran</code></pre>
+<p>You will be prompted to enter your password, after which you can follow the installation wizard to complete the process.</p>
+<p>Finally, after the installation is complete, remember to re-enable Gatekeeper:</p>
+<pre class="{bash}"><code>sudo spctl --global-enable</code></pre>
+<p>*As of Dec 2024, the following configurations have been successfully tested.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Device</th>
+<th>macOS</th>
+<th>GCC</th>
+<th>NONMEM</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Macbook Pro (M1, 2020)</td>
+<td>Big Sur</td>
+<td>10.2 x86</td>
+<td>7.5.1</td>
+</tr>
+<tr class="even">
+<td>Macbook Pro (M1, 2020)</td>
+<td>Monterey</td>
+<td>11.3 ARM</td>
+<td>7.5.1</td>
+</tr>
+<tr class="odd">
+<td>Macbook Pro (M1, 2020)</td>
+<td>Ventura</td>
+<td>11.5 ARM</td>
+<td>7.5.1</td>
+</tr>
+<tr class="even">
+<td>Macbook Pro (M3 Pro, 2023)</td>
+<td>Sonoma</td>
+<td>11.3 x86</td>
+<td>7.5.1</td>
+</tr>
+<tr class="odd">
+<td>Macbook Pro (M3 Pro, 2023)</td>
+<td>Sequoia</td>
+<td>11.5 ARM</td>
+<td>7.5.1</td>
+</tr>
+<tr class="even">
+<td>Macbook Pro (M4 Pro, 2024)</td>
+<td>Sequoia</td>
+<td>11.5 ARM</td>
+<td>7.6.0</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="windows" class="level2">
+<h2 class="anchored" data-anchor-id="windows">Windows</h2>
+<p>NONMEM allows one-click installations for Windows environment. You can find the file on NONMEM’s official page <code>https://nonmem.iconplc.com/#/nonmem751</code> by copying and pasting the link to your browser. The file name should be similar in format to <code>NONMEM751_64gfortran463.exe</code>.</p>
+<p>Additional documents can be found in “Additional Documents” in dropdown menu</p>
 
 
 </section>

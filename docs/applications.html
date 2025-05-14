@@ -96,10 +96,21 @@ ul.task-list li input[type="checkbox"] {
     <a class="nav-link" href="./about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./documents.html"> 
-<span class="menu-text">Documents</span></a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-documents" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Documents</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-documents">    
+        <li>
+    <a class="dropdown-item" href="./documents.html">
+ <span class="dropdown-text">NONMEM Installation</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="./html_docs/viewer.html">
+ <span class="dropdown-text">Additional Documents</span></a>
+  </li>  
+    </ul>
+  </li>
   <li class="nav-item">
     <a class="nav-link active" href="./applications.html" aria-current="page"> 
 <span class="menu-text">Applications</span></a>
@@ -176,7 +187,7 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </section>
 <section id="bootcamp-pk-simulator" class="level2">
-<h2 class="anchored" data-anchor-id="bootcamp-pk-simulator"><a href="https://simplab.shinyapps.io/bootcamp_pk_app/" target="_blank">Bootcamp PK Simulator</a></h2>
+<h2 class="anchored" data-anchor-id="bootcamp-pk-simulator"><a href="https://jackieernest.com/applications/bootcamp_pk_simulator" target="_blank">Bootcamp PK Simulator</a></h2>
 <p>This contains changes to PK simulator R shiny app specific to bootcamp 2020</p>
 <p><strong>PK profile over time with new features</strong></p>
 <div class="quarto-figure quarto-figure-center">

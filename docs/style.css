@@ -140,3 +140,17 @@ body:not(.homepage) #quarto-document-content {
   transform: translateY(-2px);
   color: #007BFF !important;
 }
+
+body:not(.homepage) pre,
+body:not(.homepage) code {
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+body:not(.homepage) main.content {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  max-width: 900px; /* slightly narrower to ensure space for TOC */
+  margin: 0 auto;
+}

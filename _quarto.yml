@@ -2,6 +2,9 @@ project:
   type: website
   output-dir: docs
   
+execute:
+  python: .venv/bin/python
+  
 website:
   title: "JACKIE ERNEST"
   navbar:
@@ -9,7 +12,12 @@ website:
       - href: index.qmd
         text: Home
       - about.qmd
-      - documents.qmd
+      - text: "Documents"
+        menu:
+          - text: "NONMEM Installation"
+            href: documents.qmd
+          - text: "Additional Documents"
+            href: html_docs/viewer.html
       - applications.qmd
       - publications.qmd
     tools:
@@ -22,6 +30,10 @@ website:
   page-footer:
     right: "Built with [Quarto](https://quarto.org/)"
     left: "&copy; Copyright 2025, Jackie Ernest"
+    
+resources:
+  - html_docs/
+  - docs/search.json
 
 format:
   html:
