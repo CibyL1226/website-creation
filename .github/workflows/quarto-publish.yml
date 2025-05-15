@@ -2,7 +2,7 @@ name: Quarto Publish
 
 on:
   push:
-    branches: [main]  # or 'master'
+    branches: [main]
 
 jobs:
   build-deploy:
@@ -14,7 +14,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: 3.11  # Or whatever version you use locally
+          python-version: 3.11
 
       - name: Install Python dependencies
         run: |
@@ -27,4 +27,8 @@ jobs:
       - name: Render Quarto site
         run: quarto render
 
-      # Optional: deploy to GitHub Pages, Netlify, etc.
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./_site
