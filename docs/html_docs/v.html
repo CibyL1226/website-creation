@@ -1,5 +1,5 @@
 <!-- Creator     : groff version 1.22.2 -->
-<!-- CreationDate: Fri Sep 18 22:02:58 2020 -->
+<!-- CreationDate: Fri Sep 18 20:24:28 2020 -->
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -17,2090 +17,1784 @@
 </head>
 <body>
 
-<a href="#NONMEM Users Guide Part IV - NM-TRAN - Chapter V">NONMEM Users Guide Part IV - NM-TRAN - Chapter V</a><br>
-<a href="#V. NM-TRAN with PREDPP">V. NM-TRAN with PREDPP</a><br>
-<a href="#V.V.V.A. Introduction">V.V.V.A. Introduction</a><br>
-<a href="#V.V.V.B. Data Set Translation with PREDPP">V.V.V.B. Data Set Translation with PREDPP</a><br>
-<a href="#V.V.V.C. Control Records with PREDPP">V.V.V.C. Control Records with PREDPP</a><br>
-<a href="#V.V.V.C.1. $INPUT Record">V.V.V.C.1. $INPUT Record</a><br>
-<a href="#V.V.V.C.2. $BIND Record">V.V.V.C.2. $BIND Record</a><br>
-<a href="#V.V.V.C.3. $SUBROUTINES Record">V.V.V.C.3. $SUBROUTINES Record</a><br>
-<a href="#V.V.V.C.4. $MODEL Record">V.V.V.C.4. $MODEL Record</a><br>
-<a href="#V.V.V.C.5. $PK Record">V.V.V.C.5. $PK Record</a><br>
-<a href="#V.V.V.C.6. $ERROR Record">V.V.V.C.6. $ERROR Record</a><br>
-<a href="#V.V.V.C.7. $DES Record">V.V.V.C.7. $DES Record</a><br>
-<a href="#V.V.V.C.8. $AESINITIAL Record">V.V.V.C.8. $AESINITIAL Record</a><br>
-<a href="#V.V.V.C.9. $AES Record">V.V.V.C.9. $AES Record</a><br>
-<a href="#V.V.V.C.10. $TOL Record">V.V.V.C.10. $TOL Record</a><br>
-<a href="#V.V.V.C.11. $INFN Record (nmvi)">V.V.V.C.11. $INFN Record (nmvi)</a><br>
+<a href="#NONMEM Users Guide Part VI - PREDPP - Chapter V">NONMEM Users Guide Part VI - PREDPP - Chapter V</a><br>
+<a href="#V. Event Records">V. Event Records</a><br>
+<a href="#V.A. Introduction">V.A. Introduction</a><br>
+<a href="#V.B. The Event Identification (EVID) Data Item">V.B. The Event Identification (EVID) Data Item</a><br>
+<a href="#V.C. The Time (TIME) Data Item">V.C. The Time (TIME) Data Item</a><br>
+<a href="#V.D. The Dose Amount (AMT) Data Item">V.D. The Dose Amount (AMT) Data Item</a><br>
+<a href="#V.E. The Dose Rate (RATE) Data Item">V.E. The Dose Rate (RATE) Data Item</a><br>
+<a href="#V.F. The Steady State (SS) Data Item">V.F. The Steady State (SS) Data Item</a><br>
+<a href="#V.F.1. Background">V.F.1. Background</a><br>
+<a href="#V.F.2. Specifics of the Steady-State (SS) Data Item">V.F.2. Specifics of the Steady-State (SS) Data Item</a><br>
+<a href="#V.F.3. Initial Steady State">V.F.3. Initial Steady State</a><br>
+<a href="#V.F.4. Implementation of Steady State">V.F.4. Implementation of Steady State</a><br>
+<a href="#V.G. The Interdose Interval (II) Data Item">V.G. The Interdose Interval (II) Data Item</a><br>
+<a href="#V.H. The Compartment (CMT) Data Item">V.H. The Compartment (CMT) Data Item</a><br>
+<a href="#V.I. The Prediction Compartment (PCMT) Data Item">V.I. The Prediction Compartment (PCMT) Data Item</a><br>
+<a href="#V.J. The Call (CALL) Data Item">V.J. The Call (CALL) Data Item</a><br>
+<a href="#V.K. The Additional Dose (ADDL) Data Item">V.K. The Additional Dose (ADDL) Data Item</a><br>
+<a href="#V.L. Examples">V.L. Examples</a><br>
+<a href="#V.L.1. Example I: Population Data">V.L.1. Example I: Population Data</a><br>
+<a href="#V.L.2. Example II: A Mixture Model">V.L.2. Example II: A Mixture Model</a><br>
+<a href="#V.L.3. Example III: Single-Subject Data">V.L.3. Example III: Single-Subject Data</a><br>
+<a href="#V.L.4. Example IV: Single-Subject Pharmacodynamic Data">V.L.4. Example IV: Single-Subject Pharmacodynamic Data</a><br>
 
 <hr>
 
 
-<h2>NONMEM Users Guide Part IV - NM-TRAN - Chapter V
+<h2>NONMEM Users Guide Part VI - PREDPP - Chapter V
 <a name="NONMEM"></a>
-<a name="NONMEM Users Guide Part IV - NM-TRAN - Chapter V"></a>
+<a name="NONMEM Users Guide Part VI - PREDPP - Chapter V"></a>
 </h2>
 
 
-<h2>V. NM-TRAN with PREDPP
+<h2>V. Event Records
 <a name="V."></a>
-<a name="V. NM-TRAN with PREDPP"></a>
+<a name="V. Event Records"></a>
 </h2>
 
 
-<h2>V.V.V.A. Introduction
-<a name="V.V.V.A."></a>
-<a name="V.V.V.A. Introduction"></a>
+<h2>V.A. Introduction
+<a name="V.A."></a>
+<a name="V.A. Introduction"></a>
 </h2>
 
 
-<p style="margin-top: 1em">NM-TRAN is designed to
-facilitate the use of PREDPP. This chapter addresses special
-considerations regarding the use of NM-TRAN with PREDPP.</p>
+<p style="margin-top: 1em">In this chapter we describe data
+items required by PREDPP. The reader should be familiar with
+chapter II before proceeding with this chapter.</p>
 
-<p style="margin-top: 1em">Here follows an example of an
-NM-TRAN control stream; it is meant to be used with PREDPP
-along with the NM-TRAN data set shown in Appendix VI. This
-NM-TRAN control stream is recorded on the NONMEM
-distribution medium; see Guide III. The control stream and
-data set are constructed so to accomplish the same things as
-do the control stream and data set considered in chapter I,
-but they are constructed on the assumption that PREDPP is to
-be used. NM-TRAN will translate the data set and control
-stream to a NONMEM data set, a NONMEM control stream, and
-completely coded PK and ERROR subroutines. These NM-TRAN
-outputs are given in Appendix VII. The effect of using them
-as inputs to a NONMEM run will be to produce essentially the
-same output obtained from using the NONMEM control stream
-and PK and ERROR subroutines shown in Appendix II of Guide
-VI.</p>
-<pre style="margin-top: 1em">$PROB  THEOPHYLLINE   POPULATION DATA
-$INPUT      ID DOSE=AMT TIME CP=DV WT
-$DATA       THEOPP
+<p style="margin-top: 1em">Use of PREDPP requires that each
+data record contain certain NONMEM data items, i.e. data
+items needed by NONMEM. These are the ID and MDV data items
+(see chapter II). The MDV data item is required because with
+PREDPP not all data records will contain observations, and
+when MDV data items appear, so must the ID data items (even
+with single-subject data).</p>
 
-$SUBROUTINES  ADVAN2
-
-
-$PK
-;THETA(1)=MEAN ABSORPTION RATE CONSTANT (1/HR)
-;THETA(2)=MEAN ELIMINATION RATE CONSTANT (1/HR)
-;THETA(3)=SLOPE OF CLEARANCE VS WEIGHT RELATIONSHIP (LITERS/HR/KG)
-;SCALING PARAMETER=VOLUME/WT SINCE DOSE IS WEIGHT-ADJUSTED   CALLFL=1
-   KA=THETA(1)+ETA(1)
-   K=THETA(2)+ETA(2)
-   CL=THETA(3)*WT+ETA(3)
-   SC=CL/K/WT</pre>
-
-
-<p style="margin-top: 1em">$THETA (.1,3,5) (.008,.08,.5)
-(.004,.04,.9) $OMEGA BLOCK(3) 6 .005 .0002 .3 .006 .4</p>
-
-<p style="margin-top: 1em">$ERROR <br>
-Y=F+EPS(1)</p>
-
-<p style="margin-top: 1em">$SIGMA .4</p>
-
-<p style="margin-top: 1em">$EST MAXEVAL=450 PRINT=5 $COV
-$TABLE ID DOSE WT TIME $SCAT (RES WRES) VS TIME BY ID</p>
-
-<h2>V.V.V.B. Data Set Translation with PREDPP
-<a name="V.V.V.B."></a>
-<a name="V.V.V.B. Data Set Translation with PREDPP"></a>
-</h2>
-
-
-<p style="margin-top: 1em">When PREDPP is used, EVID and
-MDV data items are required in the NONMEM data set. When
-PREDPP is used, MDV data items need not be included in the
-NM-TRAN data set; NM-TRAN can automatically include them in
-the NONMEM data set. Such MDV data items are called
-<b>generated MDV data items</b></p>
-
-<p style="margin-top: 1em">Under certain circumstances,
-NM-TRAN can also automatically include EVID data items in
-the NONMEM data set. Such EVID data items are called
-<b>generated EVID data items</b></p>
-
-<p style="margin-top: 1em">If EVID data items are not
-included in the NM-TRAN data set, they are generated as
-follows: If each of the AMT and RATE data items in an event
-record is either 0, or is represented by a NM-TRAN null data
-item, or is missing, then the generated EVID data item is 0
-(meaning that the event is an observation event). Otherwise,
-the generated EVID data item is 1 (meaning that the event is
-a dose event). If there are other-type, or reset, or
-reset-dose events in the data set, then the user himself
-should supply EVID data items.</p>
-
-<p style="margin-top: 1em">If MDV data items are not
-included in the NM-TRAN data set, they are generated as
-follows: If the data record is the last record of an event
-record, then the generated MDV data item is 0 or 1 according
-as the EVID data item (generated or user-supplied) is 0 or
-not 0. If the data record is not the last record of an event
-record, then the generated MDV data item is 1.</p>
-
-<p style="margin-top: 1em">With PREDPP, interdose interval
-(II) data items may appear. NM-TRAN can translate II data
-items expressed in the form hr:min to II data items
-expressed in the form hr.fr, where min (minutes) can be any
-two-digit integer from 00 to 59, and fr is a decimal
-fraction of the hour to two digits. Here hr (hours) can be
-any nonnegative integer. Examples of II data item
-translation are these: 1:30 @-&gt;@ 1.50; 1.30 @-&gt;@ 1.30.
-Note that if the data item has a colon, it is translated;
-otherwise, it is left unchanged. It is the user&rsquo;s
-responsibility to make sure that the units of the TIME data
-items and the II data items are consistent. For example,
-suppose that TIME data items in the NM-TRAN data set are
-expressed as relative times in minutes; they are then left
-unchanged by NM-TRAN. II data items in the NM-TRAN data set
-should then also be expressed in minutes, and they should
-not contain colons so that NM-TRAN leaves them
-unchanged.</p>
-
-<p style="margin-top: 1em">With NONMEM 7.3, values may also
-have the form hh:mm:ss (i.e., hours:minutes:seconds). As
-described in Chapter II, the TRANSLATE option of the $DATA
-record was new to NONMEM V and has been expanded with NONMEM
-7.3. Any values may be given for dividing TIME and II
-values, and any precisions may be requested. An example
-is:</p>
-
-<p style="margin-top: 1em"><tt>$DATA TRANSLATE
-(II/0.01/6)</tt></p>
-
-<p style="margin-top: 1em">which divides II values by 0.01,
-and writes 6 digits to the right of the decimal for the II
-data item. See Help guide for more details.</p>
-
-<h2>V.V.V.C. Control Records with PREDPP
-<a name="V.V.V.C."></a>
-<a name="V.V.V.C. Control Records with PREDPP"></a>
-</h2>
-
-
-<p style="margin-top: 1em">There are a few control records
-which are specific to the use of PREDPP. These are described
-in the following subsections, along with details concerning
-the nonspecific control records which are pertinent to the
-use of PREDPP only. A listing of NM-TRAN control records and
-options which should be used with PREDPP is given in
-Appendix V.</p>
-
-<h2>V.V.V.C.1. $INPUT Record
-<a name="V.V.V.C.1."></a>
-<a name="V.V.V.C.1. $INPUT Record"></a>
-</h2>
-
-
-<p style="margin-top: 1em">The $INPUT record is described
-in detail in section III.B.2.</p>
-
-<p style="margin-top: 1em">NM-TRAN recognizes these
-PREDPP-specific reserved labels: <tt>EVID</tt>,
-<tt>TIME</tt>, <tt>AMT</tt>, <tt>RATE</tt>, <tt>SS</tt>,
-<tt>II</tt>, <tt>ADDL</tt>, <tt>CMT</tt>, <tt>PCMT</tt>,
-<tt>CALL</tt>. By using any one of these labels in an item
-of the $INPUT record, the user defines the PREDPP data item
-type whose name corresponds to the label. <br>
-With NONMEM 7.2, the following labels are also recognized:
-<tt>XVID1</tt>, <tt>XVID2</tt>, <tt>XVID3</tt>,
-<tt>XVID4</tt>, <tt>XVID5</tt>. These stand for
-&quot;extra&quot; EVIDs. They are used with the
-&quot;Repeated Observation Records&quot; feature for
-specialized methodologies such as stochastic differential
-equations (&quot;sde&quot;). See Introduction to NONMEM 7.3
-and Guide VIII and on-line help.</p>
-
-<p style="margin-top: 1em">When PREDPP is not used, any of
-these labels can be used, but with the exception of
-<tt>TIME</tt>, they have no special significance.</p>
-
-<p style="margin-top: 1em">Ignoring items with the
-<tt>DROP</tt> or <tt>SKIP</tt> labels, the total number of
-items in a NM-TRAN data record cannot exceed PD in
-resource/SIZES.f90 (default is 50; See Chapt III), <br>
-including generated EVID data items, generated MDV data
-items, and, if the data set is single-subject, generated ID
-data items (all of which actually do not appear in the
-NM-TRAN data set). Generated EVID data items are assigned
-the label <tt>EVID</tt>, and generated MDV data items are
-assigned the label <tt>MDV</tt>. These labels can be used in
-subsequent NM-TRAN control records of the problem
-specification.</p>
-
-<h2>V.V.V.C.2. $BIND Record
-<a name="V.V.V.C.2."></a>
-<a name="V.V.V.C.2. $BIND Record"></a>
-</h2>
-
-
-<p style="margin-top: 1em"><tt>$BIND</tt> @value sub 1@
-@value sub 2@ ... @value sub n@</p>
-
-<p style="margin-top: 1em">E.g.</p>
-
-<pre>$INPUT      ID    DOSE=AMT    TIME    CP=DV    WT   PREP
-$BIND       -     -           -       -        NEXT DOSE</pre>
-
-
-<p style="margin-top: 1em">This record is used in
-conjunction with the $INPUT record to further define the
-meaning of certain data items occuring as right-hand
-quantities in an abbreviated code for PK when PK is called
-at nonevent dose times (see below and Guide VI, section
-III.B.2). (Normally, PK is not called at these times.) At
-such calls, PK has access to several different data items of
-the same type, from several different event records. The
-definitions in the $BIND record precisely determine which of
-these data items are represented by the label for the data
-item type used in the abbreviated code.</p>
-
-<p style="margin-top: 1em">This record is optional. If it
-appears, it must be with the first problem specification,
-and only with this problem specification. It can only be
-used when an abbreviated code for PK is also used.</p>
-
-<p style="margin-top: 1em">There appear n values, where n
-should not exceed the total number of labels listed on the
-$INPUT record, including all <tt>DROP</tt> and <tt>SKIP</tt>
-labels. The ith value corresponds to the ith label.</p>
-
-<p style="margin-top: 1em">A nonevent dose time is a time
-that a lagged dose or additional dose enters, or starts to
-enter, the system. It is some time after the event time
-occuring on the dose record. When PK is called at such a
-time, information from three event records is available.
-These are the dose record itself, the last event record, and
-the next event record. The last event record is the last
-event record with event time occuring before the nonevent
-dose time. The next event record is the first event record
-with event time occuring after the nonevent dose time. This
-event record is also called the argument record (see Guide
-VI, section III.B.2). PK is called at nonevent dose times
-only if a certain PK calling-protocol is requested (see
-section C.5).</p>
-
-<p style="margin-top: 1em">Some data item types are NONMEM
-data item types: <tt>ID</tt>, <tt>L2</tt>, <tt>MDV</tt>,
-<tt>DV</tt>, and these are not affected by the $BIND
-definitions. At a nonevent dose time, these labels always
-represent the data items from the dose record; this is the
-mandatory representation. Some data items types are PREDPP
-data item types: <tt>AMT</tt>, <tt>RATE</tt>, <tt>SS</tt>,
-<tt>ADD</tt>, <tt>II</tt>, <tt>MT</tt>, <tt>CMT</tt>,
-<tt>CALL</tt>, <tt>EVID</tt>, and these are not affected by
-the $BIND definitions. These labels also always represent
-the data items from the dose record; this is the mandatory
-representation. The <tt>TIME</tt> data item type is a PREDPP
-data item type, and it is not affected by the $BIND
-definition; the label always represents the time data item
-from the next event record. The other data item types
-(labeled <tt>WT</tt> and <tt>PREP</tt> in the above example)
-are only recognized and responded to by the user&rsquo;s PK
-routine. With the $BIND record the user may define the label
-of such a data item type to represent the data item from the
-dose record, the last event record, or the next event
-record. If a label definition for a data item type is not
-given explicitly, then by default the label represents the
-data item from the next event record.</p>
-
-<p style="margin-top: 1em">If the value is (explicitly)
-<tt>DOSE</tt>, <tt>LAST</tt>, or <tt>NEXT</tt>, the label
-represents the item from the dose record, the last event
-record, or the next event record, respectively. If one of
-these values is used, it should not contradict the mandatory
-representation for the label (of a NONMEM or PREDPP data
-item). The value &rsquo;-&rsquo; serves as a place holder; a
-value is assumed that corresponds to the mandatory or
-default representation. If the number n is less than the
-total number of labels listed on the $INPUT record, the
-values corresponding to the remaining labels are taken to
-correspond to the respective mandatory and default
-representations. If the $BIND record is not used, the values
-corresponding to all labels are taken to correspond to the
-respective mandatory and default representations.</p>
-
-<p style="margin-top: 1em">In the above example, in
-abbreviated PK code the variable <tt>PREP</tt> denotes the
-preparation indicator on the dose record describing the dose
-entering the system at a nonevent dose time. If the $BIND
-record is not used, the variable denotes the preparation
-indicator on the next event record, which may not even be a
-dose record. The variable <tt>WT</tt> denotes the weight on
-the next event record, which is the default
-representation.</p>
-
-<p style="margin-top: 1em">If the label in the $INPUT
-record is <tt>DROP</tt> or <tt>SKIP</tt>, the issue of label
-representation is moot and is ignored. In this case the
-value can be &rsquo;-&rsquo;, or it can be <tt>DROP</tt> or
-<tt>SKIP</tt>.</p>
-
-<p style="margin-top: 1em">$INPUT and $BIND records may be
-interleaved to help maintain a perspicuous visual
-relationship in the control stream. The above example might
-have been written thusly:</p>
-<pre style="margin-top: 1em">$INPUT      ID    DOSE=AMT    TIME    CP=DV
-$BIND       -     -           -       -
-
-$INPUT      WT   PREP
-$BIND       NEXT DOSE</pre>
-
-<p style="margin-top: 1em">As with changes to the $INPUT
-record, changes to the $BIND record may cause changes to the
-generated codes. In this case care should be taken in using
-the previous load module.</p>
-
-<p style="margin-top: 1em">Even when a value is
-<tt>LAST</tt> or <tt>NEXT</tt>, it is still possible for an
-abbreviated code for PK to access the data item in the dose
-record; see section C.5.</p>
-
-<p style="margin-top: 1em">$BIND has no effect when PK is
-called at a model event time (MTIME).</p>
-
-<h2>V.V.V.C.3. $SUBROUTINES Record
-<a name="V.V.V.C.3."></a>
-<a name="V.V.V.C.3. $SUBROUTINES Record"></a>
-</h2>
-
-
-<p style="margin-top: 1em"><tt>$SUBROUTINES</tt> [@subname
-sub 1 = name sub 1@] [@subname sub 2 = name sub 2@] ... <br>
-[<tt>SUBROUTINES=</tt>kind] <br>
-[<tt>TOL=</tt>@n sub 1@] [<tt>ATOL=</tt>@n sub 2@]
-[<tt>SSTOL=</tt>@n sub 3@] [<tt>SSATOL=</tt>@n sub 4@] <br>
-[<tt><i>DES=COMPACT</i></tt>|<tt><i>DES=FULL</i></tt>]</p>
-
-<p style="margin-top: 1em">E.g.</p>
-<pre>$SUBROUTINES    ADVAN=ADVAN8 TOL=4</pre>
-
-<p style="margin-top: 1em">NM-TRAN recognizes these
-additional subnames: <tt>ADVAN</tt>, <tt>SS</tt>,
-<tt>TRANS</tt>, <tt>PK</tt>, <tt>ERROR</tt>, <tt>DES</tt>,
-<tt>AES</tt>, <tt>INFN</tt>, <tt>TOL</tt>,
-<tt>MODEL</tt></p>
-
-<p style="margin-top: 1em">The first two subnames,
-<tt>ADVAN</tt> and <tt>SS</tt>, are <i>not</i> generic names
-of subroutines which can be user-supplied, in contrast to
-all other possible subnames which can appear in the
-$SUBROUTINES record. Rather, they are generic names of
-subroutines from the PREDPP Library. With PREDPP the subname
-<tt>ADVAN</tt> must appear and be set equal to one of the
-names: <tt>ADVAN1</tt>, <tt>ADVAN2</tt>, ..., whichever
-specific ADVAN routine is chosen from the Library.&dagger;
-<br>
+<p style="margin-top: 1em">Use of PREDPP also requires that
+each event record contain two data items which are needed by
+it, i.e. these data items are examined by PREDPP, but not by
+NONMEM. These are the time (TIME) and the event
+identification (EVID) data items. Depending on the EVID data
+item in an event record, PREDPP also requires that the event
+record contain certain additional data items. Depending on
+some one of these additional data items in an event record,
+further additional data items may be required in the event
+record. Lastly, certain data item types are recognized
+PREDPP, though their use is not required e.g. the CONT data
+item. The CONT data item was discussed in Chapter II; it
+allows an event record to span several data records. It is a
+little different from the other types of data items needed
+by PREDPP because if it appears, it must appear in all data
+records of an event record. Each other type of data item
+needed by PREDPP need appear only in the last data record of
+an event record.&dagger; <br>
 ----------</p>
 
-<p style="margin-top: 1em"><cite>ADVAN stands for
-<b>ADVANCE</b> because it is the task of each ADVAN routine
-to advance the state vector of compartment amounts (and
-partial derivatives of the compartment amounts with respect
-to random variables, when appropriate) from each point in
-time to the next. Another possible name for ADVAN would have
-been SOLVER, because most ADVAN routines solve a set of
-differential equations, either analytically (ADVAN1-5,
-ADVAN7, ADVAN11, ADVAN12) or by integration (ADVAN6, ADVAN8,
-ADVAN9, ADVAN13, ADVAN14, ADVAN15). <br>
+<p style="margin-top: 1em"><cite>&dagger; The CONT data
+item described in this paragraph cannot be used with NM-TRAN
+abbreviated code. It is not needed because the number of
+data items per data record can be made as large as needed.
+See the discussion of PD and $SIZES in Chapter II. <br>
 ---------- <br>
 </cite></p>
 
-<p style="margin-top: 1em">The subname <tt>SS</tt> need
-appear only if steady-state data items are included in the
-data set. Even then, if subroutine ADVANk is chosen, it will
-be assumed that subroutine SSk is also chosen, and the
-subname-name pair <tt>SS=SSk</tt> need not appear. (If
-ADVAN8 or ADVAN10 is chosen, it will be assumed that
-subroutine SS6 is also chosen.)</p>
+<p style="margin-top: 1em">There are 11 different types of
+data items altogether that are recognized and acted on by
+PREDPP. These are called the <b>PREDPP data items</b></p>
 
-<p style="margin-top: 1em">The third subname,
-<tt>TRANS</tt>, is a generic name of a subroutine which can
-come from the PREDPP Library or be user-supplied. If the
-subroutine comes from the Library, the name must be either
-<tt>TRANS1</tt>, or <tt>TRANS2</tt>, etc. If the subroutine
-is user-supplied, the name must be different from any name
-of a TRANS routine in the Library. A subname-name pair for
-the TRANS routine need not be given; then
-<tt>TRANS=TRANS1</tt> is &quot;understood&quot;.</p>
+<p style="margin-top: 1em">Any particular type of PREDPP
+data item may appear in any field of a data record, as long
+as for a given type, the same field is used in each data
+record containing data items of this type. If a PREDPP data
+item type appears in the data set, its field number, or
+<b>index</b></p>
 
-<p style="margin-top: 1em">If the PK subroutine is not
-user-supplied, so that <tt>PK</tt> is not used as a subname,
-then an abbreviated code must be given for PK. If the ERROR
-subroutine is not user-supplied so that <tt>ERROR</tt> is
-not used as a subname, then an abbreviated code must be
-given for ERROR. Abbreviated codes may be given for neither
-routine, or for only one of them, or for both of them.</p>
+<p style="margin-top: 1em">is communicated to PREDPP in a
+way described next. Otherwise, it is said to be
+<b>missing</b></p>
 
-<p style="margin-top: 1em">Whether the DES routine is used
-depends on the ADVAN routine used. Similarly, whether the
-AES routine is used depends on the ADVAN routine used. If
-the DES (AES) routine is required by the ADVAN routine, and
-if it is not user-supplied, so that <tt>DES</tt>
-(<tt>AES</tt>) is not used as a subname, then an abbreviated
-code must be given for DES (AES). Abbreviated code for the
-AES routine is actually given by two abbreviated codes; see
-sections C.8 and C.9.</p>
+<p style="margin-top: 1em">The index of the Ith type of
+data item should be placed in the Ith field of the INDEX
+control record, which is the fourth control record. (Control
+records are discussed in Guide I, and the INDEX record, in
+particular, is discussed in section C.4.1 of that document.)
+<i>If NM-TRAN is used, it is sufficient to place the
+reserved name of the data item in the nth position of the
+$INPUT record, where n is the field number</i>. The effect
+of so doing is to place the index of the Ith type of data
+item in INDXS(I). The values in the INDXS array are
+available to the PRED subroutine. For example, the CONT data
+item is the 10th type of PREDPP data item. If, as in the
+example in Chapter II, the index of the CONT data item is 3,
+then 3 should be placed in the 10th field of the INDEX
+record, and in so doing, it is also placed in INDXS(10). If
+NM-TRAN is used, the name CONT is placed in the 3rd position
+of the $INPUT record.</p>
 
-<p style="margin-top: 1em">The INFN routine is always
-called by PREDPP. If it is not user-supplied, the INFN
-routine from the PREDPP library is used. It is a stub that
-does nothing. INFN may be user supplied or defined by an
-$INFN routine (see section C.11).</p>
+<p style="margin-top: 1em">Although this chapter describes
+the use of CONT, there is no need for it any longer.</p>
 
-<p style="margin-top: 1em">Whether the TOL routine is used
-depends on the ADVAN routine used. Similarly, whether the
-MODEL routine is used depends on the ADVAN routine used.</p>
+<p style="margin-top: 1em">If the Ith type of data item is
+missing, then the INDEX record would not contain its index,
+i.e. the Ith field of the INDEX record would contain either
+a zero or a blank. <i>If NM-TRAN is used, the reserved name
+of the data item type would not appear in the $INPUT
+record</i>. It is assumed that all data items of this type
+are 0 in all event records. If the CONT data item is
+missing, it is assumed that all data items of this type are
+0 in all data records.</p>
 
-<p style="margin-top: 1em">If the TOL routine is required
-by the ADVAN routine, and if it is neither user-supplied nor
-defined by a $TOL record (see section C.10), so that
-<tt>TOL</tt> is not used as a subname, then using the
-<tt>TOL</tt> option, NM-TRAN will generate a complete
-FORTRAN coded TOL subroutine. The number @n sub 1@ with the
-<tt>TOL</tt> option is the number of accurate digits (NRD;
-&quot;Number of required digits&quot;) required in the
-computation of all compartmental drug amounts. As a rule of
-thumb, one should begin by taking @n sub 1@ to be @n+1@ or
-@n+2@, or with double precision, perhaps to @n+2@ or @n+3@,
-where @n@ is the option value with the <tt>SIGDIGITS</tt>
-option on the $ESTIMATION record. If one succeeds with this
-setting, one might try increasing @n sub 1@ slightly. With
-ADVAN9 the number of accurate digits can be specified on a
-compartment-specific basis. However, to do this, either a
-TOL routine must be user-supplied or the $TOL record must be
-used.</p>
+<p style="margin-top: 1em">Indices of data items other than
+PREDPP data items may be needed in a user-supplied PK,
+ERROR, or INFN (see section VI.A) subroutine. This is
+illustrated in section III.C. These indices may be placed in
+the INDEX record beginning with field 12. In the
+user-supplied subroutine they appear in the INDXS array
+beginning with position 1 and in the order in which they
+appear in the INDEX record. <i>If NM-TRAN is used, the
+labels of the data items may simply be placed in the $INDEX
+record</i>. In the user-supplied routine, the indices appear
+in the INDXS array beginning with position 1 and in the
+order in which the labels appear in the $INDEX
+record<i>.&dagger; <br>
+----------</i></p>
 
-<p style="margin-top: 1em">With ADVAN13, the TOL option of
-the $SUBROUTINE record (or the $TOL record) is a relative
-tolerance. It should specify larger NRD values than for
-other ADVANs (e.g., ADVAN6). ATOL (Absolute tolerance) may
-be specified on the $ESTIMATION or $COVARIANCE record.</p>
+<p style="margin-top: 1em"><i><cite>&dagger; The INDXS
+array cannot be used with NM-TRAN abbreviated code. <br>
+---------- <br>
+</cite></i></p>
 
-<p style="margin-top: 1em">With NONMEM 7.4, one or more
-additional options <tt>ATOL=</tt>@n sub 2@,
-<tt>SSTOL=</tt>@n sub 3@, <tt>SSATOL=</tt>@n sub 4@ are also
-permitted on the $SUBROUTINES record.</p>
+<p style="margin-top: 1em">Each of the different types of
+PREDPP data items, except the CONT data item, are discussed
+in turn in the next 10 sections. The CONT data item has
+already been discussed adequately in chapter II. The
+possible values for all 11 different data items types are
+summarized for the reader&rsquo;s convenience in Appendix
+I.</p>
 
-<p style="margin-top: 1em">ATOL specifies the absolute
-tolerance for ADVAN9, ADVAN13, ADVAN14, and ADVAN15.
-Optional. Default is 1.0E-12. <br>
-SSTOL specifies the relative tolerance for Steady State
-evaluation. Optional. Default is TOL. <br>
-SSATOL specifies the absolute tolerance for Steady State
-evaluation. Optional. Default is ATOL.</p>
-
-<p style="margin-top: 1em">The generated TOL routine will
-set values as follows for the options that are coded:</p>
-
-<pre style="margin-top: 1em">NRD(1)=@n sub 1@ (The TOL option)
-ANRD(1)=@n sub 2@ (The ATOL option)
-NRD(0)=@n sub 3@ (The SSTOL option)
-ANRD(0)=@n sub 4@ (The SSATOL option)</pre>
-
-
-<p style="margin-top: 1em">It is also possible to code
-TOL=name to specify the name of a user-supplied TOL routine,
-or to include $TOL abbreviated code, either of which allows
-all these values to be assigned by compartment. A
-user-supplied TOL routine also allows values to be assigned
-for each NONMEM step and problem. See also the ATOL option
-of the $ESTIMATION record, and the TOL and ATOL options of
-the $COVARIANCE record.</p>
-
-<p style="margin-top: 1em">If the MODEL routine is required
-by the ADVAN routine, the MODEL routine may be
-user-supplied. Then the PK routine must also be be
-user-supplied If a DES (AES) routine is needed, then it too
-must be user-supplied. If the MODEL routine is not
-user-supplied, so that <tt>MODEL</tt> is not used as a
-subname, then using information supplied in the $MODEL
-record (see next section C.4), NM-TRAN will generate a
-complete FORTRAN coded MODEL subroutine. In this case an
-abbreviated code for PK may be given, as may abbreviated
-codes for DES and AES.</p>
-
-<p style="margin-top: 1em">Each of the subnames
-<tt>ADVAN</tt>, <tt>SS</tt>, and <tt>TRANS</tt>, along with
-the equal sign that follows it, may be omitted when it is
-followed by a specific name of a PREDPP Library routine;
-see, for example, the control stream in section A. However,
-when the subname is not omitted, the specific name of a
-PREDPP Library routine can be given by the associated number
-only, e.g. <tt>ADVAN=1</tt> instead of
-<tt>ADVAN=ADVAN1</tt>.</p>
-
-<p style="margin-top: 1em">The $SUBROUTINES record may be
-used with PREDPP to supply &quot;OTHER&quot; routines, as
-described in chapter III. An example is given in NONMEM 7
-guide, &quot;Stochastic Differential Equation
-Plug-In(NM72)&quot;. The code in sde9.ctl is</p>
-<pre>SUBROUTINE ADVAN6 TOL=9 DP OTHER=SDE.f90</pre>
-
-<p>The file SDE.f90 is found in the examples directory.</p>
-
-<h2>V.V.V.C.4. $MODEL Record
-<a name="V.V.V.C.4."></a>
-<a name="V.V.V.C.4. $MODEL Record"></a>
+<h2>V.B. The Event Identification (EVID) Data Item
+<a name="V.B."></a>
+<a name="V.B. The Event Identification (EVID) Data Item"></a>
 </h2>
 
 
-<p style="margin-top: 1em"><tt>$MODEL</tt>
-[<tt>NCOMPARTMENTS=</tt>@n sub 1@] [<tt>NEQUILIBRIUM=</tt>@n
-sub 2@] [<tt>NPARAMETERS=</tt>@n sub 3@] <br>
-[<tt>COMPARTMENT=([name] [@attribute sub 1@] [@attribute sub
-2@] ...)] ... <br>
-[LINK @compname sub a@ [</tt><tt><b>TO</b></tt><tt>|AND]
-@compname sub b@ BY k [l]] ... <br>
-[I_SS=@n@]</tt></p>
+<p style="margin-top: 1em">This type of data item (PREDPP
+data item no. 1) <i>must appear</i> in event records. It
+identifies the type of event. It has 5 possible values.</p>
 
-<p style="margin-top: 1em"><tt>E.g. <br>
-$MODEL NPARAMETERS=3 NCM=2&dagger; <br>
-COMP=(DEPOT DEFDOSE INITIALOFF) COMP=(CENTRAL DEFOBS NOOFF)
+<p style="margin-top: 1em">A value of 0 indicates that the
+event is an <b>observation event</b></p>
+
+<p style="margin-top: 1em">With this type of an event the
+DV data item on the last data record of the event record is
+an observation, and the MDV data item on this data record is
+0. With all other types of events, the DV data item on the
+last record of the event record may be any value (e.g.
+blank), and the MDV data item on this data record is 1.</p>
+
+<p style="margin-top: 1em">A value of 1 indicates that the
+event is a <b>dose event</b></p>
+
+<p style="margin-top: 1em">There are 3 types of doses: a
+bolus dose, an infusion (of finite duration), and a
+(continuous) constant rate infusion considered to be of
+effectively infinite duration and leading to steady-state.
+This last type of dose is called a <b>steady -state
+infusion</b></p>
+
+<p style="margin-top: 1em">Repetitions of doses of the
+first two types can also lead to steady-state (see section
+F). A dose event corresponds to either the time a bolus dose
+is given, or the time an infusion is initiated, or the time
+a steady-state infusion terminates. With a dose event
+certain other data items which define the event further may
+also appear in the event record.</p>
+
+<p style="margin-top: 1em">A value of 2 indicates that the
+event is neither an observation nor dose event. The
+corresponding event is referred to as an <b>other-type</b>
+event. Examples of other-type events are: the time a urine
+collection begins, the time a urine collection ends, and the
+time a change in a covariable (such as glomelular filtration
+rate) is noted. The user may create an other-type event for
+whatever reasons he wishes; he need only mark an occurence
+of this type of event with an event record containing an
+EVID data item equal to 2.</p>
+
+<p style="margin-top: 1em">A value of 3 marks a <b>reset
+event</b></p>
+
+<p style="margin-top: 1em">With a reset event the kinetic
+system is reinitialized. Time is reset to <i>whatever</i>
+time appears in the event record (e.g. 0), the amounts in
+each compartment are reset to zero, and the on/off status of
+each compartment is reset to its initial status (see section
+H).</p>
+
+<p style="margin-top: 1em">A value of 4 marks a
+<b>reset-dose event</b></p>
+
+<p style="margin-top: 1em">With such an event the
+characteristics of a dose event and a reset event are
+combined. The system is first reset, and then a dose is
+given according to the information given in those fields
+giving dose information (see below).</p>
+
+<p style="margin-top: 1em">The &quot;Repeated Observation
+Records&quot; feature exists to assist in specialized
+methodologies such as stochastic differential equations. A
+record in a data file may be set up for repeated calls to PK
+and ERROR. Each time, the same record is passed to PK and/or
+ERROR, but with a different EVID. The user&rsquo;s control
+stream model in $PK or $ERROR may then take advantage of
+executing certain code conditional on the EVID value. For
+this to occur, the user must introduce one or more of the
+following data items in the data file, with these names:</p>
+
+<p style="margin-top: 1em">XVID1 XVID2 XVID3 XVID4
+XVID5</p>
+
+<p style="margin-top: 1em">These stand for
+&quot;extra&quot; EVIDs. On the first call to PK/ERROR, the
+EVID is set to the value given in XVID1. On the second call,
+the EVID is set to that in column XVID2, etc. up to XVID5.
+Only as many XVIDs as are required are needed to be defined.
+All the other items in the record do not change, except that
+if the present EVID used is not 0, then the MDV value is set
+to 1 for that call. If an XVID is -1, then the call to
+PK/ERROR for that XVID is not made, nor for the remaining
+XVIDs. If there is an EVID column, the value in this column
+is not passed to PK/ERROR unless XVID1=-1 in which case a
+&quot;normal&quot; call with that record occurs.</p>
+
+<h2>V.C. The Time (TIME) Data Item
+<a name="V.C."></a>
+<a name="V.C. The Time (TIME) Data Item"></a>
+</h2>
+
+
+<p style="margin-top: 1em">This type of data item (PREDPP
+data item no. 2) <i>must appear</i> in event records. It
+gives the time of the event. (An exception occurs with
+ADVAN9, ADVAN15, or ADVAN17 when there are only algebraic
+equations to be solved, in which case the time data item is
+optional.) With NONMEM 7.4, time data items may have any
+value, including negative values; with earlier versions,
+time data items must be non-negative. (NM-TRAN has always
+allowed negative clock times when day-time translation is
+performed, and converted them to non-negative relative times
+for PREDPP.) Also, event records must be ordered (within an
+individual record) so that if event record A is followed by
+event record B, and the corresponding times are
+<img src="grohtml-4047713-2.png" alt="Image grohtml-4047713-2.png">
+and
+<img src="grohtml-4047713-3.png" alt="Image grohtml-4047713-3.png">
+, then
+<img src="grohtml-4047713-4.png" alt="Image grohtml-4047713-4.png">
+. Exceptions to this are provided by reset and reset-dose
+events where the time may be <i>any</i> number.</p>
+
+<p style="margin-top: 1em">Note: when IDEF(1,2) is set to 0
+in PK (see section III.H), and
+<img src="grohtml-4047713-5.png" alt="Image grohtml-4047713-5.png">
+, then PK is not called with event record B unless a call is
+forced with the use of the CALL data item; see section
+J.</p>
+
+<p style="margin-top: 1em">The PREDPP TIME data item is a
+unitless relative time. However, when NM-TRAN is used, TIME
+values of the NM-TRAN data set may contain clock times
+(e.g., hh:mm). The DATE data item may also be present. In
+these cases NM-TRAN performs date-time conversion,
+converting DATE (if present) and clock times to relative
+time for the NONMEM/PREDPP data record. In addition, the
+NM-TRAN $DATA record may contain the option
+TRANSLATE=(TIME/f/d). This requests that TIME values be
+divided by f (typically, f is 24 to convert hours to days,
+with d significant digits.</p>
+
+<h2>V.D. The Dose Amount (AMT) Data Item
+<a name="V.D."></a>
+<a name="V.D. The Dose Amount (AMT) Data Item"></a>
+</h2>
+
+
+<p style="margin-top: 1em">This type of data item (PREDPP
+data item no. 3) often appears in event records, but it need
+not appear. In a dose event record it gives the amount of a
+bolus dose or of an infusion of finite duration. This amount
+will be a positive number. However, if other data items in a
+dose event record (see below) indicate that the event record
+marks the termination of a steady-state infusion, then if
+the AMT data item appears, it must be 0. If all doses are
+steady-state infusions, then the dose amount data item can
+be missing.</p>
+
+<p style="margin-top: 1em">If the AMT data item appears,
+then it must be 0 in observation, other-type, and reset
+event records. In a reset-dose event record the AMT data
+item should satisfy the requirements of the AMT data item in
+a dose event record.</p>
+
+<h2>V.E. The Dose Rate (RATE) Data Item
+<a name="V.E."></a>
+<a name="V.E. The Dose Rate (RATE) Data Item"></a>
+</h2>
+
+
+<p style="margin-top: 1em">This type of data item (PREDPP
+data item no. 4) often appears in dose event records, but it
+need not appear. For example, if all doses are bolus doses,
+then the dose rate item can be missing. In a dose record the
+RATE data item can assume 4 different kinds of values. A
+positive number indicates an infusion rate. The appearance
+of a positive AMT data item in the event record, giving the
+amount of the infusion, indicates that the infusion is of
+finite duration.</p>
+
+<p style="margin-top: 1em">A 0 indicates that the dose is
+an instantaneous bolus dose. A -1 indicates that the dose is
+either (i) a zero-order bolus dose (see section III.F.3) and
+that its rate is modeled in PK (see section III.F.4) or (ii)
+a rate-modeled steady-state infusion (see section III.F.5).
+A -2 indicates that the dose is a zero-order bolus dose and
+that its duration is modeled in PK (see section III.F.3). If
+the dose is a zero-order bolus dose, then a positive AMT
+data item must appear in the event record.</p>
+
+<p style="margin-top: 1em">The RATE data item must be 0 in
+observation, other-type, and reset event records. In a
+reset-dose event record the RATE data item should satisfy
+the requirements of the RATE data item in a dose event
+record.</p>
+
+<h2>V.F. The Steady State (SS) Data Item
+<a name="V.F."></a>
+<a name="V.F. The Steady State (SS) Data Item"></a>
+</h2>
+
+
+<h2>V.F.1. Background
+<a name="V.F.1."></a>
+<a name="V.F.1. Background"></a>
+</h2>
+
+
+<p style="margin-top: 1em">(NOTE: Steady-state kinetics as
+described in this section cannot be used with some systems
+of differential equations. This includes delay differential
+equations and also other systems, for example, those in
+which there is a change in kinetics outside the dosing
+interval. With NONMEM 7.5, an Empirical method of Achieving
+Steady State may be used. This method does not use the SS
+data item, but does use ADDL and II. <br>
+See INTRODUCTION TO NONMEM 7, section &quot;An Empirical
+Method of Achieving Steady State&quot;</p>
+
+<p style="margin-top: 1em">Before giving the detailed
+description of this data item, it is helpful to give some
+considerable background concerning steady-state and its
+relationship to PREDPP.</p>
+
+<p style="margin-top: 1em">Steady-state in a kinetic system
+can be achieved in several ways. One way is by administering
+a sequence of doses in a regular cyclic fashion over a
+sufficiently long time. The doses may be input into the same
+or different compartments. The doses given during any one
+cycle are the same as the doses given during any other
+cycle; collectively, they are called the <b>dose
+cycle</b></p>
+
+<p style="margin-top: 1em">They may consist of a mixture of
+bolus doses and infusions of finite duration. A first cycle
+of doses is given, then a second cycle, etc. until a
+steady-state has been reached. For example, a dose cycle may
+consist of an instantaneous bolus dose of 10mg, immediately
+followed by a 30 minute infusion of 10mg. This cycle might
+be repeated every 4 hours, the so-called <b>period</b> of
+the cycle. Let
+<img src="grohtml-4047713-6.png" alt="Image grohtml-4047713-6.png">
+denote the period, and suppose the dose times of the last
+cycle are
+<img src="grohtml-4047713-7.png" alt="Image grohtml-4047713-7.png">
+. The system is at steady-state at a time t in the
+(closed-open) interval
+<img src="grohtml-4047713-8.png" alt="Image grohtml-4047713-8.png">
+if the drug amounts in the compartments at time t equal the
+amounts at time
+<img src="grohtml-4047713-9.png" alt="Image grohtml-4047713-9.png">
+, <i>were the dose times of the last cycle actually
+<img src="grohtml-4047713-10.png" alt="Image grohtml-4047713-10.png"></i>
+(and there were no event times in the interval
+<img src="grohtml-4047713-11.png" alt="Image grohtml-4047713-11.png">
+).</p>
+
+<p style="margin-top: 1em">A second way to achieve
+steady-state is to initiate a number of simultaneous
+steady-state infusions. Suppose these infusions terminate at
+times
+<img src="grohtml-4047713-12.png" alt="Image grohtml-4047713-12.png">
+. The system is at steady-state at a time t in the interval
+<img src="grohtml-4047713-13.png" alt="Image grohtml-4047713-13.png">
+if for a positive
+<img src="grohtml-4047713-14.png" alt="Image grohtml-4047713-14.png">
+, the drug amounts in the compartments at time t equal the
+amounts at time
+<img src="grohtml-4047713-15.png" alt="Image grohtml-4047713-15.png">
+, <i>were the infusions actually terminated at
+<img src="grohtml-4047713-16.png" alt="Image grohtml-4047713-16.png"></i>
+. A third way is to use a regular cyclic dosage pattern in
+conjunction with simultaneous steady-state infusions.
+Steady-state is an ideal state, but it can be
+approximated.</p>
+
+<p style="margin-top: 1em">If a large enough number of dose
+cycles have occurred, the user might consider that an
+(approximate) steady-state has been reached by at least the
+time the last cycle begins. Rather than include a large
+number of dose event records into the data set, the user may
+be able to take advantage of a PREDPP feature requiring that
+only dose records for the doses in the last cycle be given.
+This last dose cycle is called the <b>steady-state
+cycle</b></p>
+
+<p style="margin-top: 1em">and the doses in this cycle are
+called <b>steady-state doses</b></p>
+
+<p style="margin-top: 1em">If steady-state infusions are
+involved, only dose records marking their terminations are
+required. These special dose event records are called
+<b>steady-state dose records</b></p>
+
+<p style="margin-top: 1em">They are identified as such by
+means of the steady-state data item (see section F.2). A
+steady-state dose record describing a bolus dose or an
+infusion of finite duration actually describes an sequence
+of doses all just alike, given regularly at a specified
+interdose interval, and ending with the steady-state dose.
+All these doses, excluding the steady-state dose, are called
+the <b>implied doses</b></p>
+
+<p style="margin-top: 1em">Without loss of generality the
+sequence of times at which the implied doses are given is
+imagined to extend infinitely backward in time (beyond the
+first event time). These times are called the <b>implied
+dose times</b></p>
+
+<p style="margin-top: 1em">A steady-state infusion is
+imagined to have started at
+<img src="grohtml-4047713-17.png" alt="Image grohtml-4047713-17.png">
+.</p>
+
+<p style="margin-top: 1em">The amounts of drug in the
+various compartments are <i>computed by PREDPP</i> to be at
+their steady-state values at the time of the last dose of a
+steady-state cycle, or at the latest termination time of a
+group of simultaneous steady-state infusions, but not before
+this time. PREDPP computes these steady-state values by
+using steady-state kinetic formulas in conjunction with the
+usual transient type kinetic formulas. This computation is
+called the <b>steady-state computation</b></p>
+
+<p style="margin-top: 1em">Computation with steady-state
+dose records and steady-state formulas takes less computer
+time than does computation with transient dose records and
+transient kinetic formulas. So when the former can be
+incorporated, substantial computer time, as well as data set
+construction time, can be saved.</p>
+
+<p style="margin-top: 1em">Steady-state can be achieved in
+linear kinetic systems and sometimes in nonlinear kinetic
+systems. With linear systems the full range of steady-state
+dosage patterns can be implemented with PREDPP; with
+nonlinear systems, only a limited range of steady-state
+dosage patterns can be implemented. In linear systems the
+so-called superimposition principle holds. This principle
+implies that if steady-state is achieved with a dose cycle
+of m doses, with period
+<img src="grohtml-4047713-18.png" alt="Image grohtml-4047713-18.png">
+, then the amount of drug in a compartment at steady-state
+and at a given time t is
+<img src="grohtml-4047713-19.png" alt="Image grohtml-4047713-19.png">
+, where
+<img src="grohtml-4047713-20.png" alt="Image grohtml-4047713-20.png">
+is the amount of drug in the compartment at time t that
+would be present using a dose cycle consisting of only the
+ith of the m doses and with period
+<img src="grohtml-4047713-21.png" alt="Image grohtml-4047713-21.png">
+. PREDPP takes advantage of this in a way that may be
+explained by means of the following example.</p>
+
+<p style="margin-top: 1em">Suppose the dosage pattern -- 3
+doses daily: 20 mg at 8 AM, 10 mg at 3 PM, and 10 mg at 8 PM
+-- is given, and steady-state is reached. The dose cycle
+could consist of the 8 AM dose, followed by the 3 PM dose,
+followed by the 8 PM dose. However, a steady-state solution
+is valid if a dosing pattern has continued for a
+sufficiently long time, and if valid, it is independent of
+when this pattern was initiated. So alternatively, the
+dosing cycle could consist of the 3 PM dose, followed by the
+8 PM dose, followed by the 8 AM dose. Or, it could begin
+with the 8 PM dose, but in any case, the order of the doses
+should be chronological within a cycle, so that, for
+example, the 8 PM dose should not be followed by the 3 PM
+dose. Which of the 3 alternatives to choose is simply a
+matter of user strategy. To help explain this, suppose an
+observation is made at 4 PM March 9 and that the dosing
+cycle is given many days preceding March 9 and continuing
+beyond this date. The steady-state computation occurs only
+at the time of the last dose of the steady-state cycle
+(although, as shall be seen, partial steady-states are
+computed at earlier dose times). If the steady-state
+computation does not occur before 4PM March 9, dose records
+accounting for <i>all</i> the doses given before this time
+must be included in the data set. So, to take advantage of
+the steady-state feature, a steady-state cycle must end
+before 4 PM March 9. If a dose cycle is defined to begin
+with the 8 AM dose, then the steady-state cycle must end at
+8 PM March 8 or earlier. Say it ends at 8 PM March 8; then
+non-steady-state dose records at 8AM and 3 PM March 9,
+accounting for the two doses given at these two times, must
+also be included. If, though, a dose cycle is defined to
+begin with the 8 PM dose, then the steady-state cycle can
+end at 3 PM March 9, and no nonsteady-state dose records
+need be included between the 3 PM March 9 dose record and
+the 4 PM observation record. Suppose then that one chooses
+this more efficient strategy.</p>
+
+<p style="margin-top: 1em">Then a steady-state dose record
+at time 8 PM March 8 appears. This record should specify
+that the amounts in all the compartments be reset to the
+steady-state amounts that would result were only 10 mg given
+daily, 8 PM March 8 being the time of the last such dose (
+<img src="grohtml-4047713-22.png" alt="Image grohtml-4047713-22.png">
+amounts at 8 PM March 8). There is a way to do this using
+the steady-state data item. There should also be a
+steady-state dose record at time 8 AM March 9. This record
+should specify that (i) the amounts in all compartments be
+updated to amounts valid for 8 AM March 9, using transient
+type kinetic formulas (
+<img src="grohtml-4047713-23.png" alt="Image grohtml-4047713-23.png">
+amounts at 8 AM March 9), and that (ii) they then be changed
+by adding to them the steady-state amounts that would result
+were only 20 mg given daily, 8 AM March 9 being the time of
+the last such dose (
+<img src="grohtml-4047713-24.png" alt="Image grohtml-4047713-24.png">
+amounts at 8 AM March 9). There is a way to do this using
+the steady-state data item. Finally, a steady-state dose
+record at 3 PM March 9 should be included, specifying that
+(i) the compartment amounts be updated to amounts valid for
+3 PM March 9 (
+<img src="grohtml-4047713-25.png" alt="Image grohtml-4047713-25.png">
+amounts at 3 PM March 9) and that (ii) they then be changed
+by adding to them the steady-state amounts that would result
+from a daily 10 mg dose, 3 PM March 9 being the time of the
+last such dose (
+<img src="grohtml-4047713-26.png" alt="Image grohtml-4047713-26.png">
+amounts at 3 PM March 9). At 3 PM March 9 the compartment
+amounts are thus set to their correct steady-state values.
+If a number of additional dosing cycles occur after 4 PM
+March 9 and before the next non-dose event record, then
+similarly, the user can minimize the total number of
+required dose event records by including steady-state dose
+records before this next record.</p>
+
+<p style="margin-top: 1em">A slightly more general
+application of the superimposition principle allows
+&quot;transient doses&quot; to be handled along with those
+of a steady-state dosing cycle. If, for example, a 20 mg
+dose was given (perhaps inadvertantly) at 3PM March 5, then,
+in effect, an extra dose of 10 mg was given on March 5 which
+cannot be properly taken into account in the steady-state
+cycle. However, the user may firstly, include a
+nonsteady-state dose record for 3 PM March 5 with dose
+amount 10 mg and then, specify on the steady-state dose
+record for 8 PM March 8, that (i) the compartment amounts be
+updated to amounts valid for 8 PM March 8 and that (ii) they
+then be changed by adding to them the steady-state amounts
+corresponding to the 8 PM dose.</p>
+
+<p style="margin-top: 1em">The superimposition principle
+also implies that if steady-state is achieved with a number
+(n) of steady-state infusions, then the amount of drug in a
+compartment at steady-state and at time t is
+<img src="grohtml-4047713-27.png" alt="Image grohtml-4047713-27.png">
+, where
+<img src="grohtml-4047713-28.png" alt="Image grohtml-4047713-28.png">
+is the amount of drug in the compartment at time t that
+would be present were only the ith infusion given. If n=2,
+for example, then 2 steady-state dose records should be
+used, each containing a positive dose rate data item. The
+times on these records should be the times
+<img src="grohtml-4047713-29.png" alt="Image grohtml-4047713-29.png">
+and
+<img src="grohtml-4047713-30.png" alt="Image grohtml-4047713-30.png">
+when the first and second infusions terminate. We will
+suppose
+<img src="grohtml-4047713-31.png" alt="Image grohtml-4047713-31.png">
+. The first dose record may specify that the compartment
+amounts at
+<img src="grohtml-4047713-32.png" alt="Image grohtml-4047713-32.png">
+be reset to the steady-state amounts corresponding to the
+first infusion (
+<img src="grohtml-4047713-33.png" alt="Image grohtml-4047713-33.png">
+amounts at
+<img src="grohtml-4047713-34.png" alt="Image grohtml-4047713-34.png">
+). The second dose record should specify that (i) the
+compartment amounts be updated to amounts valid for time
+<img src="grohtml-4047713-35.png" alt="Image grohtml-4047713-35.png">
+(
+<img src="grohtml-4047713-36.png" alt="Image grohtml-4047713-36.png">
+amounts at
+<img src="grohtml-4047713-37.png" alt="Image grohtml-4047713-37.png">
+) and that (ii) they then be changed by adding to them the
+steady-state amounts corresponding to the second infusion (
+<img src="grohtml-4047713-38.png" alt="Image grohtml-4047713-38.png">
+amounts at
+<img src="grohtml-4047713-39.png" alt="Image grohtml-4047713-39.png">
+). Note that
+<img src="grohtml-4047713-40.png" alt="Image grohtml-4047713-40.png">
+may equal
+<img src="grohtml-4047713-41.png" alt="Image grohtml-4047713-41.png">
+.</p>
+
+<p style="margin-top: 1em">We have discussed repetitive
+doses leading to a steady-state in terms of a dose cycle
+with a period. Indeed, repeated doses of possibly different
+amounts are often given in a cyclic manner. However, the
+only really important structure of repeated dosing, allowing
+the application of the superimposition principle as
+described above, is that there be a group of doses of
+possibly different amounts, each of which is repeated with
+its own constant period. So using the above example, the 20
+mg dose is given repeatedly with a period of 24 hours, the 3
+PM 10 mg dose is given repeatedly with a period of 24 hours,
+and the 8 PM 10 mg dose is given repeatedly with a period of
+24 hours. If, though, the values of these three periods
+differed, a type of steady-state would still be achieved. As
+before, one could simply include one steady-state dose event
+record for each type of dose. For each type of dose, its
+steady-state dose record would have a time data item equal
+to the time the last dose of that type is given and a period
+(called the interdose interval data item) <b>specific</b>
+for that particular dose type. In the same way, repeated
+bolus doses can be handled in conjunction with steady-state
+infusions. Simply regard a steady-state infusion
+conceptually as a particular sequence of bolus doses, each
+of very small amount
+<img src="grohtml-4047713-42.png" alt="Image grohtml-4047713-42.png">
+, and given very small
+<img src="grohtml-4047713-43.png" alt="Image grohtml-4047713-43.png">
+time units apart, such that
+<img src="grohtml-4047713-44.png" alt="Image grohtml-4047713-44.png">
+is the infusion rate. (However, since only this rate and the
+termination time matter, a
+<img src="grohtml-4047713-45.png" alt="Image grohtml-4047713-45.png">
+and
+<img src="grohtml-4047713-46.png" alt="Image grohtml-4047713-46.png">
+are not given on the steady-state dose record.)</p>
+
+<p style="margin-top: 1em">With nonlinear kinetic systems
+the superimposition does not hold, and steady-state amounts
+do not add as described above. Consequently, a steady-state
+cycle can consist of at most one dose (either a repeated
+bolus dose or a repeated infusion), and steady-state
+infusions cannot be simultaneous. But within those
+limitations, steady-state dosing can be accommodated with
+PREDPP.</p>
+
+<p style="margin-top: 1em">When the state vector of
+compartment amounts is advanced from one time to the next
+using the transient type kinetic formulas, the PK parameters
+act continuously or discretely, as described in chapter III.
+When a steady-state formula is used to compute a state
+vector at event time t, a PK parameter that regularly acts
+continuously over (finite) state-time intervals, now acts
+continuously over the interval
+<img src="grohtml-4047713-47.png" alt="Image grohtml-4047713-47.png">
+. Its value is assumed to be constant over this interval and
+is computed from the information in the steady-state dose
+event record for time t. A PK parameter that regularly acts
+discretely at state times, now acts discretely at the
+infinite set of implied dose times. For example, if a
+steady-state record describes a bolus dose at time t hours,
+terminating a sequence of implied bolus doses given every 12
+hours, then the PK parameter (e.g. a bioavailability
+fraction or duration parameter) acts discretely at times t,
+t-12, t-24, t-36, etc. Its value is assumed to be the same
+at these times and is computed from the information in the
+steady-state dose event record for time t.</p>
+
+<p style="margin-top: 1em">An absorption lag time for a
+given compartment (see section III.F.6) applies to all
+steady-state doses into the compartment, except to
+steady-state infusions. According to what has just been
+stated about discretely acting parameters, all the implied
+doses, as well as the steady-state dose, are lagged, and by
+the same amount L. Steady-state kinetics are computed at the
+event time t on a steady-state dose record. The amounts
+computed for time t are the steady-state amounts at time t-L
+were the doses not lagged. Care must be taken when an
+absorption lag time is applied to a steady-state dose.
+Usually, the user intends that the system be at steady-state
+at time t+L. If an event time occurs between t and t+L, this
+can result in a perturbation of the system such that
+steady-state no longer exists at time t+L. Or, if at the
+first event time s succeeding t+L the value of a
+continuously acting PK parameter is changed, then this too
+can &quot;destroy&quot; the steady-state at t+L, because the
+kinetics governing the advance over (t,t+L) are governed by
+the values of the continuously acting PK parameters computed
+at time s.</p>
+
+<h2>V.F.2. Specifics of the Steady-State (SS) Data Item
+<a name="V.F.2."></a>
+<a name="V.F.2. Specifics of the Steady-State (SS) Data Item"></a>
+</h2>
+
+
+<p style="margin-top: 1em">The steady-state data item
+(PREDPP data item no. 5) may appear in event records, or it
+may be missing. If it appears, then its value in dose event
+records is either 0, 1, or 2.</p>
+
+<p style="margin-top: 1em">A 0 indicates that the dose
+event record is not in fact a steady-state dose event
+record.</p>
+
+<p style="margin-top: 1em">A 1 indicates that the dose
+event record is a steady-state dose event record and that
+the compartment amounts are to be reset to the steady-state
+amounts. These amounts result from either (a) repeated bolus
+doses with a given period, (b) repeated infusions with a
+given period, or (c) a steady-state infusion, as specified
+further on the record. In case (a) the event record must
+also have positive dose amount and interdose interval data
+items. If the repeated doses are instantaneousr bolus doses,
+the event record must also have a 0 dose rate data item. If
+the repeated doses are zero-order bolus doses, the event
+record must also have a negative dose rate data item. The
+dose amount and dose rate data items apply to all the
+repeated bolus doses. In case (b) the event record must also
+have positive dose amount, dose rate, and interdose interval
+data items. The dose amount and dose rate data items apply
+to all the repeated infusions. In case (c) the rate data
+item on the event record must either be positive or -1, and
+the dose amount and interdose interval data items must be
+0.</p>
+
+<p style="margin-top: 1em">A 2 indicates that the dose
+event record is a steady-state dose event record and,
+letting t be the time on the record, that (i) the amounts in
+the compartments are to be updated to amounts valid for time
+t (using transient kinetic formulas) and (ii) they then are
+to be changed by adding to them steady-state amounts. These
+steady-state amounts are the same as those that would be
+computed were the steady-state data item equal to 1, and the
+necessary additional data items on the event record are as
+described for cases a-c above.</p>
+
+<p style="margin-top: 1em">A 3 indicates that the dose
+event record is a steady-state dose event record. SS = 3 is
+identical to SS = 1 with one exception: with Steady State
+routines SS6 and SS9, the existing state vector (compartment
+amounts and eta derivatives) is used as the initial estimate
+in the computation of the steady-state amounts. The user
+supplies the initial estimate with some combination of prior
+event records, e.g., reset, transient dose, and other-type
+event records.</p>
+
+<p style="margin-top: 1em">The SS data item must be 0 in
+observation, other-type and reset event records. In a
+reset-dose event record the SS data item should satisfy the
+requirements of the SS data item in a dose event record.</p>
+
+<p style="margin-top: 1em">If SS is 1 or 2 or 3, the output
+compartment must be off.</p>
+
+<h2>V.F.3. Initial Steady State
+<a name="V.F.3."></a>
+<a name="V.F.3. Initial Steady State"></a>
+</h2>
+
+
+<p style="margin-top: 1em">If endogenous drug production
+terms are present in the differential equations for a
+general non-linear model (ADVAN6, ADVAN8, ADVAN9, ADVAN13,
+ADVAN14, ADVAN15, ADVAN16, ADVAN17, ADVAN18), the system may
+be at a non-zero initial condition before any doses are
+introduced. This is referred to as an <b>initial
+steady-state</b> condition. One way to obtain the initial
+condition is by using a dose event record having SS&gt;0,
+AMT=0, RATE=0. Another way is to use the Initial Steady
+State feature of PREDPP. With this feature, the initial
+condition is computed prior to the first event record (and
+after a reset event record) exactly as if such a dose record
+were present. It is not necessary to include the a dose
+record or, indeed, to define the data item SS, AMT or RATE.
+There are three ways to request this feature:</p>
+
+<table width="100%" border="0" rules="none" frame="void"
+       cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="22%">
+
+
+<p style="margin-top: 1em">I_SS ($MODEL)</p></td>
+<td width="78%">
+</td></tr>
+</table>
+
+<p style="margin-left:8%;">Set the I_SS option of $MODEL.
+This applies to all subjects.</p>
+
+<table width="100%" border="0" rules="none" frame="void"
+       cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="42%">
+
+
+<p style="margin-top: 1em">ISSMOD (MODEL subroutine)</p></td>
+<td width="58%">
+</td></tr>
+</table>
+
+<p style="margin-left:8%;">Set the ISSMOD variable in
+subroutine MODEL. This applies to all subjects.</p>
+
+<table width="100%" border="0" rules="none" frame="void"
+       cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="17%">
+
+
+<p style="margin-top: 1em">I_SS ($PK)</p></td>
+<td width="83%">
+</td></tr>
+</table>
+
+<p style="margin-left:8%;">Set the I_SS variable in $PK (or
+PK routine). This allows I_SS to be set conditionally, e.g.,
+if some subjects are at steady-state and others are not.</p>
+
+<p style="margin-top: 1em">If ADVAN9, ADVAN15, or ADVAN17
+is used and there are equilibrium compartments, they are
+computed at the same time. This is then an &quot;initial
+equilibrium&quot; feature.</p>
+
+<p style="margin-top: 1em">The initial steady-state feature
+may be used with the compartment initialization feature of
+PREDPP (See Chapter III, Section I.B).</p>
+
+<h2>V.F.4. Implementation of Steady State
+<a name="V.F.4."></a>
+<a name="V.F.4. Implementation of Steady State"></a>
+</h2>
+
+
+<p style="margin-top: 1em">Different kinds of Steady-State
+doses are pictured in Users Guide V, Introductory Guide,
+Chapter 6, Section 8.2.3. It might be helpful to review
+these dosing patterns.</p>
+
+<p style="margin-top: 1em">With the analytic SS routines,
+steady-state uses well-known analytic solutions. For
+example, with ADVAN1/SS1 for the one-compartment model, the
+differential equation is
+<img src="grohtml-4047713-48.png" alt="Image grohtml-4047713-48.png">
+. When this is integrated from t=0 to t=T the solution is
+<img src="grohtml-4047713-49.png" alt="Image grohtml-4047713-49.png"></p>
+
+<p style="margin-top: 1em">Suppose a bolus dose AMT is
+given at the end of the Steady State interval II. At
+steady-state,</p>
+
+
+<p style="margin-top: 1em"><img src="grohtml-4047713-50.png" alt="Image grohtml-4047713-50.png"></p>
+
+<p style="margin-top: 1em">That is,
+<img src="grohtml-4047713-51.png" alt="Image grohtml-4047713-51.png">
+is the compartment amount such that after an advance in time
+of II, plus the dose AMT, the compartment amount is still
+equal to
+<img src="grohtml-4047713-52.png" alt="Image grohtml-4047713-52.png">
+. This can be solved as</p>
+
+
+<p style="margin-top: 1em"><img src="grohtml-4047713-53.png" alt="Image grohtml-4047713-53.png"></p>
+
+<p style="margin-top: 1em">With all analytic models (SS1,
+SS2, SS3, SS4, SS5, SS7, SS11, SS12) the solution is the
+same.
+<img src="grohtml-4047713-54.png" alt="Image grohtml-4047713-54.png">
+is a vector of compartment amounts and eta derivatives, K is
+a matrix of rate constants and their eta derivatives, and
+AMT is a vector with dose to a single compartment and that
+dose&rsquo;s derivatives. The matrix exponential is solved
+in a general way in SS5 and SS7. Other SS routines contain a
+solution for a specific number of compartments.</p>
+
+<p style="margin-top: 1em">With multiple infusions,
+steady-state is solved for in the same way using the known
+analytic solution.</p>
+
+<p style="margin-top: 1em">Steady-State with constant rate
+infusion is computed differently. At steady-state, input
+equals output:</p>
+
+
+<p style="margin-left:8%; margin-top: 1em"><img src="grohtml-4047713-55.png" alt="Image grohtml-4047713-55.png">
 <br>
-LINK DEPOT CENTRAL BY 3 <br>
-LINK CENTRAL OUTPUT BY 1 <br>
-----------</tt></p>
 
-<p style="margin-top: 1em"><tt><cite>Option NCM=2 is needed
-with versions of NONMEM prior to NONMEM 7.4.1 to avoid a
-spurious error message from NM-TRAN. <br>
----------- <br>
-</cite></tt></p>
+<img src="grohtml-4047713-56.png" alt="Image grohtml-4047713-56.png">
+<br>
+and thus <br>
 
-<p style="margin-top: 1em">This record gives information
-from which NM-TRAN can generate the complete FORTRAN coded
-MODEL routine.</p>
+<img src="grohtml-4047713-57.png" alt="Image grohtml-4047713-57.png"></p>
 
-<p style="margin-top: 1em">This record is required when the
-ADVAN routine requires a MODEL routine, and this routine is
-not user-supplied. It is only required for the first problem
-specification. It applies for all problem specifications in
-the control stream, and it must not appear with a problem
-specification other than the first.</p>
+<p style="margin-top: 1em">As with steady-state with
+multiple dosing, the solution is the same with all analytic
+models.
+<img src="grohtml-4047713-58.png" alt="Image grohtml-4047713-58.png">
+is a vector of compartment amounts and their eta
+derivatives, K is a matrix of rate constants and their eta
+derivatives, and R is vector with rate into a single
+compartment and that rate&rsquo;s eta derivatives,</p>
 
-<p style="margin-top: 1em">The number @n sub 1@ is the
-total number of compartments other than the output
-compartment. The maximum vale of @n@ is given by constant PC
-in resource/SIZES.f90; With NONMEM 7, the default is 30.
-(The value may be over-ridden by user via $SIZES record up
-to a maximum of 999). The <tt>NCOMPARTMENTS</tt> option may
-be coded as <tt>NCM</tt> or <tt>NCOMPS</tt>.</p>
+<p style="margin-top: 1em">When the model is defined by
+differential equations (SS6, SS8, SS9), PREDPP cannot use an
+analytic solution, even if one happens to exist. Instead,
+the solutions are found by a numerical technique using
+ZSPOW, a root-finding subroutine from IMSL.</p>
 
-<p style="margin-top: 1em">If the <tt>NCOMPARTMENTS</tt>
-option is omitted, this number is taken to be the number of
-<tt>COMPARTMENT</tt> clauses that appear in the record (and
-its continuation records).</p>
+<p style="margin-top: 1em">With multiple dosing, ZSPOW
+searches for a vector of compartment amounts and their eta
+derivatives such that the initial and final (end of dosing
+interval) vector is the same. ADVAN6, ADVAN8, ADVAN9,
+ADVAN13, ADVAN14, ADVAN15, ADVAN16, ADVAN17, and ADVAN18
+perform a numerical integration of the differential
+equations (and in the case of ADVAN9, ADVAN15, and ADVAN17,
+algebraic equations). The ADVAN routine is used to advance
+(integrate) the state vector A from time 0 to time II with
+the appropriate dose pattern. Let
+<img src="grohtml-4047713-59.png" alt="Image grohtml-4047713-59.png">
+represent the state vector after advance to time II with the
+appropriate dose. A search is made for
+<img src="grohtml-4047713-60.png" alt="Image grohtml-4047713-60.png">
+such that
+<img src="grohtml-4047713-61.png" alt="Image grohtml-4047713-61.png">
+-
+<img src="grohtml-4047713-62.png" alt="Image grohtml-4047713-62.png">
+= 0</p>
 
-<p style="margin-top: 1em">The number @n sub 2@ is the
-number of equilibrium compartments; this number must not
-exceed @n sub 1@. If the <tt>NEQUILIBRIUM</tt> option is
-omitted, this number is computed from the attributes of the
-<tt>COMPARTMENT</tt> clauses. If the option is used,
-however, then the last @n sub 2@ compartments are understood
-to be equilibrium compartments, whether or not any of these
-compartments are defined with <tt>COMPARTMENT</tt> clauses
-which include the <tt>EQUILIBRIUM</tt> attribute.</p>
+<p style="margin-top: 1em">If SS=3, the state vector A
+contains user-supplied initial estimates. Otherwise, the SS
+routines sets A=0 and makes three calls to ADVAN. Each call
+advances the state vector from t=0 to t=II with the
+appropriate dosing pattern. The result is the initial
+estimate.</p>
 
-<p style="margin-top: 1em">The number @n sub 3@ is the
-number of explicit (and implicit; see sections C.7-9) basic
-PK parameters. When an abbreviated code for the PK routine
-is used, the <tt>NPARAMETERS</tt> option may be omitted.
-(When implicit basic PK parameters are defined, this is a
-convenient practice.) In this case, and in the case of a
-general linear model, the number of basic PK parameters is
-the total number of <tt>K</tt>-type parameters recognized in
-the abbreviated code. In the case of a general nonlinear
-model and TRANS1, the number of basic parameters is the
-larger of (i) the largest subscript used with the <tt>P</tt>
-array in PK code, and (ii) the number of variables defined
-in PK abbreviated code and used in DES and/or AES
-abbreviated codes when such abbreviated codes are used. See
-next section C.5.</p>
+<p style="margin-top: 1em">Once the SS solution is found,
+the SS routine adds the final bolus dose to the state
+vector, or starts the final infusion.</p>
 
-<p style="margin-top: 1em">Each <tt>COMPARTMENT</tt> clause
-defines a single compartment. The compartments are numbered
-in the order in which their defining clauses appear in the
-record (and its continuation records). The name is the name
-given to the compartment, 1-8 characters from the FORTRAN
-character set. If spaces or nonalphanumeric characters are
-used, enclose the name in double or single quotes. With
-NONMEM 7.4, the maximum number of characters is given by SD
-in resource/SIZES.f90 (default is 30). <br>
-The name may not be one of the compartment attributes below,
-unless it is enclosed in single or double quotes. E.g.,
-COMP=(DEFOBS) is not permitted but
-COMP=(&quot;DEFOBS&quot;,DEFOBS) is permitted. <br>
-If omitted, the name <tt>COMP</tt> n is given to the
-compartment, where n is the compartment number. The
-compartment name is used in PREDPP problem summary pages and
-in <tt>LINK</tt> clauses in the $MODEL record. The name of
-the output compartment and the attributes of this
-compartment are set by PREDPP. For the purposes of NM-TRAN,
-the name of the output compartment is <tt>OUTPUT</tt>, and
-its number is 0 or @n sub 1 + 1@, either will do.</p>
+<p style="margin-top: 1em">As with analytic advans,
+steady-state with constant rate infusion is computed
+differently. At steady-state, input equals output. A search
+is made by the root finder ZSPOW for
+<img src="grohtml-4047713-63.png" alt="Image grohtml-4047713-63.png">
+such that</p>
 
-<p style="margin-top: 1em">With NONMEM 7.5, compartment
-names defined in $MODEL are automatically available for
-substitution without requiring $ABBR REPLACE records. This
-is called &quot;implicit&quot; compartment name replacement.
-For example:</p>
-<pre style="margin-top: 1em">$MODEL   COMP=(DEPOT)</pre>
 
-<p>allows substitutions to be made for A(DEPOT),
-DADT(DEPOT) etc, in abbreviated code:</p>
-<pre>$DES
-DADT(DEPOT)=-KA*A(DEPOT)</pre>
+<p style="margin-left:8%; margin-top: 1em"><img src="grohtml-4047713-64.png" alt="Image grohtml-4047713-64.png">
+<br>
+Within PREDPP,
+<img src="grohtml-4047713-65.png" alt="Image grohtml-4047713-65.png">
+, so this search is for: <br>
 
-<p>The compartment number 1 is present in the generated
-subroutines.</p>
+<img src="grohtml-4047713-66.png" alt="Image grohtml-4047713-66.png"></p>
 
-<p style="margin-top: 1em">Each attribute is one of:
-<tt>INITIALOFF</tt>, <tt>NOOFF</tt>, <tt>NODOSE</tt>,
-<tt>DEFOBSERVATION</tt>, <tt>DEFDOSE</tt>,
-<tt>EQUILIBRIUM</tt>, <tt>EXCLUDE</tt>. When an attribute is
-used, it specifies the opposite of the default attribute.
-The default attributes are: The compartment is initially on,
-may be turned on and off, may receive a dose, is not the
-default observation compartment, is not the default dose
-compartment, is not an equilibrium compartment, is included
-in the computation for the output compartment. If a
-user-defined comparment has attributes <tt>INITIALOFF
-NODOSE</tt> then it is initally off, may be turned on and
-off, and may not receive a dose. Such a compartment is
-called an <b>output-type</b> compartment. There may be more
-than one.&dagger; <br>
+<p style="margin-top: 1em">ZSPOW requires an initial
+estimate. As above, if SS=3, the state vector A contains an
+initial estimate.</p>
+
+<p style="margin-top: 1em">Otherwise, an initial estimate
+is obtained using the first two terms of the Maclaurin
+series approximation for
+<img src="grohtml-4047713-67.png" alt="Image grohtml-4047713-67.png">
+. For any
+<img src="grohtml-4047713-68.png" alt="Image grohtml-4047713-68.png">
+, this is
+<img src="grohtml-4047713-69.png" alt="Image grohtml-4047713-69.png"></p>
+
+<p style="margin-top: 1em">Here,
+<img src="grohtml-4047713-70.png" alt="Image grohtml-4047713-70.png">
+is
+<img src="grohtml-4047713-71.png" alt="Image grohtml-4047713-71.png">
+and
+<img src="grohtml-4047713-72.png" alt="Image grohtml-4047713-72.png">
+is
+<img src="grohtml-4047713-73.png" alt="Image grohtml-4047713-73.png"></p>
+
+<p style="margin-top: 1em">The DES routine computes
+<img src="grohtml-4047713-74.png" alt="Image grohtml-4047713-74.png">
+as DADT and
+<img src="grohtml-4047713-75.png" alt="Image grohtml-4047713-75.png">
+as DA. DES is called with A=0 to obtain DADT(0) and DA(0).
+The SS routine computes DAINV = 1/DA(0). The approximation
+is:</p>
+
+
+<p style="margin-top: 1em"><img src="grohtml-4047713-76.png" alt="Image grohtml-4047713-76.png"></p>
+
+<p style="margin-top: 1em">Solve for A in:</p>
+
+
+<p style="margin-left:8%; margin-top: 1em"><img src="grohtml-4047713-77.png" alt="Image grohtml-4047713-77.png">
+<br>
+
+<img src="grohtml-4047713-78.png" alt="Image grohtml-4047713-78.png">
+<br>
+
+<img src="grohtml-4047713-79.png" alt="Image grohtml-4047713-79.png"></p>
+
+<p style="margin-top: 1em">This
+<img src="grohtml-4047713-80.png" alt="Image grohtml-4047713-80.png">
+is the initial estimate.</p>
+
+<table width="100%" border="0" rules="none" frame="void"
+       cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%">
+
+
+<p style="margin-top: 1em">Note 1</p></td>
+<td width="90%">
+</td></tr>
+</table>
+
+<p style="margin-left:8%;">The time
+<img src="grohtml-4047713-81.png" alt="Image grohtml-4047713-81.png">
+of the steady-state dose record is ignored. Steady-state is
+computed for time=0.</p>
+
+<table width="100%" border="0" rules="none" frame="void"
+       cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%">
+
+
+<p style="margin-top: 1em">Note 2</p></td>
+<td width="90%">
+</td></tr>
+</table>
+
+<p style="margin-left:8%;">Multiple infusions with duration
+&gt; II are permitted. The SS routines treat these as a
+constant rate infusion superimposed on multiple infusions
+with duration &lt; II.</p>
+
+<table width="100%" border="0" rules="none" frame="void"
+       cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%">
+
+
+<p style="margin-top: 1em">Note 3</p></td>
+<td width="90%">
+</td></tr>
+</table>
+
+<p style="margin-left:8%;">As stated in chapter III, if an
+absorption lag parameter ALAGn is defined for the
+compartment receiving a steady-state multiple dose, it
+applies not only to this dose, but also to all the preceding
+implied doses. The lag time should not exceed the interdose
+interval. Steady-state amounts are computed as usual, then
+the state vector is advanced to time
+<img src="grohtml-4047713-82.png" alt="Image grohtml-4047713-82.png">
+.</p>
+
+<p style="margin-left:8%; margin-top: 1em">For example,
+suppose II=24 and ALAG=8. First, steady-state is computed as
+if there were no lag time, so that the most recent implied
+doses were given at times -72, -48, -24, 0. Because ALAG=8,
+they were actually given at times -64, -40, -16. Thus, 16
+units of time have passed since the last of the implied
+doses. The steady-state amounts are adjusted to time
+<img src="grohtml-4047713-83.png" alt="Image grohtml-4047713-83.png">
+. Event records with times up to (but not including) time 8
+will have appropriate steady-state amounts in the
+compartments. A transient dose at time 8 will maintain
+steady-state from time 8 until the next transient dose is
+needed at time
+<img src="grohtml-4047713-84.png" alt="Image grohtml-4047713-84.png">
+.</p>
+
+<table width="100%" border="0" rules="none" frame="void"
+       cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="10%">
+
+
+<p style="margin-top: 1em">Note 4</p></td>
+<td width="90%">
+</td></tr>
+</table>
+
+<p style="margin-left:8%;">Model event time MTIME is not a
+dose-related feature and has no effect on steady-state
+doses. Even if PK computes MTIME &lt; II, this does not
+apply retroactively to the preceding implied doses. For
+example, if MTIME is used to model EHC (enterohepatic
+circulation), then steady-state doses should not be used
+because they will give inappropriate results. Instead, EHC
+can be modelled with continuous terms in the differential
+equations. An example is provided using a smooth step model
+with Hill terms in a sigmoid emax model. With such models,
+steady-state doses may be used. See &quot;Enterhepatic
+circulation examples&quot; in on-line help, and mtimess.ctl
+and hillss.ctl in the examples directory.</p>
+
+<h2>V.G. The Interdose Interval (II) Data Item
+<a name="V.G."></a>
+<a name="V.G. The Interdose Interval (II) Data Item"></a>
+</h2>
+
+
+<p style="margin-top: 1em">This type of data item (PREDPP
+data item no. 6) may appear in event records or be missing.
+If some steady-state dose event record has a positive AMT
+data item, then the II data item must also appear in the
+record. If some non-steady-state dose event record has a
+positive ADDL data item (see section K), then the II data
+item must also appear in the record.</p>
+
+<p style="margin-top: 1em">In a dose record the II data
+item can be 0 or a positive number. For repeated doses with
+a given period, the II data item is this period. For a
+steady-state infusion the II data item must be 0.</p>
+
+<p style="margin-top: 1em">The II data item must be 0 in
+observation, other-type, and reset event records. In a
+reset-dose event record the II data item should satisfy the
+requirements of the II data item in a dose event record.</p>
+
+<p style="margin-top: 1em">With NONMEM 7.5, an Empirical
+method of Achieving Steady State may be used. <br>
+See INTRODUCTION TO NONMEM 7, section &quot;An Empirical
+Method of Achieving Steady State&quot; <br>
+For such doses, ADDL is negative, and II must also appear
+and be positive.</p>
+
+<p style="margin-top: 1em">Like TIME, the PREDPP II data
+item is unitless. However, when NM-TRAN is used, II values
+of the NM-TRAN data set may contain clock times (e.g.,
+hh:mm), and NM-TRAN converts them to hours for the
+NONMEM/PREDPP data record. In addition, the NM-TRAN $DATA
+record may contain the option TRANSLATE=(II/f/d). This
+requests that II values be divided by f (typically, f is 24
+to convert hours to days) with d significant digits.</p>
+
+<h2>V.H. The Compartment (CMT) Data Item
+<a name="V.H."></a>
+<a name="V.H. The Compartment (CMT) Data Item"></a>
+</h2>
+
+
+<p style="margin-top: 1em">The prediction for an
+observation may be either a scaled drug amount in some
+particular compartment called the <b>observation
+compartment</b> (see section III.F.1), or a modification of
+this quantity (see section IV.B.2). With every dose there is
+associated a certain <b>dose compartment</b> (see section
+III.F.2). With every kinetic model there are designated a
+<b>default observation compartment</b> and a <b>default dose
+compartment</b></p>
+
+<p style="margin-top: 1em">For some kinetic models, these
+designations are built into the model definition; for
+others, these designations are given by the user in a
+special subroutine MODEL (see section VI.B). Unless
+otherwise specified on an observation event record by means
+of the compartment data item, the observation compartment is
+taken to be the default observation compartment. Unless
+otherwise specified on a dose event record by means of the
+compartment data item, the dose compartment is taken to be
+the default dose compartment.</p>
+
+<p style="margin-top: 1em">The compartment data item
+(PREDPP data item no.7) may be appear in event records or be
+missing. If it has the value 0 on an observation, dose, or
+reset-dose event record, then the appropriate default
+compartment is used for the observation compartment or dose
+compartment. Otherwise, the number given as the compartment
+data item on the record is the number of the observation or
+dose compartment, respectively.</p>
+
+<p style="margin-top: 1em">By convention, the number of the
+output compartment may also be given by the CMT data item as
+the number 1000 (this is true regardless of the type of the
+event record). With small models (number of compartments
+&lt;= 99), this number may also be given as 100.</p>
+
+<p style="margin-top: 1em">Some compartments can be turned
+on and off at event record times. When a compartment is off,
+the amount of drug in the compartment is 0. When a
+compartment is on, drug distributes from or into the
+compartment according to the kinetic model. For example, the
+output compartment may be turned on at a time coinciding
+with the beginning of a urine collection. Or, a drug depot
+compartment can be turned off at a time when there should be
+virtually no drug left in this compartment, and the user
+wishes to eliminate the unnecessary computation involved in
+computing the amount of drug in this compartment. Every
+compartment is initially either on or off --its so-called
+<i>initial status</i>, at the &quot;beginning&quot; of an
+individual record. If a compartment is not turned on or off
+as the result of some event record in the individual record,
+then the on-off status of the compartment at each event time
+in the individual record is given by the compartment&rsquo;s
+initial status. (Compartments can also be turned on and off
+when all the data are from a single subject, and then the
+term &rsquo;individual record&rsquo; here should be
+&quot;understood&quot; to mean the entire data set. This is
+a consequence of the single-subject assumption; see section
+IV.A.) With every kinetic model only certain designated
+compartments can be turned on and off, and the initial
+status of each compartment is also designated. For some
+kinetic models, these designations are built into the model
+definition; for others, these designations are given by the
+user in a special subroutine MODEL (see section VI.B).</p>
+
+<p style="margin-top: 1em">With a dose event record the
+dose compartment is turned on at the time the dose enters
+the system, if this compartment is not already on at that
+time. With an observation event record the observation
+compartment must either be the default observation
+compartment (which can never be turned off from its initial
+status of being on), or a compartment whose status at the
+time of the observation event record is on.</p>
+
+<p style="margin-top: 1em">Any drug which would distribute
+from a compartment A to a compartment B, were B on, leaves
+compartment A when B is off. It goes into the output
+compartment when the output compartment is on, or is lost to
+the system entirely if the output compartment is off.</p>
+
+<p style="margin-top: 1em">Generally, giving a compartment
+number in the compartment data item has the effect of (i)
+specifying the observation compartment, if the event record
+is an observation record, (ii) specifying the dose
+compartment, if the event record is a dose record,
+<b>and</b> (iii) turning the compartment on at the event
+record time, if it is not already on. If all one wants to
+accomplish at a certain time is to turn a compartment on
+(e.g. the output compartment, in order to begin a urine
+collection), then one should construct an other-type event
+record that simply turns the compartment on, i.e. that gives
+the compartment number as the compartment data item. For
+some kinetic models, the compartment numbers are built into
+the model definition; for others, these numbers are given by
+the user in a special subroutine MODEL (see section
+VI.B).</p>
+
+<p style="margin-top: 1em">To turn a compartment off at a
+given time, one should construct an other-type event record
+that gives the compartment number, preceded by a minus sign,
+as the compartment data item. A minus sign can also precede
+the compartment number on an observation record, provided
+the observation compartment is the output compartment or an
+output-type compartment. <br>
 ----------</p>
 
 <p style="margin-top: 1em"><cite>&dagger; Output-type
 compartments have been part of PREDPP since the first
-version, but were not discussed in detail. For such
-compartments, the value of CMT may be negative on an
-obervation record to obtain an observation and turn the
-compartment off, just as it may with the default output
-compartment. <br>
+version, but the use of a minus sign for CMT on an
+observation record was not mentioned. An output-type
+compartment is initally off, may be turned on and off, and
+may not receive a dose. It must be turned on with an
+other-type event record in order to start accumulating drug.
+<br>
 ---------- <br>
 </cite></p>
 
-<p style="margin-top: 1em">Attributes <tt>EQUILIBRIUM</tt>
-and <tt>EXCLUDE</tt> are used only with ADVAN9 and ADVAN15,
-and the attribute <tt>NODOSE</tt> may be omitted when
-<tt>EQUILIBRIUM</tt> is also used, for it is then the
-default. Definitions for equilibrium compartments must
-follow the definitions for the nonequilibrium
-compartments.</p>
+<p style="margin-top: 1em">In this case the compartment
+must be on at the event time, but it is turned off
+&quot;immediately thereafter&quot;. Thus one can record the
+observation of a urine concentration in an event record and
+conveniently turn off the urine collection using the same
+record.&dagger; One can do the same thing less conveniently
+by not using the minus sign in the observation record, but
+using it in a subsequent other-type event record with the
+same time data item.</p>
 
-<p style="margin-top: 1em">If no attributes are used, the
-parentheses may be omitted. If neither compartment name nor
-attributes are used, i.e. the clause is simply
-<tt>COMPARTMENT</tt>, a compartment is defined where all
-defaults apply. In this case if the clause does not end the
-$MODEL record, it must be followed by a comma.</p>
+<p style="margin-top: 1em">With a reset or reset-dose event
+record the on-off status of each compartment is reset to its
+initial status, and then if the compartment data item is
+nonzero, the designated compartment is turned on or off
+according to whether the data item is plus or minus (it must
+be plus with a reset-dose event record).</p>
 
-<p style="margin-top: 1em">If no compartment has the
-attribute <tt>DEFOBSERVATION</tt>, the first compartment
-defined with the name <tt>CENTRAL</tt> is given the
-attribute.</p>
-
-<p style="margin-top: 1em">If there is no such compartment,
-the first compartment is given the attribute
-<tt>DEFOBSERVATION</tt>. With versions of NONMEM prior to
-7.4.1 a compartment that is initially off could thus be
-assigned as <tt>DEFOBSERVATION</tt>. This results in an
-error message if the PCMT data item is not used to specify
-explicitly which compartment should be used for the
-prediction associated with a dose or other-type event. With
-7.4.1, the first compartment that is not <tt>INITIALOFF</tt>
-is given the attribute <tt>DEFOBSERVATION</tt> and PCMT is
-not needed.</p>
-
-<p style="margin-top: 1em">If no compartment has the
-attribute <tt>DEFDOSE</tt>, the first compartment defined
-with the name <tt>DEPOT</tt> and which may receive doses is
-given the attribute. If there is no such compartment, the
-first compartment which may receive doses is given the
-attribute.</p>
-
-<p style="margin-top: 1em">The <tt>LINK</tt> clauses need
-only be used with general linear models and only when the PK
-routine is user-supplied. When an abbreviated code for PK is
-used, this code accomplishes what the <tt>LINK</tt> clauses
-otherwise accomplish, and <tt>LINK</tt> clauses should not
-be used. A <tt>LINK</tt> clause defines a route of
-first-order drug distribution between the compartment A with
-name @compname sub a@ and the compartment B with name
-@compname sub b@. These names are established in the
-<tt>COMPARTMENT</tt> clauses. A compartment number, rather
-than a compartment name, can be used. If distribution occurs
-from A to B, the <tt>TO</tt> symbol is used. The
-<tt>LINK</tt> clause also specifies the internal number
-given to the rate constant quantifying the first-order
-distribution. This is the number k following the <tt>BY</tt>
-symbol. (It is the number of the row of the GG array where,
-as a result of basic parameter translation by the TRANS
-routine, the typical/subject-specific value and @eta@
-derivatives for the rate constant can be located; see Guide
-VI, section III.M.) If distribution occurs in both
-directions, the <tt>AND</tt> symbol is used. In this case
-the number k is the internal number of the rate constant
-quantifying first-order distribution from A to B, and l is
-the internal number of the rate constant quantifying
-distribution from B to A. Both k and l must not exceed @n
-sub 3@.</p>
-
-<p style="margin-top: 1em"><tt>K</tt> is an alias for
-<tt>LINK</tt>. Also, the symbol <tt>BY</tt> may be coded
-<tt>IS</tt>, or <tt>=</tt>, or omitted. This allows a
-unidirectional link to be tersely coded as:
-<tt>K</tt>mn<tt>=</tt>k (which is equivalent to
-<tt>LINK</tt> m <tt>TO</tt> n <tt>BY</tt> k). When the
-number of compartments exceeds 10, the LINK clause syntax
-<tt>Kmn=k</tt> may be ambiguous. The letter <tt>T</tt> may
-be used to separate the two compartment numbers
-<tt>KmTn</tt>.</p>
-
-<p style="margin-top: 1em">Attributes
-<tt>DEFOBSERVATION</tt> and <tt>DEFDOSE</tt> may be
-abbreviated by initial substrings of length 4 or more.</p>
-
-<p style="margin-top: 1em"><tt>I_SS= @n@</tt> requests the
-Initial Steady-State feature of PREDPP (NONMEM VI). It may
-be used with the general non-linear models (ADVAN6, ADVAN8,
-ADVAN9, ADVAN13, ADVAN14, ADVAN15). Values of n are</p>
-
-<p style="margin-left:28%;">0 No initial state state (the
-default) <br>
-1 Initial steady state <br>
-2 Initial steady state, adds to current compartment amounts.
-<br>
-3 Initial steady state, use current compartment amounts as
-initial estimates.</p>
-
-<p style="margin-top: 1em">The results are identical to
-those that would be computed by a steady-state dose event
-record with SS=I_SS and AMT=0 and RATE=0. If endogenous drug
-is specified in the differential equations, non-zero initial
-conditions will be computed.</p>
-
-<p style="margin-top: 1em">The example of a $MODEL record
-given at the beginning of this subsection serves to produce
-a MODEL subroutine which, along with ADVAN5 or ADVAN7
-implementing a general linear model, and the (code generated
-from the) abbreviated code for PK given in the example of
-section A, has the same effect as using ADVAN2 and the
-abbreviated code for PK. The same $MODEL record, without the
-<tt>LINK</tt> clauses, may be used along with ADVAN5 or
-ADVAN7, and a suitable abbreviated PK code, to achieve the
-same effect; see the example in Appendix VIII. The same
-$MODEL record, without the <tt>LINK</tt> clauses, may be
-used along with ADVAN6, ADVAN8, ADVAN9, ADVAN13, ADVAN14,
-ADVAN15, and suitable abbreviated PK and DES codes, to
-achieve the same effect; see the example in Appendix
-VIII.</p>
-
-<h2>V.V.V.C.5. $PK Record
-<a name="V.V.V.C.5."></a>
-<a name="V.V.V.C.5. $PK Record"></a>
+<h2>V.I. The Prediction Compartment (PCMT) Data Item
+<a name="V.I."></a>
+<a name="V.I. The Prediction Compartment (PCMT) Data Item"></a>
 </h2>
 
 
-<p style="margin-top: 1em"><tt>$PK</tt> <br>
-abbreviated code</p>
+<p style="margin-top: 1em">NONMEM expects PRED to compute a
+prediction for each <i>data record</i>, whether or not the
+data record contains an observation. These predictions
+appear in all tables of data records, and they can appear on
+scatterplots. For example, one may want to scatterplot
+predictions versus time. Other-type event records can then
+be included in the data set with times of interest which are
+not observation times. For all data records with CONT data
+item 1, PREDPP produces a prediction of 0. For the last data
+record of an observation event record, the prediction is
+always either the scaled drug amount in the observation
+compartment (see section III.F.1), or a modification of this
+quantity (see section IV.B.2). For the last data record of a
+non-observation record, the prediction is the prediction
+that would result for an observation of the default
+observation compartment (see section H), unless otherwise
+specified in the event record by means of the prediction
+compartment data item.</p>
 
-<p style="margin-top: 1em">This record gives an abbreviated
-code for the PK routine. It, along with all its continuation
-records is called a <b>$PK block</b></p>
+<p style="margin-top: 1em">The prediction compartment data
+item (PREDPP data item no. 8) may appear or be missing. If
+it has the value 0 in a non-observation event record, then
+the prediction for the last data record of the event record
+is the prediction that would result for an observation of
+the default observation compartment. Otherwise, the PCMT
+data item is a compartment number, and the prediction for
+the last data record of the event record is the prediction
+that would result for an observation of the specified
+compartment. Thus predictions for different compartments can
+be displayed.</p>
 
-<p style="margin-top: 1em">This record is optional. If it
-appears, it must be with the first problem specification,
-and only with this problem specification. It must precede
-any $ERROR records in the problem specification. It cannot
-be used with a user-supplied MODEL subroutine (and should
-not be used with a user-supplied TRANS routine; see Guide
-VI, section III.M).</p>
+<p style="margin-top: 1em">By convention, the number of the
+output compartment may also be given by the PCMT data item
+as the number 1000 (this is true regardless of the type of
+the event record). With small models (number of compartments
+&lt;= 99), this number may also be given as 100.</p>
 
-<p style="margin-top: 1em">The basic PK parameters comprise
-the set of mandatory left-hand quantities. These depend on
-the ADVAN and TRANS subroutines used.</p>
-
-<p style="margin-top: 1em">For any ADVAN among ADVAN1
-through ADVAN4, and ADVAN10, ADVAN11, ADVAN12 (the analytic
-ADVAN&rsquo;s), and for any TRANS which may be used with
-this ADVAN, the basic PK parameters are given in a list with
-that TRANS in Guide VI, section VII.C. The reserved
-variables symbolizing these parameters are those whose names
-are identical to the names used in the list.</p>
-
-<p style="margin-top: 1em">For either ADVAN5 or ADVAN7 (the
-general linear models), and for TRANS1 (which is the only
-non-user supplied TRANS which may be used with these
-ADVAN&rsquo;s), the basic PK parameters are the rate
-constants. The reserved variable symbolizing the rate
-constant that quantifies the first-order distribution of
-drug from compartment number m to compartment number n is
-<tt>K</tt>mn. (See section C.4 for a description of
-compartment numbering.) The occurence of this variable on
-the left of an assignment statement or conditional
-assignment statement establishes the possiblity that this
-distribution can take place. The variable
-<tt>K</tt>m<tt>0</tt> may be used instead of <tt>K</tt>mn,
-where n is the number of the output compartment. <br>
-When the number of compartments exceeds 10, the syntax
-<tt>Kmn=k</tt> may be ambiguous. The letter <tt>T</tt> may
-be used to separate the two compartment numbers
-<tt>KmTn</tt>. <br>
-The rate constants are numbered (these numbers are used
-internally by the ADVAN) according to the order in which
-they appear in the abbreviated code. See the first example
-in Appendix VIII.</p>
-
-<p style="margin-top: 1em">For ADVAN6, ADVAN8, ADVAN9,
-ADVAN13, ADVAN14, ADVAN15 (the general nonlinear models),
-and for TRANS1, the reserved array elements symbolizing
-explicit basic PK parameters are <tt>P(1)</tt>,
-<tt>P(2)</tt>, etc. The value of the nth element of the P
-vector passed to DES and AES (see sections C.7-9 and Guide
-VI, sections VI.C, VI.E) is the value stored in
-<tt>P(</tt>n<tt>)</tt>. These values, like other PK-defined
-items may be displayed; the appropriate labels are described
-below. Implicit basic PK parameters are discussed in
-sections C.7-9.</p>
-
-<p style="margin-top: 1em">The additional PK parameters
-comprise a set of optional left-hand quantities. The
-reserved variables symbolizing these parameters are as
-follows:</p>
-
-
-<p align="center" style="margin-top: 1em"><img src="grohtml-40700901.png" alt="Image grohtml-40700901.png"></p>
-
-<p style="margin-top: 1em">Scaling parameters,
-bioavailablity fractions, the ouput fraction, and the time
-scale parameter default to the value 1 if they do not appear
-in the abbreviated code. Absorption lag parameters default
-to the value 0 if they do not appear in the abbreviated
-code.</p>
-
-<p style="margin-top: 1em">See section C.4 for a
-description of compartment numbering. The variable
-<tt>FO</tt> or <tt>Fn</tt>, where n is the number of the
-output compartment, may be used instead of <tt>F0</tt>. The
-variable <tt>S0</tt> may be used instead of <tt>Sn</tt>,
-where n is the number of the output compartment. The
-variable <tt>SC</tt> may be used to mean the scaling
-parameter with the central compartment. The variable
-<tt>XSCALE</tt> may be used instead of <tt>TSCALE</tt>.
-Whichever of the alternate variable names is used first for
-a basic or additional PK parameter, this name must be used
-consistently throughout the $PK block.</p>
-
-<p style="margin-top: 1em">A model event time parameter
-<tt>MTIME(</tt>i<tt>)</tt> defines a time to which the
-system is advanced. When the time is reached, indicator
-variables are set and a call to PK is made. At this call
-(and/or subsequent to this call) PK or DES or AES or ERROR
-can use the indicator variables to change some aspect of the
-system, e.g., a term in a differential equation, or the rate
-of an infusion. <tt>MTIME(</tt>i<tt>)</tt> parameters are
-not associated with any specific compartment or dose. They
-are ignored if they have the value 0. <tt>MTIME</tt>
-parameters have no effect on steady-state doses; even if PK
-computes <tt>MTIME(</tt>i<tt>)</tt>&lt; II, this produces
-future changes in the system, and does not apply
-retroactively to the preceding implied doses.</p>
-
-<p style="margin-top: 1em"><tt>MTDIFF</tt> is an optional
-left-hand variable. It is of interest when model time
-parameters MTIME are used. The value of <tt>MTDIFF</tt> is 0
-when PK is called. If PK sets <tt>MTDIFF</tt> to a value
-other than 0, e.g., <tt>MTDIFF=1</tt>, then PREDPP will
-understand that with that call to PK, the values of one or
-more of the MTIME(i) have possibly been reset.
-<tt>MTDIFF</tt>=0 (the default) can save considerable run
-time when there are many model time parameters. Note that
-the results are unpredictable if the times are in fact
-changed when <tt>MTDIFF</tt>=0.</p>
-
-<p style="margin-top: 1em">Array elements <tt>A_0(1)</tt>,
-..., <tt>A_0(n)</tt> may be used on the left-hand to assign
-initial values to compartments. A reserved right-hand
-variable, <tt>A_0FLAG</tt>, is set to 1 by PREDPP when PK
-may initialize compartments to specific amounts. For
-example,</p>
-
-<pre>IF (A_0FLG.EQ.1) THEN   compartment initialization block</pre>
-
-
-<p>ENDIF <br>
-A compartment initialization block includes statements such
-as</p>
-<pre>   A_0(n)=....</pre>
-
-<p>This specifies the initial amount for compartment n.
-<tt>A_INITIAL(n)</tt> is a synonym for <tt>A_0(n)</tt>. <br>
-The above code fragment is an explicit compartment
-initialization block. <tt>A_0(n)</tt> may be assigned a
-value with an unconditional statement. This defines an
-implicit compartment initialization block. NMTRAN inserts
-&quot;IF (A_0FLG.EQ.1) ...&quot; before the statement and
-&quot;ENDIF&quot; after it. Indicator variables may be used
-to avoid conditional assignment statements. See the help
-items for Compartment Initialization.</p>
-
-<p style="margin-top: 1em">A reserved left-hand variable
-<tt>I_SS</tt> may be set to the same values as the I_SS
-option of $MODEL record. This allows initial steady-state to
-be set conditionally, e.g., if some subjects are at
-steady-state and others are not.</p>
-
-<p style="margin-top: 1em">There is a type of
-pseudo-statement specific to PK abbreviated code. It has the
-form <tt>CALLFL=</tt>n. The different permissible values for
-n imply different PK calling-protocols. A calling protocol
-phrase can be used instead of the CALLFL pseudostatement.
-The phrase must be enclosed in parentheses. Examples of
-phrases follow each value of CALLFL.</p>
-
-
-<p align="center" style="margin-top: 1em"><img src="grohtml-40700902.png" alt="Image grohtml-40700902.png"></p>
-
-<p style="margin-top: 1em">The value must be -2 when the
-$BIND record is used.</p>
-
-<p style="margin-top: 1em">If the pseudo-statement does not
-appear, the value -1 is assumed. This allows PK to properly
-function in most situations.</p>
-
-<p style="margin-top: 1em">Values 0 and 1 correspond to
-call-limiting protocols. Limiting calls to PK, when this
-causes no undesireable effect, can result in a substantial
-reduction in CPU time. The CALL data item can be used with a
-call-limiting protocol to override the protocol and force
-calls with specific event records; see Guide VI, section
-V.J. When n is 0 or 1, and the data are single-subject data,
-then PK is called with the first event record of the data
-set, instead of the first event record of the individual
-record.</p>
-
-<p style="margin-top: 1em">As usual, the label of a data
-item type can be used as a variable in the abbreviated code.
-When PK is called at a nonevent dose time t, the data item
-referenced by a given label may refer to the data item on
-either the dose record or the next event record following t.
-The defaults are described in section C.2, and a method
-(using the $BIND record) is given for changing them.</p>
-
-<p style="margin-top: 1em">There are several reserved
-variables and array elements symbolizing special right-hand
-quantities:</p>
-
-<p style="margin-top: 1em">The variable <tt>ICALL</tt>
-symbolizes a special right-hand quantity. The values are
-identical to those for <tt>ICALL</tt> in PRED, as described
-in Chapter IV. It has the value 2 if the call is a regular
-call during data analysis, and the value 4 if the call is a
-regular call during data simulation. It has the value 5 if
-the call to PK occurs when expectations are being computed
-(the marginal data item MRG_ has a non-zero value for some
-records).</p>
-
-<p style="margin-top: 1em">If there is abbreviated code in
-the $PK block that tests for ICALL=0, ICALL=1, or ICALL=3,
-this code is moved by NM-TRAN to the INFN routine as if it
-had been coded explicitly as part of an $INFN block. Such
-code is called $PK-INFN code. With verbatim code in the
-FIRST block (see section IV.I), <tt>ICALL</tt> will never
-have the value 0 or 3. ICALL has the value 1 if the call to
-PK is the first call to PK in the problem. At this call, the
-<tt>THETA</tt>&rsquo;s are the initial estimates; the
-<tt>ETA</tt>&rsquo;s are undefined. Verbatim code is not
-moved to the INFN routine.</p>
-
-<p style="margin-top: 1em">The variable <tt>NEWIND</tt>
-symbolizes a special right-hand quantity. It has the value 0
-when PK is called with the first event record of the data
-set. It has the value 1 when PK is called with the first
-event record of the second or subsequent individual record.
-It has the value 2 when PK is called with the second or
-subsequent event record of an individual record. With
-single-subject data individual records are defined in such a
-way that event records are contained in a number of
-different individual records; see section II.C.4.1.
-Therefore, except when the event record is the first data
-record of the data set and the value of <tt>NEWIND</tt>=0,
-the value of <tt>NEWIND</tt> can be 1 or 2.</p>
-
-<p style="margin-top: 1em">The variable <tt>DOSTIM</tt>
-symbolizes a special right-hand quantity. It has a nonzero
-value only when <tt>CALLFL=-2</tt> and PK is being called at
-a nonevent dose time (see section C.2), in which case the
-value is this time. <tt>DOSTIM</tt> should be regarded a
-random variable when <i>any</i> <tt>ALAG</tt>n variable is a
-random variable. In this regard, if any <tt>ALAG</tt>n is
-defined as a random variable, it must be defined as such
-before any occurence of the variable <tt>DOSTIM</tt> in an
-assignment statement.</p>
-
-<p style="margin-top: 1em">The array element
-<tt>DOSREC(</tt>n<tt>)</tt> symbolizes a special right-hand
-quantity. It has a nonzero value only when
-<tt>CALLFL=-2</tt> and PK is being called at a nonevent dose
-time, in which case it is the value of the nth data item in
-the (last data record of the) dose event record describing
-the dose. A label for a data item in the event record may be
-used instead of the integer n, e.g. one can use
-<tt>DOSEC(PREP)</tt> to symbolize the value of <tt>PREP</tt>
-on the dose event record. The $BIND record can also be used
-to insure that a variable such as <tt>PREP</tt> symbolizes
-the value on the dose event record. However, another example
-of the use of <tt>DOSREC</tt>, which is sometimes useful and
-with which the $BIND record cannot help as readily, is the
-use of <tt>DOSREC(TIME)</tt> to symbolize the value of
-<tt>TIME</tt> on the dose event record, i.e. the time the
-dose was actually administered.</p>
-
-<p style="margin-top: 1em">PREDPP sets right-side variables
-<tt>MNOW</tt> and indicator variables
-<tt>MNEXT(</tt>i<tt>)</tt> and <tt>MPAST(</tt>i<tt>)</tt>
-when Model Event (<tt>MTIME(</tt>i<tt>)</tt>) parameters are
-defined. <tt>MNOW</tt>=i if <tt>MNEXT</tt>(i)=1 for some i.
-<tt>MNOW</tt>=0 otherwise. <tt>MNEXT</tt>(i)=1 during the
-advance from the previous time to MTIME(i). Otherwise,
-<tt>MNEXT</tt>(i)=0. The previous time may be an event time,
-a non-event time, or a model event time. <tt>MPAST</tt>(i)=0
-until the call to PK subsequent to the one for which
-<tt>MNEXT</tt>(i)=1. At that call <tt>MPAST</tt>(i) becomes
-1.</p>
-
-<p style="margin-top: 1em">The array elements
-<tt>A(1)</tt>, ..., <tt>A(n)</tt> symbolize special
-right-hand quantities, the amounts in compartments 1 through
-n. They are the latest computed compartment amounts when PK
-is called. This is the called the state-vector of
-compartment amounts. A right-hand variable <tt>TSTATE</tt>
-is the state-time, i.e., the time at which they were
-computed. In a population study, where @eta@ variables
-affect the drug amounts through their affect on PK
-parameters, these amounts are random variables. $OMEGA
-records referring to @eta@s explicitly used in $PK code
-should precede the $PK record, or if an $MSFI record is
-used, it should precede the $PK record and include the
-option NPOP=m. If an element <tt>A(</tt>n<tt>)</tt> appears,
-then the variable <tt>A</tt> cannot also be used.</p>
-
-<p style="margin-top: 1em">Chapter IV describes the use of
-NONMEM MODULE NMPRD4. If <tt>COMRES=1</tt> is <i>not</i>
-present in $ABBREVIATED or $PK records, then PK-defined
-variables are listed in NMPRD4 (see sections III.B.7 and
-IV.H) and may be used in other routines and blocks of
-abbreviated code. The symbol <tt>COM(</tt>n<tt>)</tt> may be
-used on the left or the right if n refers to a reserved
-position in MODULE NMPRD4 (see section III.E.3). Variables
-defined in $INFN and listed in MODULE PRINFN are also global
-and may be used in $PK and other blocks of abbreviated code,
-on the left and on the right. Variables defined by
-$ABBREVIATED DECLARE records are also global and may be used
-in $PK and other blocks of abbreviated code, on the left and
-on the right.</p>
-
-<p style="margin-top: 1em">The abbreviated code may not use
-certain variables which occur as arguments to the PK
-subroutine. These variables are: <tt>IDEF</tt>,
-<tt>IREV</tt>, <tt>EVTREC</tt>, <tt>NVNT</tt>,
-<tt>INDXS</tt>, <tt>IRGG</tt>, <tt>GG</tt>, and
-<tt>NETAS</tt>.</p>
-
-<p style="margin-top: 1em">Also, the array elements
-<tt>EPS(1)</tt>, <tt>EPS(2)</tt>, etc. may not be used in
-the abbreviated code for PK.</p>
-
-<p style="margin-top: 1em">Variables which symbolize
-(first-, and second-) partial @eta@-derivatives of random
-variables defined in abbreviated code for PK are generated
-and displayable. The appropriate labels are the same as
-those used for the same kinds of derivatives computed in a
-generated code for PRED; see section IV.F.</p>
-
-<p style="margin-top: 1em">Values of the variable
-<tt>P(</tt>n<tt>)</tt> are displayable. For this purpose,
-they are stored in a variable in MODULE NMPRD4 with name
-<tt>P</tt>m, where m is an integer with 5 digits and equal
-to n, with leading <tt>0</tt>&rsquo;s if needed
-(invariably). The values of variables <tt>P00...</tt>, in
-particular, are labeled <tt>6...</tt> in tables and
-scatterplots. E.g. The values of variable <tt>P00003</tt>
-are labeled <tt>6003</tt> and are the values of
-<tt>P(3)</tt>.</p>
-
-<p style="margin-top: 1em">If the data are population data,
-calls to GETETA and SIMETA occur in PK, as they occur in
-PRED when the $PRED record is used (for some discussion of
-SIMETA, see section III.B.13), to obtain values for all the
-@eta@ variables. Both PK and ERROR contain the
-declaration</p>
-<pre>USE NMPRD_REAL,ONLY: ETA,EPS</pre>
-
-<p>so that ETA has the same value in both routines.
-(Generated PRED also declares ETA and EPS this way.)</p>
-
-<p style="margin-top: 1em">PRED-error recovery (see section
-IV.G) is supported by PREDPP and NM-TRAN. This means that
-the EXIT statement described in section IV.G.2, when used in
-an abbreviated code for PK (or ERROR) generates an quick
-return to NONMEM with a PRED return code.</p>
-
-<h2>V.V.V.C.6. $ERROR Record
-<a name="V.V.V.C.6."></a>
-<a name="V.V.V.C.6. $ERROR Record"></a>
+<h2>V.J. The Call (CALL) Data Item
+<a name="V.J."></a>
+<a name="V.J. The Call (CALL) Data Item"></a>
 </h2>
 
 
-<p style="margin-top: 1em"><tt>$ERROR</tt> <br>
-abbreviated code</p>
+<p style="margin-top: 1em">The PK and ERROR subroutines
+need not be called with every event record (see sections
+III.H and IV.C). Calling-protocols limiting calls to PK or
+ERROR are called <b>call-limiting protocols</b></p>
 
-<p style="margin-top: 1em">This record gives an abbreviated
-code for the ERROR routine. It, along with all its
-continuation records is called a <b>$ERROR block</b></p>
+<p style="margin-top: 1em">When such protocols are
+implemented, one can use the call data item to force a call
+to PK or ERROR, or to both, with any given event record.
+This can be useful, for example, when except for a few
+individual records, none of the PK parameters depend on
+concomitant variables whose values vary within an individual
+record. Then one can limit calls to PK to once per
+individual record, but for the few individual records where
+this limitation is inappropriate, one can force a call to
+any event record where some concomitant variable assumes a
+different value from that in earlier event records.</p>
 
-<p style="margin-top: 1em">This record is optional. If it
-appears, it must be with the first problem specification,
-and only this problem specification. It must succeed all $PK
-records in the problem specification.</p>
+<p style="margin-top: 1em">The CALL data item (PREDPP data
+item no. 9) may appear in event records, or be missing. If
+it appears it has the values 0, 1, 2, 3, or 10. If it has
+the value 0 in an event record, then calls to PK and ERROR
+with the record occur according to the calling-protocols
+implemented with PK and ERROR. If it has the value 1, then a
+call to PK is determined according to the calling-protocol
+implemented with PK, and a call to ERROR occurs. If it has
+the value 2, then a call to ERROR is determined according to
+the calling-protocol implemented with ERROR, and a call to
+PK occurs. If it has the value 3, then calls to both ERROR
+and PK occur.</p>
 
-<p style="margin-top: 1em">There is only one mandatory
-left-hand quantity: the quantity symbolized by <tt>Y</tt>
-and described in section IV.A. <tt><br>
-Y</tt> may be also used on the right, e.g.
-<tt>LOGY=LOG(Y)</tt>. (nmv)</p>
+<p style="margin-top: 1em">It may have the value 10 with
+ADVAN9, ADVAN15, and ADVAN17. Then a call to ADVAN occurs
+whether or not the TIME data item is defined, and whether or
+not AES has used IDEFA(2) to limit calls to the ADVAN
+routine (See Chapter VI, Section E.B). May be combined with
+values 1, 2, and 3. e.g., CALL = 11 forces calls to both
+ADVAN and ERROR with the event record.</p>
 
-<p style="margin-top: 1em">There is a type of
-pseudo-statement specific to ERROR abbreviated code. It has
-the form <tt>CALLFL=</tt>n. The different permissible values
-for n imply different ERROR calling-protocols. A calling
-protocol phrase can be used instead of the CALLFL
-pseudostatement. The phrase must be enclosed in parentheses.
-Examples of phrases follow each value of CALLFL.</p>
+<p style="margin-top: 1em">It is not an error for the CALL
+data item to be positive when calls to either PK or ERROR
+are limited.</p>
 
-
-<p align="center" style="margin-top: 1em"><img src="grohtml-40700903.png" alt="Image grohtml-40700903.png"></p>
-
-<p style="margin-top: 1em">If the pseudo-statement does not
-appear, the value -1 is assumed.</p>
-
-<p style="margin-top: 1em">Values 0 and 1 correspond to
-call-limiting protocols. Limiting calls to ERROR, when this
-causes no undesireable effect, can result in a substantial
-gain in CPU time. The CALL data item can be used with a
-call-limiting protocol to override the protocol and force
-calls with specific event records; see Guide VI, section
-V.J. When n is 1, and the data are single-subject data,
-ERROR is called only with the first event record of the data
-set, instead of the first event record of the individual
-record.</p>
-
-<p style="margin-top: 1em">Another call-limiting protocol
-is implementable, but not with the use of a pesudo-statement
-in the abbreviated code for ERROR. With this protocol, calls
-to ERROR are limited to one per problem. This protocol is
-implemented whenever the abbreviated code consists of
-<i>only</i> one of the following statements:</p>
-
-<pre style="margin-top: 1em">Y=F+ERR(1)
-Y=F*(1+ERR(1))
-Y=F+F*ERR(1)
-Y=F*EXP(ERR(1))</pre>
-
-
-<p style="margin-top: 1em">or with <tt>ETA</tt> or
-<tt>EPS</tt> occuring instead of <tt>ERR</tt>. This protocol
-is not implemented if verbatim code or a pseudo-statement is
-used in the $ERROR block. (In the last three cases the
-complete code instructs PREDPP that HH(1) contains @{partial
-log sp y} over {partial epsilon}@, and so in each case it is
-sufficient to set HH(1) to 1, and do this once only at an
-initial problem call to ERROR.)</p>
-
-<p style="margin-top: 1em">With any call-limiting protocol,
-during the Simulation Step, ERROR is called with every event
-record.</p>
-
-<p style="margin-top: 1em">As usual, the label of a data
-item type can be used as a variable in the abbreviated
-code.</p>
-
-<p style="margin-top: 1em">The variable <tt>F</tt>
-symbolizes a special right-hand quantity: the value of the
-scaled drug amount in the observation or other designated
-compartment (see Guide VI, section V.H) at the event time.
-In a population study, where @eta@ variables affect the
-scaled drug amount through their affect on PK parameters,
-the scaled drug amount is a random variable.</p>
-
-<p style="margin-top: 1em">The array elements
-<tt>A(1)</tt>, ..., <tt>A(n)</tt> symbolize special
-right-hand quantities, the amounts in compartments 1 through
-n. This is the state-vector of compartment amounts. In a
-population study, where @eta@ variables affect the drug
-amounts through their affect on PK parameters, these amounts
-are random variables. If an element <tt>A(</tt>n<tt>)</tt>
-appears, then the variable <tt>A</tt> cannot also be
-used.</p>
-
-<p style="margin-top: 1em">Variables defined in the $PK
-block can be used in the $ERROR block (unless variables are
-not listed in MODULE NMPRD4 in either PK or ERROR; see
-sections III.B.7 and IV.H). They may not be used on the left
-if they are random variables. The symbol
-<tt>COM(</tt>n<tt>)</tt> may be used on the left or the
-right if n refers to a reserved position in MODULE NMPRD4
-(see section III.E.3). Variables defined in $INFN and listed
-in MODULE PRINFN are also global and may be used in $ERROR,
-on the left and on the right. Variables defined by
-$ABBREVIATED DECLARE records are also global and may be used
-in $ERROR, on the left and on the right.</p>
-
-<p style="margin-top: 1em">The variable <tt>ICALL</tt>
-symbolizes a special right-hand quantity. It has the value 2
-if the call to ERROR is a regular call during data analysis,
-and the value 4 if the call is a regular call during data
-simulation. It has the value 5 if the call to ERROR occurs
-when expectations are being computed (the marginal data item
-MRG_ has a non-zero value for some records). It has the
-value 6 if the call to ERROR occurs when raw data averages
-are being computed (the raw-data-average data item RAW_ has
-a non-zero value for some records).</p>
-
-<p style="margin-top: 1em">If there is abbreviated code in
-the $ERROR block that tests for ICALL=0, ICALL=1, or
-ICALL=3, this code is moved by NM-TRAN to the INFN routine
-as if it had been coded explicitly as part of an $INFN
-block. Such code is called $ERROR-INFN code. With verbatim
-code in the FIRST block (see section IV.I), <tt>ICALL</tt>
-will never have the value 0 or 3. ICALL has the value 1 if
-the call to ERROR is the first call to ERROR in the problem.
-At this call, the <tt>THETA</tt>&rsquo;s are the initial
-estimates; the <tt>ETA</tt>&rsquo;s are undefined. Verbatim
-code is not moved to the INFN routine.</p>
-
-<p style="margin-top: 1em">The variable <tt>NEWIND</tt>
-symbolizes another special right-hand quantity. It has the
-value 0 when ERROR is called with the first event record of
-the data set. It has the value 1 when ERROR is called with
-the first event record of the second or subsequent
-individual record. It has the value 2 when ERROR is called
-with the second or subsequent event record of an individual
-record. With single-subject data individual records are
-defined in such a way that event records are contained in a
-number of different individual records; see section
-II.C.4.1. Therefore, except when the event record is the
-first data record of the data set and the value of
-<tt>NEWIND</tt>=0, the value of <tt>NEWIND</tt> can be 1 or
-2.</p>
-
-<p style="margin-top: 1em">The abbreviated code may not use
-certain variables which occur as arguments to the ERROR
-subroutine. These variables are: <tt>IDEF</tt>,
-<tt>IREV</tt>, <tt>EVTREC</tt>, <tt>NVNT</tt>,
-<tt>INDXS</tt>, <tt>G</tt>, and <tt>HH</tt>.</p>
-
-<p style="margin-top: 1em">Variables which symbolize
-(first-, second-, mixed-) partial @eta@-derivatives of
-random variables defined in abbreviated code for ERROR are
-displayable. They have names <tt>D.....</tt>, where the dots
-stand for various combinations of 5 digits
-<tt>0</tt>-<tt>9</tt>. The values of variables
-<tt>D00...</tt>, in particular, are labeled <tt>3...</tt> in
-tables and scatterplots. E.g. The values of variable
-<tt>D00123</tt> are labeled <tt>3123</tt>. The label for the
-values of a variable <tt>D01...</tt>, or higher, is the
-first four characters of the variable name. E.g. The values
-of <tt>D05677</tt> are labeled <tt>D056</tt>.</p>
-
-<p style="margin-top: 1em">PRED-error recovery (see section
-IV.G) is supported by PREDPP and NM-TRAN. This means that
-the EXIT statement described in section IV.G.2, when used in
-an abbreviated code for PK or ERROR generates an quick
-return to NONMEM with a PRED return code.</p>
-
-<p style="margin-top: 1em">The following discussion,
-relating to the $ERROR block, supplements that found in
-section II.C.4.2.</p>
-
-<p style="margin-top: 1em">If (i) <tt>EPS</tt>&rsquo;s are
-used in the $ERROR block, or (ii) a $SIGMA record is used,
-the data are inferred to be population data. If (iii) a $PK
-record is not used and a $OMEGA record precedes the $ERROR
-record, the data are inferred to be population data. This is
-true even if i and ii do not hold, and if ii does not hold,
-it is assumed that a record</p>
-
-<p style="margin-top: 1em"><tt>$SIGMA
-DIAGONAL(</tt>n<tt>)</tt></p>
-
-<p style="margin-top: 1em">where n is the largest index
-used with an <tt>EPS</tt> or <tt>ERR</tt> in the $ERROR
-block, might have equivalently been used. If (iv) the
-<tt>NPOPETAS</tt> option is used on an $MSFI record with a
-positive option value, the data are inferred to be poulation
-data. If neither i, ii, iii, nor iv hold, the data are
-inferred to be single-subject. See section II.C.4</p>
-
-<p style="margin-top: 1em">Suppose a $PK record is not
-used, a $ERROR record is used, and only <tt>ETA</tt>&rsquo;s
-or only <tt>ERR</tt>&rsquo;s occur in the $ERROR block. As a
-corollary of iii (and comments in sections III.B.10 and
-IV.A), the following hold:</p>
-
-<p style="margin-left:33%; margin-top: 1em">An $OMEGA
-record can precede or follow the $ERROR record, in which
-case the data are taken to be population or single subject,
-respectively. If the $OMEGA record precedes the $ERROR
-record, then <tt>ERR</tt>&rsquo;s must be used.</p>
-
-<p style="margin-left:33%; margin-top: 1em">If an $OMEGA
-record precedes the $ERROR record, but is continued
-following the $ERROR record, the data are taken to be
-population data, and again <tt>ERR</tt>&rsquo;s must be
-used.</p>
-
-<p style="margin-left:33%; margin-top: 1em">If an $OMEGA
-record is not used, the data are taken to be single-subject,
-and it is assumed that a record <tt><br>
-$OMEGA DIAGONAL(</tt>n<tt>)</tt> <br>
-where n is the largest index used with an <tt>ETA</tt> or
-<tt>ERR</tt> in the $ERROR block, might have equivalently
-been used.</p>
-
-<p style="margin-top: 1em">If option LIKELIHOOD or -2LL is
-used on the $ESTIMATION record, NM-TRAN recognizes the data
-as odd-type data. The data are categorical, rather than
-continuous. Then @eta@ variables still represent random
-interindividual effects, and random intraindividual
-variablity exists, but it is expressed without the use of
-@epsilon@ variables or $SIGMA records. If the data are
-population and there is no $PK record, the $OMEGA block must
-precede the $ERROR block.</p>
-
-<h2>V.V.V.C.7. $DES Record
-<a name="V.V.V.C.7."></a>
-<a name="V.V.V.C.7. $DES Record"></a>
+<h2>V.K. The Additional Dose (ADDL) Data Item
+<a name="V.K."></a>
+<a name="V.K. The Additional Dose (ADDL) Data Item"></a>
 </h2>
 
 
-<p style="margin-top: 1em"><tt>$DES</tt> <br>
-abbreviated code</p>
+<p style="margin-top: 1em">Often, a number of doses are
+given in series, each exactly like the other, and spaced one
+from the other by a constant interdose interval. Such a
+series can be specified with a series of dose event records.
+Such a series can also be specified on a single dose event
+record by using the addiional dose data item. The dose
+specified on the dose event record is called the
+<b>initiating dose</b></p>
 
-<p style="margin-top: 1em">This record gives an abbreviated
-code for the DES routine. It, along with all its
-continuation records, is called a <b>$DES block</b></p>
+<p style="margin-top: 1em">The additional dose data item
+contains the number of doses in the series, excluding the
+initiating dose. The interdose interval data item (see
+section G) is used to specify the constant interdose
+interval. If the initiating dose is lagged, the additional
+doses are also lagged (see section III.F.6). The term
+<b>additional dose time</b> refers either to the time an
+additional dose is given, if the dose is not lagged, or to
+the lagged time at which the dose actually enters the
+system, if the dose is lagged. Such a time is a nonevent
+dose time (see section III.B.2). At each additional dose
+time a dose like the initiating dose automatically enters
+the system. Until such a time as all the additional doses
+have entered, or until the last event time in an individual
+record is attained, whichever comes first, the dose record
+initiating the dose series is said to be <b>active</b></p>
 
-<p style="margin-top: 1em">This record is optional. If it
-appears, it must be with the first problem specification,
-and only this problem specfication. It may not appear when
-the MODEL routine is user-supplied. Implicit basic PK
-parameters may be used in the $DES block (see below) only
-when the $PK block precedes the $DES block.</p>
+<p style="margin-top: 1em">Afterwards, the record is said
+to be <b>inactive</b></p>
 
-<p style="margin-top: 1em">The mandatory left-hand
-quantities are the first-order derivatives of the
-differential equations, symbolized by
-<tt>DADT(</tt>n<tt>)</tt>, for the derivative of the amount
-in compartment n (excluding the output compartment) with
-respect to time. At least one such array element must be
-defined.</p>
+<p style="margin-top: 1em">(The additional dose data item
+can also be used when all the data are from a single
+subject, and then the term &rsquo;last event time in an
+individual record&rsquo; should be understood to mean the
+last event time in the data set. This is a consequence of
+the single-subject assumption; see section IV.A.) There can
+be at most 10 active dose event records at a time.</p>
 
-<p style="margin-top: 1em">Symbolic differentiation is used
-to obtain code used in the generated subroutine to compute
-the elements of the DA, DP, and DT arrays.</p>
+<p style="margin-top: 1em">Clearly, use of the additional
+dose data item can make the specification of regular dose
+regimens easier. One disadvantage, though, is that since an
+additional dose time is not an event time, the
+administration of a particular additional dose will not be
+expressed explicitly in a NONMEM table or scatterplot, so a
+little care may need to be exercised upon interpreting these
+outputs.</p>
 
-<p style="margin-top: 1em">The allowable right-hand
-quantities include: current compartment amounts, symbolized
-by <tt>A(</tt>n<tt>)</tt>, for the amount in the nth
-compartment (including both equilibrium compartments when
-they exist, but excluding the output compartment); PK
-parameters (obtained from TRANS1), symbolized by
-<tt>P(</tt>m<tt>)</tt>, for the mth parameter; and time,
-symbolized by <tt>T</tt>. In a population study, where @eta@
-variables affect the PK parameters, and, therefore, also
-affect the compartment amounts, these right-hand quantities
-should be regarded as random variables. However,
-@eta@-derivatives are not computed in the generated routine
-itself. For technical reasons, these right-hand quantities
-should be regarded as random variables even when the data
-are single-subject. This means, for example, that these
-variables may be used in conditional assignment statements
-subject to the usual restriction on random variables. (Drug
-input information is not available for computations; PREDPP
-itself incorporates this type of information
-appropriately.)</p>
+<p style="margin-top: 1em">The ADDL data item (PREDPP data
+item no. 11) may appear in event records, or be missing. If
+it has the value 0 in a dose or reset-dose event record,
+then no additional doses are given; just the initiating dose
+is given. If it has the value
+<img src="grohtml-4047713-85.png" alt="Image grohtml-4047713-85.png">
+, then n additional doses are given. In this case, then the
+II data item must also be nonzero.</p>
 
-<p style="margin-top: 1em">Also, a PK-defined item may be
-used as a right-hand quantity. However, when so used, it
-becomes a special quantity called an <b>implicit basic PK
-parameter</b> and a few special considerations apply:</p>
+<p style="margin-top: 1em">The ADDL data item must be 0
+when the initiating dose is a steady-state infusion.
+However, the ADDL data item can be nonzero when the
+initiating dose is any other type of steady-state dose. In
+this case, after the steady-state dose, an additional number
+of (transient) doses just like the steady-state dose are
+given. (Recall that the steady-state dose is just the last
+of many doses identical to it and <i>leading</i> to a
+steady-state.) On the other hand, any steady-state dose
+event record with SS data item equal to 1 will deactivate
+any previous dose event record which happens to be active.
+Also, a reset and a reset-dose event record will deactivate
+any previous dose event record which happens to be active.
+Also, if a compartment is turned off with an other-type
+event record (see section H), this deactivates any previous
+dose event record with a dose to this compartment which
+happens to be active.</p>
 
-<p style="margin-left:33%; margin-top: 1em">Implicit basic
-PK parameters may be used in the $DES block only when the
-$PK block precedes the $DES block.</p>
+<p style="margin-top: 1em">If the ADDL data item appears,
+then it must be 0 in observation, other-type, and reset
+event records.</p>
 
-<p style="margin-left:33%; margin-top: 1em">One should
-think of elements of the <tt>P</tt> array as including
-values for <b>explicit basic parameters</b> i.e. parameters
-defined in the $PK block in array elements
-<tt>P(</tt>n<tt>)</tt>, followed by values for the implicit
-basic parameters. Therefore, the option value for the
-<tt>NPARAMETERS</tt> option in the $MODEL record should be
-large enough to include all these elements of this extended
-<tt>P</tt> array. Note: Explicit basic parameter values are
-displayable; see section C.5.</p>
+<p style="margin-top: 1em">With NONMEM 7.5, an Empirical
+method of Achieving Steady State may be used. <br>
+See INTRODUCTION TO NONMEM 7, section &quot;An Empirical
+Method of Achieving Steady State&quot; <br>
+The II and ADDL data items are used. ADDL must be negative.
+A pre-prescribed large number of doses (ABS(ADDL)+1) are
+given, which are presumed to be a sufficient number such
+that near steady state is reached for all subjects and
+parameters, and thereafter records are added for monitoring
+after the last dose. See also reserved variables
+<b>ADDL_ACTUAL,ADDL_TIMEDIFF,ADDL_TIME</b> in Chapter
+III.</p>
 
-<p style="margin-left:33%; margin-top: 1em">Even additional
-PK parameters become implicit basic PK parameters.</p>
+<h2>V.L. Examples
+<a name="V.L."></a>
+<a name="V.L. Examples"></a>
+</h2>
 
-<p style="margin-top: 1em">The symbol
-<tt>COM(</tt>n<tt>)</tt> may be used on the left or the
-right if n refers to a reserved position in MODULE NMPRD4
-(see section III.E.3). Variables defined in $INFN and listed
-in MODULE PRINFN may be used in $DES, on the left and on the
-right. Variables defined by $ABBREVIATED DECLARE records are
-also global and may be used in $DES, on the left and on the
-right.</p>
 
-<p style="margin-top: 1em">The abbreviated code may not use
-certain variables which occur as arguments to the DES
-subroutine. These variables are: <tt>IR</tt>, <tt>DA</tt>,
-<tt>DP</tt>, and <tt>DT</tt>.</p>
+<h2>V.L.1. Example I: Population Data
+<a name="V.L.1."></a>
+<a name="V.L.1. Example I: Population Data"></a>
+</h2>
 
-<p style="margin-top: 1em">Variables which symbolize
-partial derivatives in the DA array are displayable. They
-have names <tt>E......</tt>, where the dots stand for
-various combinations of 5 or 6 digits <tt>0</tt>-<tt>9</tt>.
-(The number of digits depends on the version of NONMEM.)</p>
 
-<p style="margin-top: 1em">Variables which symbolize
-partial derivatives in the DP array are displayable. They
-have names <tt>F......</tt>, where the dots stand for
-various combinations of 5 or 6 digits
-<tt>0</tt>-<tt>9</tt>.</p>
+<p style="margin-top: 1em">In this section example I,
+described in section III.L.1, is continued. In particular,
+the data set is described in greater detail here.</p>
 
-<p style="margin-top: 1em">Variables which symbolize
-partial derivatives of the DT array are displayable. They
-have names <tt>E......</tt>, where the dots stand for
-various combinations of 5 or 6 digits
-<tt>0</tt>-<tt>9</tt>.</p>
+<p style="margin-top: 1em">The first several individual
+records are shown in Figure 15 along with the NONMEM control
+stream in Figure 16. (A NM-TRAN control stream is shown in
+Figure 17.) Each event record consists of a single data
+record. The data items in each data record are: the ID,
+TIME, AMT, WT, APGR, CP, EVID, and MDV data items, where WT
+and APGR label the weight and APGAR score data items, and CP
+labels the DV data item, i.e. the observed plasma
+concentration. (NM-TRAN automatically generates EVID and MDV
+data items; so these are not listed in the NM-TRAN $INPUT
+control record.) Since the RATE data item is missing, all
+doses are understood to be instantaneous bolus doses. Note
+that the AMT data item is blank in observation records and
+that the CP data item is (though it need not be) blank in
+dose records. One might think that both the WT and APGR data
+items could be blank in all but the first event record of
+each individual record. After all, PK is only being called
+with the first event record of each individual record.
+However, both of these data items are being scatterplotted
+individually against residuals and weighted residuals. So
+they must be nonblank in at least the observation records as
+well.</p>
 
-<p style="margin-top: 1em">With versions of NONMEM prior to
-NONMEM 7.4.1, the labels for variables which symbolize
-partial derivatives were converted to 4 characters, as
-described in earlier versions of the guide. The labels were
-not always unique or meaningful, although the values
-displayed were always correct. A work-around for earlier
-versions is to use an alias that is meaningful to the user.
-For example, with CONTROL7 and NONMEM 7.4.0, NM-TRAN
-generates a variable named E000004 for the
-&quot;DERIVATIVE&nbsp;OF&nbsp;DADT(1)&nbsp;W.R.T.&nbsp;A(01)&quot;.
-If this is to be displayed in a table and a meaningful
-column header for the table is desired, an alias such as the
-following could be used:</p>
+<p style="margin-top: 1em">The important thing to notice
+about the NONMEM control stream is that the indices of the 3
+types of PREDPP defined data items appearing in event
+records (EVID, TIME, and AMT data items) are set in the
+INDEX control record. In this regard note that the integer
+11 appears in field 4 of the ITEM record, so that the
+indices of the other 8 types of PREDPP defined data items
+not appearing in the event records are to be explicitly read
+as blanks, i.e. as 0&rsquo;s. (The same effect can be
+achieved by placing a 3 in field 4 since the INDXS array is
+zeroed out before values on the INDEX record are read into
+it.)</p>
 
-<p style="margin-top: 1em"><tt>$TABLE ....
-E000004=DADT1A1</tt></p>
+<p style="margin-top: 1em">The first one or two pages of
+NONMEM output consist of a report concerning the information
+supplied on NONMEM control records, the so-called problem
+summary. Some illustrations of problem summaries are given
+in Guides I &amp; II. The problem summary resulting from the
+data and control stream of this example is given in Figure
+18. With PREDPP, the NONMEM problem summary is followed by
+two other summary pages output by PREDPP. For this example
+these are shown in Figure 19. They summarize information
+supplied by the user&rsquo;s choices of ADVAN and TRANS, and
+by the routines PK and ERROR at ICALL=1. When routines TOL
+and DES are included, the summary includes information from
+these subroutines.</p>
 
-<p style="margin-top: 1em">DES-defined items may be
-displayed in tables or scatterplots and are computed at the
-event time in the data record.</p>
+<p style="margin-top: 1em">Figure 19 contains the
+statements</p>
 
-<p style="margin-top: 1em">Verbatim header statements
-<tt>&quot;FIRST</tt> and <tt>&quot;MAIN</tt> can be
-used.</p>
+<pre style="margin-top: 1em">  ERROR IN LOG Y IS MODELED
+  DURING SIMULATION, ERROR SUBROUTINE CALLED WITH EVERY EVENT RECORD.
+  OTHERWISE, ERROR SUBROUTINE CALLED ONCE IN THIS PROBLEM.</pre>
 
-<p style="margin-top: 1em">An example of a $DES record,
-using implicit basic parameters, is given in Appendix
-VIII.</p>
 
-<p style="margin-top: 1em">The following features were
-added starting with NONMEM V.</p>
+<p style="margin-top: 1em">The implementation by NM-TRAN of
+error model (4)</p>
+<pre>Y=F*EXP(EPS(1))</pre>
 
-<p style="margin-top: 1em">The allowable right-hand side
-quantities include the data items of a data record,
-symbolized by the labels and synonyms specified in the
-$INPUT record, and values of THETA, symbolized by THETA(1),
-THETA(2), etc. If quantities depending only on data items
-and THETA parameters are computed directly in $DES rather
-than $PK, improvement in run time is possible. A DES routine
-may test DOSTIM and DOSREC in a logical expression. It may
-use them on the right-hand side of an assignment statement.
-If DOSTIM is a random variable, DOSTIM must not be used in
-$DES. However, DOSTIM may always be used in a $PK block or
-PK routine to define a random variable which may be used in
-the DES routine.</p>
-
-<p style="margin-top: 1em">A reserved right-hand variable,
-<tt>ISFINL</tt> (nmvi), is set to 1 by PREDPP when DES is
-called after the final advance to an event or non-event
-time, during Simulation or Copying pass (COMACT&gt;0). One
-use of ISFINL is for DES to calculate quantities for display
-in tables or via WRITE statements.</p>
-
-<p style="margin-top: 1em">ICALL cannot be used in DES
-abbreviated code. The generated DES routine tests for
-ICALL=1, performs PREDPP-required initialization code, and
-then executes a RETURN statement. Values of <tt>DADT</tt>
-are not evaluated at ICALL=1, as may happen with a
-user-written DES routine, so there is no need for a test of
-ICALL in the abbreviated code.&dagger; <br>
+<p>is discussed in IV.C.&dagger; <br>
 ----------</p>
 
-<p style="margin-top: 1em"><cite>&dagger; NONMEM V
-Supplemental Guide Section 82 ($DES Record) states
-incorrectly that ICALL blocks testing for ICALL values 4 and
-5 are permitted. <br>
+<p style="margin-top: 1em"><cite>&dagger;Note that with
+versions of NONMEM previous to NONMEM IV, the implementation
+in the generated ERROR subroutine was that of figure 9, and
+figure 19 included instead</p>
+
+<pre> ERROR SUBROUTINE CALLED WITH EVERY EVENT RECORD.</pre>
+
+
+<p>---------- <br>
+</cite></p>
+
+<p style="margin-top: 1em">In section III.L.1 two PK codes
+are shown: one that returns typical values and typical
+first-partial derivatives, and one that returns
+subject-specific values amd subject-specific first partial
+derivatives. The second code can be used to obtain post-hoc
+estimates of the
+<img src="grohtml-4047713-86.png" alt="Image grohtml-4047713-86.png">
+&rsquo;s. A NONMEM control stream that requests these
+estimates and displays them is shown in Figure 20. (A
+NM-TRAN control stream is shown in Figure 21.) In
+particular, scatterplots of both
+<img src="grohtml-4047713-87.png" alt="Image grohtml-4047713-87.png">
+and
+<img src="grohtml-4047713-88.png" alt="Image grohtml-4047713-88.png">
+versus both weight and APGAR score are requested.</p>
+
+<h2>V.L.2. Example II: A Mixture Model
+<a name="V.L.2."></a>
+<a name="V.L.2. Example II: A Mixture Model"></a>
+</h2>
+
+
+<p style="margin-top: 1em">In this section example II,
+described in section III.L.2, is continued. The NONMEM
+control stream is shown in Figure 22. (A NM-TRAN control
+stream is shown in Figure 23. Figure 23 differs from earlier
+versions of the guide. Changes to $PK and use of $MIX were
+described in chapter III. In addition, $THETA has slightly
+different estimates of the initial estimates of
+<img src="grohtml-4047713-89.png" alt="Image grohtml-4047713-89.png">
+and
+<img src="grohtml-4047713-90.png" alt="Image grohtml-4047713-90.png">
+to make the subproblems distinct, and the $EST record
+includes options METHOD=1 and INTERACTION. With these
+options NONMEM 7.4 obtains very similar final estimates as
+those from NONMEM IV described in previous versions of this
+guide.)</p>
+
+<p style="margin-top: 1em">The variance-covariance of
+<img src="grohtml-4047713-91.png" alt="Image grohtml-4047713-91.png">
+, quantifying the random interindividual variability of the
+first subpopulation, is constrained to equal the
+variance-covariance of
+<img src="grohtml-4047713-92.png" alt="Image grohtml-4047713-92.png">
+, quantifying the random interindividual variability of the
+second subpopulation. This homoscedastic assumption has the
+effect of suppressing the bimodality character of the
+distribution on (CL,Vd). Indeed, the final parameter
+estimates (
+<img src="grohtml-4047713-93.png" alt="Image grohtml-4047713-93.png">
+= .00598,
+<img src="grohtml-4047713-94.png" alt="Image grohtml-4047713-94.png">
+= 3.60,
+<img src="grohtml-4047713-95.png" alt="Image grohtml-4047713-95.png">
+= 1.26,
+<img src="grohtml-4047713-96.png" alt="Image grohtml-4047713-96.png">
+= 2.69,
+<img src="grohtml-4047713-97.png" alt="Image grohtml-4047713-97.png">
+= .893
+<img src="grohtml-4047713-98.png" alt="Image grohtml-4047713-98.png">
+= .0982,
+<img src="grohtml-4047713-99.png" alt="Image grohtml-4047713-99.png">
+= .073,
+<img src="grohtml-4047713-100.png" alt="Image grohtml-4047713-100.png">
+= .0714) describe a distribution that is very right skewed,
+and essentially unimodal.&Dagger; <br>
+----------</p>
+
+<p style="margin-top: 1em"><cite>&Dagger; These values are
+from NONMEM 7.4. They differ slightly from values in earlier
+editions of this guide. <br>
 ---------- <br>
 </cite></p>
 
-<p style="margin-top: 1em">With ADVAN9 and ADVAN15, a $DES
-block may not appear when there are only equilibrium
-compartments. With ADVAN10 and steady-state doses with
-constant infusion doses, basic PK parameters KM and VM may
-be used in the $DES abbreviated code.</p>
+<p style="margin-top: 1em">A scatterplot of EST versus
+weight is requested. EST is a PK-defined item described in
+section III.L.2. It is an estimate (1 or 2) of the
+subpopulation of which an individual is a member. The
+scatterplot is shown in Figure 24. (Since there are 59
+individuals in the data set, but since EST has the same
+value with every data record in an individual record, there
+are only 59 points in the plot. However, the characters used
+for the plotted points indicate the level of overstriking
+due to multiple data records per individual record.) It
+appears that the individuals with lower weights are
+estimated to be from one subpopulation and those with higher
+weights from another.</p>
 
-<p style="margin-top: 1em">NM-TRAN generates the
-appropriate code in FSUBS. Details are in Guide VI, Chapter
-VI.</p>
-
-<p style="margin-top: 1em">The $ABBREVIATED record has an
-option that affects the formats of arrays in the generated
-DES subroutine:</p>
-
-<pre style="margin-top: 1em">$ABBR DES=FULL vs DES=COMPACT</pre>
-
-
-<p style="margin-top: 1em">Normally, there is no reason for
-the user to supply this option. NM-TRAN will choose the
-appropriate format. Details are in Guide VI, Appendix
-IV.</p>
-
-<h2>V.V.V.C.8. $AESINITIAL Record
-<a name="V.V.V.C.8."></a>
-<a name="V.V.V.C.8. $AESINITIAL Record"></a>
+<h2>V.L.3. Example III: Single-Subject Data
+<a name="V.L.3."></a>
+<a name="V.L.3. Example III: Single-Subject Data"></a>
 </h2>
 
 
-<p style="margin-top: 1em"><tt>$AESINITIAL</tt> <br>
-abbreviated code</p>
+<p style="margin-top: 1em">In this section example III,
+described in section III.L.3, is continued. The NONMEM
+control stream with the data embedded is shown in Figure 25.
+(A NM-TRAN control stream is shown in Figure 26.) Each event
+record consists of a single data record. The data items in
+each data record are: the AMT, TIME, CP, EVID, MDV, and ID
+data items, where CP labels the DV data item, i.e. the
+plasma concentration. (NM-TRAN automatically generates EVID,
+MDV, and ID data items; so these are not listed in the
+NM-TRAN $INPUT control record.) Since the RATE data item is
+missing, all doses are understood to be instantaneous bolus
+doses. Note that the AMT data item is blank in observation
+records and that the CP data item is (though it need not be)
+blank in the dose record.</p>
 
-<p style="margin-top: 1em">The complete AES routine can be
-divided into two parts: code which computes the amounts in
-the equilibrium compartments at the beginning of an
-integration interval (these amounts depend on the amounts in
-the nonequilibrium compartments) and code which computes
-values for the right sides of the algebraic equations. An
-abbreviated code for AES is actually divided into two
-abbreviated codes which correspond to the two parts of the
-complete AES routine. This record gives an abbreviated code
-for the first part of the AES routine. The $AES record (see
-the next section C.9) gives an abbreviated code for the
-second part. The $AESINITIAL record, along with all its
-continuation records, is called a <b>$AESINITIAL
-block</b></p>
+<p style="margin-top: 1em">The important thing to notice
+about the NONMEM control stream is that the indices of the 3
+types of PREDPP defined data items appearing in event
+records (EVID, TIME, and AMT data items) are set in the
+INDEX control record. In this regard note that the integer
+11 appears in field 4 of the ITEM record, so that the
+indices of the other 8 types of PREDPP defined data items
+not appearing in the event records are to be explicitly read
+as blanks, i.e. as 0&rsquo;s. (The same effect can be
+achieved by placing a 3 in field 4 since the INDXS array is
+zeroed out before values on the INDEX record are read into
+it.)</p>
 
-<p style="margin-top: 1em">This record is optional. If it
-appears, it must be with the first problem specification,
-and only this problem specfication. If there are no
-equilibrium compartments, but ADVAN9 or ADVAN15 is used, the
-record need not appear. It may not appear when the MODEL
-routine is user-supplied. Implicit basic PK parameters may
-be used in the $AESINITIAL block (see below) only when the
-$PK block precedes the $AESINITIAL block.</p>
+<p style="margin-top: 1em">Unlike the control stream given
+for this problem in Guide I, section C, ID and MDV data
+items appear. These data items are always required when
+using PREDPP. The ID data items are different for different
+observation event records. In the case of data from a single
+subject different observation event records must be
+contained in different individual records. Individual
+records do not correspond on a one-to-one basis to animal or
+human subjects.</p>
 
-<p style="margin-top: 1em">In order to compute the amounts
-in the equilibrium compartments at the beginning of an
-integration interval, the algebraic system must be solved.
-However, only an approximate solution is needed. If
-requested, this will be used only as an initial solution,
-and ADVAN9 will numerically obtain a more precise
-solution.</p>
+<p style="margin-top: 1em">The problem summary resulting
+from the control stream of this example is given in Figure
+27. The summary pages from PREDPP are given in Figure
+28.</p>
 
-<p style="margin-top: 1em">The amounts in the equilibrium
-compartments at the beginning of the integration interval
-comprise a set of mandatory left-hand quantities. They are
-symbolized by <tt>A(</tt>n<tt>)</tt>, where n is a number of
-an equilibrium compartment. At least one such quantity must
-be defined.</p>
-
-<p style="margin-top: 1em">The variable <tt>INIT</tt>
-symbolizes an optional left-hand quantity. If it is set to
-0, the amounts <tt>A(</tt>n<tt>)</tt> are regarded as only
-approximations to the exact amounts. In this case ADVAN9
-solves numerically for more precise amounts satisfying the
-algebraic equations, using the approximations as an initial
-solution. If the computation of the amounts in the
-$AESINITIAL block determines these amounts accurately to at
-least the number of digits given by the option value of the
-<tt>TOL</tt> option in the $SUBROUTINES record, or by
-<tt>NRD</tt> or <tt>NRD(1)</tt> as given with the $TOL
-record, then <tt>INIT</tt> should either not be set, or set
-to 1.</p>
-
-<p style="margin-top: 1em">The allowable right-hand
-quantities include: nonequilibrium compartment amounts at
-the beginning of the integration interval, symbolized by
-<tt>A(</tt>n<tt>)</tt>, for the amount in the nth
-<i>nonequilibrium</i> compartment; PK parameters (obtained
-from TRANS1), symbolized by <tt>P(</tt>m<tt>)</tt>, for the
-mth parameter; and the time at the beginning of the
-integration interval, symbolized by <tt>T</tt>. In a
-population study, where @eta@ variables affect the PK
-parameters, and, therefore, also affect the compartment
-amounts and (if some @eta@ affects an absorption lag
-parameter) possibly <tt>T</tt> as well, these right-hand
-quantities should be regarded as random variables. However,
-@eta@-derivatives are not computed in the generated routine
-itself. For technical reasons, these right-hand quantities
-should be regarded as random variables even when the data
-are single-subject. This means, for example, that these
-variables may be used in conditional assignment statements
-subject to the usual restriction on random variables.</p>
-
-<p style="margin-top: 1em">Also, a PK-defined item may be
-used as a right-hand quantity. However, when so used, it
-becomes a special quantity called an <b>implicit basic PK
-parameter</b> and a few special considerations apply:</p>
-
-<p style="margin-left:33%; margin-top: 1em">Implicit basic
-PK parameters may be used in the $AESINITIAL block only when
-the $PK block precedes the $AESINITIAL block.</p>
-
-<p style="margin-left:33%; margin-top: 1em">One should
-think of elements of the <tt>P</tt> array as including
-values for <b>explicit basic parameters</b> i.e. parameters
-defined in the $PK block in array elements
-<tt>P(</tt>n<tt>)</tt>, followed by values for the implicit
-basic parameters. Therefore, the option value for the
-<tt>NPARAMETERS</tt> option in the $MODEL record should be
-large enough to include all these elements of this extended
-<tt>P</tt> array. Note: Explicit basic parameter values are
-displayable; see section C.5.</p>
-
-<p style="margin-left:33%; margin-top: 1em">Even additional
-PK parameters become implicit basic PK parameters.</p>
-
-<p style="margin-top: 1em">There is a type of
-pseudo-statement specific to AESINIT abbreviated code. It
-has the form <tt>CALLFL=</tt>n. The different permissible
-values for n imply different calling-protocols for ADVAN9
-and ADVAN15, rather than the AES subroutine. CALLFL may be
-used only when there are only equilibrium compartments and
-there is no TIME data item. ADVAN9 and ADVAN15 is called by
-default with every event record. A calling protocol phrase
-can be used instead of the CALLFL pseudostatement. The
-phrase must be enclosed in parentheses. Examples of phrases
-follow each value of CALLFL.</p>
-
-
-<p align="center" style="margin-top: 1em"><img src="grohtml-40700904.png" alt="Image grohtml-40700904.png"></p>
-
-<p style="margin-top: 1em">If the pseudo-statement does not
-appear, the value -1 is assumed. This allows ADVAN9 and
-ADVAN15 to properly function in most situations.</p>
-
-<p style="margin-top: 1em">The symbol
-<tt>COM(</tt>n<tt>)</tt> may be used on the left or the
-right if n refers to a reserved position in MODULE NMPRD4
-(see section III.E.3). Variables defined in $INFN and listed
-in MODULE PRINFN may be used in $AES, on the left and on the
-right. Variables defined by $ABBREVIATED DECLARE records are
-also global and may be used in $AES, on the left and on the
-right.</p>
-
-<p style="margin-top: 1em">The abbreviated code may not use
-certain variables which occur as arguments to the AES
-subroutine. These names are: <tt>IR</tt>, <tt>DA</tt>,
-<tt>DP</tt>, and <tt>DT</tt>.</p>
-
-<p style="margin-top: 1em">The verbatim header statement
-<tt>&quot;LAST</tt> cannot be used. There is no fourth
-section of generated code.</p>
-
-<p style="margin-top: 1em">Any (non-random) variables
-defined in the $AESINITIAL block may be used in a $AES block
-(see next section C.9). A random variable defined in terms
-of PK parameters, but not amounts, may also be used in a
-$AES block.</p>
-
-<p style="margin-top: 1em">The following features were
-added starting with NONMEM V.</p>
-
-<p style="margin-top: 1em">The allowable right-hand side
-quantities include the data items of a data record,
-symbolized by the labels and synonyms specified in the
-$INPUT record, and values of THETA, symbolized by THETA(1),
-THETA(2), etc. If quantities depending only on data items
-and THETA parameters are computed directly in $AES rather
-than $PK, improvement in run time is possible. A AES routine
-may test DOSTIM and DOSREC in a logical expression. It may
-use them on the right-hand side of an assignment statement.
-If DOSTIM is a random variable, DOSTIM must not be used in
-$AES. However, DOSTIM may always be used in a $PK block or
-PK routine to define a random variable which may be used in
-the AES routine.</p>
-
-<p style="margin-top: 1em">A reserved right-hand variable,
-<tt>ISFINL</tt> (nmvi), is set to 1 by PREDPP when AES is
-called after the final advance to an event or non-event
-time, during Simulation or Copying pass (COMACT&gt;0). One
-use of ISFINL is for AES to calculate quantities for display
-in tables or via WRITE statements.</p>
-
-<p style="margin-top: 1em">ICALL cannot be used in AES
-abbreviated code. The generated AES routine tests for
-ICALL=1, performs PREDPP-required initialization code, and
-then executes a RETURN statement. Values of
-<tt>A(</tt>n<tt>)</tt> are not evaluated at ICALL=1, as may
-happen with a user-written AES routine, so there is no need
-for a test of ICALL in the abbreviated code.&dagger;</p>
-
-<p style="margin-top: 1em">----------</p>
-
-<p style="margin-top: 1em"><cite>&dagger; NONMEM V
-Supplemental Guide Section 84 ($AES Record) states
-incorrectly that ICALL blocks testing for ICALL values 4 and
-5 are permitted. <br>
----------- <br>
-</cite></p>
-
-<h2>V.V.V.C.9. $AES Record
-<a name="V.V.V.C.9."></a>
-<a name="V.V.V.C.9. $AES Record"></a>
+<h2>V.L.4. Example IV: Single-Subject Pharmacodynamic Data
+<a name="V.L.4."></a>
+<a name="V.L.4. Example IV: Single-Subject Pharmacodynamic Data"></a>
 </h2>
 
 
-<p style="margin-top: 1em"><tt>$AES</tt> <br>
-abbreviated code</p>
+<p style="margin-top: 1em">In this section example IV,
+described in section III.L.4, is continued. A NONMEM control
+stream with the data embedded is shown in Figure 29. This
+control stream may be used with the ERROR subroutine shown
+in Figure 13. (A corresponding NM-TRAN control stream is
+shown in Figure 30.) It is very similar to the control
+stream for example III shown in Figure 25.</p>
 
-<p style="margin-top: 1em">The complete AES routine can be
-divided into two parts: code which computes the amounts in
-the equilibrium compartments at the beginning of the
-integration interval (these amounts depend on the amounts in
-the nonequilibrium compartments) and code which computes
-values for the right sides of the algebraic equations. An
-abbreviated code for AES is actually divided into two
-abbreviated codes which correspond to the two parts of the
-complete AES routine. This record gives an abbreviated code
-for the second part of the AES routine. The $AESINITIAL
-record (see section C.8) gives an abbreviated code for the
-first part. The $AES record, along with all its continuation
-records, is called a <b>$AES block</b></p>
+<p style="margin-top: 1em">Another NONMEM control stream is
+shown in Figure 31. (A corresponding NM-TRAN control stream
+is shown in Figure 32.) Note that Figure 32 uses
+<img src="grohtml-4047713-101.png" alt="Image grohtml-4047713-101.png">
+-variables but does not contain an $OMEGA record. Figure 31
+contains the record <tt><br>
+DIAG 2</tt> <br>
+This tells NONMEM to obtain the initial estimate of
+OMEGA.</p>
 
-<p style="margin-top: 1em">This record is optional. If it
-appears, it must be with the first problem specification,
-and only this problem specfication. If there are no
-equilibrium compartments, but ADVAN9 or ADVAN15 is used, the
-record need not appear. It may not appear when the MODEL
-routine is user-supplied. Implicit basic PK parameters may
-be used in the $AES block (see below) only when the $PK
-block precedes the $AES block.</p>
-
-<p style="margin-top: 1em">The mandatory left-hand
-quantities are values of expressions which when set to 0,
-constitute the system of algebraic equations describing the
-equilibrium kinetics. They are symbolized by
-<tt>E(</tt>n<tt>)</tt>. The number n must be an equilibrium
-compartment number. However, there need not be any
-particular relationship between the subscripts and the
-equilibrium compartments. At least one such quantity must be
-computed.</p>
-
-<p style="margin-top: 1em">Symbolic differentiation is used
-to obtain code used in the generated subroutine to compute
-the elements of the DA, DP, and DT arrays.</p>
-
-<p style="margin-top: 1em">The allowable right-hand
-quantities include: current compartment amounts, symbolized
-by <tt>A(</tt>n<tt>)</tt>, for the amount in the nth
-compartment (including all compartments except the output
-compartment); PK parameters (obtained from TRANS1),
-symbolized by <tt>P(</tt>m<tt>)</tt>, for the mth parameter;
-and time, symbolized by <tt>T</tt>. In a population study,
-where @eta@ variables affect the PK parameters, and,
-therefore, also affect the compartment amounts, these
-right-hand quantities should be regarded as random
-variables. However, @eta@-derivatives are not computed in
-the generated routine itself. For technical reasons, these
-right-hand quantities should be regarded as random variables
-even when the data are single-subject. a random variable.
-This means, for example, that these variables may be used in
-conditional assignment statements subject to the usual
-restriction on random variables.</p>
-
-<p style="margin-top: 1em">Also, a PK-defined item may be
-used as a right-hand quantity. However, when so used, it
-becomes a special quantity called an <b>implicit basic PK
-parameter</b> and a few special considerations apply:</p>
-
-<p style="margin-left:33%; margin-top: 1em">Implicit basic
-PK parameters may be used in the $AES block only when the
-$PK block precedes the $AES block.</p>
-
-<p style="margin-left:33%; margin-top: 1em">One should
-think of elements of the <tt>P</tt> array as including
-values for <b>explicit basic parameters</b> i.e. parameters
-defined in the $PK block in array elements
-<tt>P(</tt>n<tt>)</tt>, followed by values for the implicit
-basic parameters. Therefore, the option value for the
-<tt>NPARAMETERS</tt> option in the $MODEL record should be
-large enough to include all these elements of this extended
-<tt>P</tt> array. Note: Explicit basic parameter values are
-displayable; see section C.5.</p>
-
-<p style="margin-left:33%; margin-top: 1em">Even additional
-PK parameters become implicit basic PK parameters.</p>
-
-<p style="margin-top: 1em">Non-random variables defined in
-the $AESINITIAL block may be used. A random variable defined
-in a $AESINITIAL block in terms of PK parameters, but not
-amounts, may also be used in a $AES block.</p>
-
-<p style="margin-top: 1em">The symbol
-<tt>COM(</tt>n<tt>)</tt> may be used on the left or the
-right if n refers to a reserved position in MODULE NMPRD4
-(see section III.E.3). Variables defined in $INFN and listed
-in MODULE PRINFN may be used in $AES, on the left and on the
-right. Variables defined by $ABBREVIATED DECLARE records are
-also global and may be used in $AES, on the left and on the
-right.</p>
-
-<p style="margin-top: 1em">The abbreviated code may not use
-certain variables which occur as arguments to the AES
-subroutine. These names are: <tt>IR</tt>, <tt>DA</tt>,
-<tt>DP</tt>, and <tt>DT</tt>.</p>
-
-<p style="margin-top: 1em">Variables which symbolize
-partial derivatives in the DA array are displayable. They
-have names <tt>E.....</tt>, where the dots stand for various
-combinations of 5 or 6 digits <tt>0</tt>-<tt>9</tt>.</p>
-
-<p style="margin-top: 1em">Variables which symbolize
-partial derivatives in the DP array are displayable. They
-have names <tt>F.....</tt>, where the dots stand for various
-combinations of 5 or 6 digits <tt>0</tt>-<tt>9</tt>.
-Variables which symbolize partial derivatives in the DT
-array are displayable. They have names <tt>E.....</tt>,
-where the dots stand for various combinations of 5 or 6
-digits <tt>0</tt>-<tt>9</tt>.</p>
-
-<p style="margin-top: 1em">The verbatim header statements
-<tt>&quot;FIRST</tt> and <tt>&quot;MAIN</tt> cannot be
-used.</p>
-
-<h2>V.V.V.C.10. $TOL Record
-<a name="V.V.V.C.10."></a>
-<a name="V.V.V.C.10. $TOL Record"></a>
-</h2>
-
-
-<p style="margin-top: 1em"><tt>$TOL</tt> <br>
-abbreviated code</p>
-
-<p style="margin-top: 1em">This record can be used to
-specify tolerances (i.e. accuracies) to which compartment
-amounts are computed by an ADVAN or SS routine that uses
-numerical techniques (see Guide VI, section VII). Different
-tolerances can be specified for the compartment amounts in
-different compartments. Whereas this record may be needed
-with ADVAN9, ADVAN13, ADVAN14, ADVAN15, which support
-compartment-specific tolerances, it is not needed with all
-other ADVAN and SS routines, where only a single tolerance
-applying to all compartments can be specified. In these
-other cases use of the <tt>TOL</tt>, <tt>ATOL</tt>,
-<tt>SSTOL</tt>, <tt>SSATOL</tt> options on the $SUBROUTINES
-record suffices.</p>
-
-<p style="margin-top: 1em">This record is optional. If it
-appears, it must be with the first problem specification,
-and only this problem specfication. It cannot be used when
-the <tt>TOL</tt> option is used in the $SUBROUTINES
-record.</p>
-
-<p style="margin-top: 1em">The abbreviated code is very
-limited and brief; it is not like any other. The only
-statements that are permitted have one of the two forms</p>
-
-<p style="margin-top: 1em"><tt>NRD=</tt>m <tt><br>
-NRD(</tt>i<tt>)=</tt>m</p>
-
-<p style="margin-top: 1em">With NONMEM 7.4, additional
-statements are permitted:</p>
-
-<p style="margin-top: 1em"><tt>ANRD(</tt>i<tt>)=</tt>m
-<tt><br>
-NRDC(</tt>i<tt>)=</tt>m <tt><br>
-ANRDC(</tt>i<tt>)=</tt>m</p>
-
-<p style="margin-top: 1em">where <br>
-i is a compartment number (excluding the output compartment
-number), <br>
-and m is the number of accurate digits required in the
-computation of <br>
-the drug amounts in compartment i. <br>
-Form 1 is a shorter way of writing form 2 with @i~=~1@.</p>
-
-<p style="margin-top: 1em">Once the tolerance for a
-compartment is explicitly specified, it cannot be
-respecified. A tolerance for a given compartment need not be
-specified; see below. The order of the statements is
-immaterial.</p>
-
-<p style="margin-top: 1em">If @i~&gt;~1@ is the least
-compartment number such that the tolerance for compartment i
-is not specified, then for all @j~&gt;=~i@, the tolerance
-for compartment @j@ is the tolerance explicitly specified
-for compartment @i-1@. This implies that if the only
-statement used is <tt>NRD=</tt>m, the number of accurate
-digits required in the computation of all compartmental drug
-amounts is m. In this case, as a rule of thumb, one should
-begin by taking @m@ to be @n+1@ or @n+2@, or with double
-precision, perhaps to @n+2@ or @n+3@, where @n@ is the
-option value with the <tt>SIGDIGITS</tt> option on the
-$ESTIMATION record. If one succeeds with this setting, one
-might try increasing @m@ slightly.</p>
-
-<p style="margin-top: 1em">If ADVAN9 and SS9 are used
-together, and if different tolerances are specified for
-different compartments, only that tolerance specified as
-SSTOL (or compartment 1 if SSTOL is not specified) is used
-for the computation of steady-state compartmental amounts.
-If any ADVAN other than ADVAN9 is used, or if SS6 is used,
-the tolerances specified for compartments with numbers
-larger than 1 are ignored, and again only that tolerance
-specified as SSTOL (or compartment 1, if SSTOL is not
-specified) is used for the computation of all compartmental
-amounts.</p>
-
-<p style="margin-top: 1em">A user-supplied TOL routine also
-allows values to be assigned differently for each
-compartment. With NONMEM 7.4, values may be assigned
-differently for each NONMEM step and for each problem. See
-Guide VI PREDPP, Chapter VI, Section D.B. See also the TOL
-option of the $ESTIMATION and $COVARIANCE records.</p>
-
-<h2>V.V.V.C.11. $INFN Record (nmvi)
-<a name="V.V.V.C.11."></a>
-<a name="V.V.V.C.11. $INFN Record (nmvi)"></a>
-</h2>
-
-
-<p style="margin-top: 1em"><tt>$INFN</tt> <br>
-abbreviated code</p>
-
-<p style="margin-top: 1em">This record gives an abbreviated
-code for the INFN routine. It, along with all its
-continuation records is called an <b>$INFN block</b></p>
-
-<p style="margin-top: 1em">$INFN abbreviated code allows
-the user to carry out any of his own programmed computations
-at both the beginning of a problem and again, at the ending
-of the problem. This record is optional. If it appears, it
-must be with the first problem specification, and only this
-problem specification.</p>
-
-<p style="margin-top: 1em">If there is abbreviated code in
-the $PK or $ERROR blocks that test for ICALL=0, ICALL=1, or
-ICALL=3, this code is moved by NM-TRAN to the INFN routine
-as if it had been coded explicitly as part of an $INFN
-block. Such code is called $PK-INFN and $ERROR-INFN,
-respectively. The order of code in the generated INFN
-routine is:</p>
-
-<p style="margin-top: 1em">1) &quot;FIRST code from $INFN
-<br>
-2) &quot;MAIN code from $INFN <br>
-3) abbreviated code from $INFN <br>
-4) $PK-INFN blocks <br>
-5) $ERROR-INFN blocks <br>
-6) &quot;LAST code from $INFN</p>
-
-<p style="margin-top: 1em">The following remarks apply to
-both explicitly coded $INFN blocks and to $PK-INFN and
-$ERROR-INFN blocks.</p>
-
-<p style="margin-top: 1em">A $INFN block can be used to
-perform all the functions described in a $PRED block at
-ICALL values 0, 1, 3, as described in Chapter IV Section D.
-This functionality is also described in Guide VI Chapter
-VI.A See the help item for Initialization-Finalization
-block</p>
-
-<p style="margin-top: 1em">Here is a brief summary.</p>
-
-<p style="margin-top: 1em">There are no mandatory left-hand
-quantities.</p>
-
-<p style="margin-top: 1em">No variable that has a reserved
-meaning in another block of abbreviated code may be defined
-on the left in $INFN.</p>
-
-<p style="margin-top: 1em">Optional left-hand
-variables:</p>
-
-<p style="margin-top: 1em">INFN-defined variables (i.e.,
-variables defined first on the left in $INFN or in $PK-INFN
-or $ERROR-INFN blocks) are permited. These are listed in
-MODULE PRINFN rather than NMPRD4. MODULE PRINFN is declared
-in all generated routines PK, ERROR, etc., and the variables
-can be used on the right or left in these routines.
-INFN-defined variables are not initialized or modified by
-NONMEM or PREDPP. Hence the variables in the MODULE may be
-initialized or modified at ICALL values 0 or 1 or 3, and
-will retain whatever values they are given. These variables
-cannot be displayed in tables or scatterplots. If they are
-to be displayed, WRITE statements can be used, or their
-values can be assigned to variables that are listed in
-MODULE NMPRD4. The implementation of MODULE PRINFN is
-discussed in Chapter II Section II.B and II.E.</p>
-
-<p style="margin-top: 1em">Right side variables:</p>
-
-<p style="margin-top: 1em">INFN-defined variables that
-appeared earlier as left-hand side quantities.</p>
-
-<p style="margin-top: 1em">Previously defined PK- or
-ERROR-defined items that are not INFN-defined. They are
-listed in NMPRD4 as usual. This MODULE is declared in INFN.
-Typically, such variables are used at ICALL=3 during calls
-to PASS or a pass through the dataset using DOWHILE(DATA).
-They may be used only on the right side and may not be
-recomputed. They should also be displayed in tables or
-scatters because items in NMPRD4 that are <i>not</i>
-displayed have the value 0 at ICALL=3.</p>
-
-<p style="margin-top: 1em">Data item labels specified on
-the $INPUT Record may be used on the left and on the right.
-This means that the NONMEM data set may be changed. Data
-transgeneration may take place at ICALL values 0, 1, 3. At
-each call, the user has read-write access to his data via
-use of the NONMEM utility routine PASS described in Guide
-II. This may be done more easily with the DOWHILE(DATA)
-statement of abbreviated coe. It is discussed in Chapter
-IV.J.3. Thus data can be transgenerated, and additional data
-items can be produced at both the beginning and ending of a
-problem. Since the finalization call actually occurs before
-the Table and Scatterplot Steps, new data items generated by
-INFN at this call can be tabled and scatterplotted.</p>
-
-<p style="margin-top: 1em">There are several reserved
-variables and array elements symbolizing special right-hand
-quantities. They include special diagnostic items and
-counter variables. They are listed in Chapter IV.E.</p>
-
-
-<p style="margin-top: 1em"><a href="AI.html">APPENDIX I ...</a></p>
+<p style="margin-top: 1em">This control stream may be used
+with the ERROR subroutine shown in Figure 14, which defines
+items to be displayed. These are Cp and Ce concentrations.
+The four scatterplots involving these items are given in
+Figures 33-36. The scatter in the plot of Ce versus Cp
+results from the non-steady-state nature of the experiment;
+a single dose was administered to the subject. If each of
+the points of the scatterplot had been obtained at a
+steady-state, after multiple dosing, the points would fall
+on the line of identity. Although this plot looks like a
+hysteresis loop, it is not because the points of the loop
+are not time-ordered.</p>
 
 <p style="margin-top: 1em"><a href="V.html">TOP</a> <br>
- <a href="index.html">TABLE OF CONTENTS</a></p>
+<a href="index.html">TABLE OF CONTENTS</a> <br>
+ <a href="VI.html">NEXT CHAPTER ...</a></p>
 <hr>
 </body>
 </html>
