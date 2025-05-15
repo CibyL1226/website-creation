@@ -1,74 +1,62 @@
-const sidebarList = document.getElementById("sidebar-list");
-const htmlFrame = document.getElementById("htmlFrame");
-const pdfEmbed = document.getElementById("pdfEmbed");
-const imageViewer = document.getElementById("imageViewer");
-const defaultContent = document.getElementById("default-content");
-const searchBox = document.getElementById("filter");
+document.addEventListener("DOMContentLoaded", () => {
+  const listContainer = document.getElementById("sidebar-list");
+  const iframe = document.getElementById("docFrame");
+  const filterInput = document.getElementById("filter");
+  const defaultMessage = document.getElementById("defaultMessage");
 
-function hideAllViewers() {
-  htmlFrame.style.display = "none";
-  pdfEmbed.style.display = "none";
-  imageViewer.style.display = "none";
-  defaultContent.style.display = "none";
-}
+  // Debug log
+  console.log("Loaded files:", typeof files, files);
 
-function getFileExtension(filename) {
-  return filename.split(".").pop().toLowerCase();
-}
+  if (typeof files !== 'object') {
+    console.error("files is not defined or not an object");
+    return;
+  }
 
-// Populate the sidebar
-Object.keys(files).forEach(group => {
-  // Group heading
-  const groupHeader = document.createElement("li");
-  groupHeader.innerHTML = `<strong>${group}</strong>`;
-  sidebarList.appendChild(groupHeader);
+  function renderList(filter = "") {
+    listContainer.innerHTML = "";
 
-  // Each file in the group
-  files[group].forEach(file => {
-    const li = document.createElement("li");
-    const link = document.createElement("a");
-    link.href = "#";
-    link.textContent = file.title;
+    Object.entries(files).forEach(([group, items]) => {
+      const matched = items.filter(file =>
+        file.title.toLowerCase().includes(filter.toLowerCase())
+      );
 
-    link.onclick = () => {
-      hideAllViewers();
-      const ext = getFileExtension(file.path);
+      if (matched.length === 0) return;
 
-      if (["html", "htm"].includes(ext)) {
-        htmlFrame.src = file.path;
-        htmlFrame.style.display = "block";
-      } else if (ext === "pdf") {
-        pdfEmbed.src = file.path;
-        pdfEmbed.style.display = "block";
-      } else if (["png", "jpg", "jpeg", "gif", "bmp", "svg", "webp"].includes(ext)) {
-        imageViewer.src = file.path;
-        imageViewer.style.display = "block";
-      } else {
-        // Default fallback: try iframe
-        htmlFrame.src = file.path;
-        htmlFrame.style.display = "block";
-      }
-    };
+      const heading = document.createElement("h3");
+      heading.textContent = group;
+      listContainer.appendChild(heading);
 
-    li.appendChild(link);
-    sidebarList.appendChild(li);
+      const ul = document.createElement("ul");
+
+      matched.forEach(file => {
+        const li = document.createElement("li");
+        const link = document.createElement("a");
+        link.href = "#";
+        link.textContent = file.title;
+        link.addEventListener("click", () => {
+          // Hide welcome message, show iframe
+          if (defaultMessage) defaultMessage.style.display = "none";
+          iframe.style.display = "block";
+          iframe.src = file.path;
+        });
+        li.appendChild(link);
+        ul.appendChild(li);
+      });
+
+      listContainer.appendChild(ul);
+    });
+  }
+
+  renderList();
+
+  filterInput.addEventListener("input", (e) => {
+    renderList(e.target.value);
   });
-});
 
-// Search filter
-searchBox.addEventListener("input", () => {
-  const query = searchBox.value.toLowerCase();
-  const items = sidebarList.querySelectorAll("li");
-
-  items.forEach(li => {
-    const text = li.textContent.toLowerCase();
-    const isHeader = li.querySelector("strong") !== null;
-
-    // Show all group headers
-    if (isHeader) {
-      li.style.display = "";
-    } else {
-      li.style.display = text.includes(query) ? "" : "none";
-    }
-  });
+  const toggleBtn = document.getElementById("toggle-sidebar");
+  if (toggleBtn) {
+    toggleBtn.addEventListener("click", () => {
+      document.getElementById("sidebar").classList.toggle("collapsed");
+    });
+  }
 });
