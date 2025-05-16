@@ -1,7 +1,10 @@
 project:
   type: website
   output-dir: docs
-  
+  resources:
+    - html_docs/
+    - docs/search.json
+    - applications
 env:
   QUARTO_PYTHON: "false"
   
@@ -34,9 +37,7 @@ website:
     right: "Built with [Quarto](https://quarto.org/)"
     left: "&copy; Copyright 2025, Jackie Ernest"
     
-resources:
-  - html_docs/
-  - docs/search.json
+
 
 format:
   html:
