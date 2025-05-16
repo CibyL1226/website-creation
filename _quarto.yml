@@ -5,6 +5,7 @@ project:
     - html_docs/
     - docs/search.json
     - applications
+    
 env:
   QUARTO_PYTHON: "false"
   
@@ -36,8 +37,6 @@ website:
   page-footer:
     right: "Built with [Quarto](https://quarto.org/)"
     left: "&copy; Copyright 2025, Jackie Ernest"
-    
-
 
 format:
   html:
