@@ -5,6 +5,7 @@ project:
     - html_docs/
     - docs/search.json
     - applications
+    - CNAME
     
 env:
   QUARTO_PYTHON: "false"
