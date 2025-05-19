@@ -7,20 +7,20 @@ All code and data can be found on Github linked in upper right corner.
 
 If you have any questions regarding the applications, please reach out through email linked in the upper right corner. Thank you!
 
-## [CR Simulator](https://jackieernest.com/applications/cr_simulator){target="_blank"}
+## [CR Simulator](https://jackieernest.com/applications/CR_simulator){target="_blank"}
 
 **Responses over Concentration profile**
 
 ![](img/cr_simulator.png){width=100% fig-align="center"}
 
-## [PK Simulator](https://jackieernest.com/applications/pk_simulator){target="_blank"}
+## [PK Simulator](https://jackieernest.com/applications/PK_simulator){target="_blank"}
 
 **PK profile over time(h)**
 
 ![](img/pk_simulator.png){width=100% fig-align="center"}
 
 
-## [Bootcamp PK Simulator](https://jackieernest.com/applications/bootcamp_pk_simulator){target="_blank"}
+## [Bootcamp PK Simulator](https://jackieernest.com/applications/bootcamp_PK_app){target="_blank"}
 This contains changes to PK simulator R shiny app specific to bootcamp 2020
 
 **PK profile over time with new features**
