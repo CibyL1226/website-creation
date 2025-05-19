@@ -16,7 +16,7 @@ website:
   title: "JACKIE ERNEST"
   navbar:
     left:
-      - href: /
+      - href: index.html
         text: Home
       - about.qmd
       - text: "Documents"
