@@ -1,6 +1,8 @@
 ---
 title: "Applications"
-format: html
+format:
+  html:
+    toc: false
 ---
 
 All code and data can be found on Github linked in upper right corner. 

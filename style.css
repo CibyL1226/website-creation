@@ -112,45 +112,61 @@ body:not(.homepage) #quarto-document-content {
 /* -----------------------------------------------------
   ✅ NAVBAR — fixed, transparent on top, solid on scroll
 ----------------------------------------------------- */
+/* Smooth transition and fixed position */
 .navbar {
   position: fixed;
   top: 0;
   width: 100%;
   z-index: 1000;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Prevent content jump */
+body {
+  padding-top: 70px; /* Adjust based on actual navbar height */
+}
+
+/* ---------------------------------------- */
+/* HOME PAGE — Initial (Transparent + White Text) */
+/* ---------------------------------------- */
+body.homepage .navbar {
   background-color: transparent !important;
-  transition: background-color 0.4s ease;
+  box-shadow: none;
 }
 
-.navbar .navbar-nav .nav-link {
-  font-weight: 600;
+body.homepage .navbar .navbar-brand,
+body.homepage .navbar .nav-link {
   color: white !important;
-  transition: all 0.3s ease;
 }
 
-.navbar.scrolled {
-  background-color: rgba(255, 255, 255, 0.95) !important;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+/* ---------------------------------------- */
+/* HOME PAGE — After Scrolling (White Navbar + Black Text) */
+/* ---------------------------------------- */
+body.homepage .navbar.scrolled {
+  background-color: white !important;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-.navbar.scrolled .navbar-nav .nav-link {
-  color: #333 !important;
+body.homepage .navbar.scrolled .navbar-brand,
+body.homepage .navbar.scrolled .nav-link {
+  color: black !important;
 }
 
-.navbar-nav .nav-link:hover {
-  transform: translateY(-2px);
-  color: #007BFF !important;
+/* ---------------------------------------- */
+/* OTHER PAGES — White Navbar + Black Text */
+/* ---------------------------------------- */
+body:not(.homepage) .navbar {
+  background-color: white !important;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-body:not(.homepage) pre,
-body:not(.homepage) code {
-  white-space: pre-wrap;
-  word-break: break-word;
-  overflow-wrap: break-word;
+body:not(.homepage) .navbar .navbar-brand,
+body:not(.homepage) .navbar .nav-link {
+  color: black !important;
 }
 
-body:not(.homepage) main.content {
-  padding-left: 1rem;
-  padding-right: 1rem;
-  max-width: 900px; /* slightly narrower to ensure space for TOC */
-  margin: 0 auto;
+/* Optional hover effect */
+.navbar .nav-link:hover {
+  opacity: 0.8;
+  text-decoration: underline;
 }

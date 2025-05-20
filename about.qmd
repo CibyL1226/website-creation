@@ -1,9 +1,7 @@
 ---
-title: "About"
+title: "About Me"
 format: html
 ---
-
-## About Me
 
 :::{.columns}
 ::: {.column width="30%"}

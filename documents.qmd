@@ -1,6 +1,8 @@
 ---
 title: "Installing NONMEM"
-format: html
+format:
+  html:
+    toc: false
 ---
 
 
