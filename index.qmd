@@ -16,7 +16,6 @@ format:
 <div id="banner-wrapper">
   <div class="full-width-banner">
     <div class="banner-text">
-      <h1>Welcome to Jackie Ernest’s Website</h1>
       <p>Explore research, applications, and more.</p>
     </div>
   </div>
