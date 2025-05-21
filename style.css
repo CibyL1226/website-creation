@@ -68,36 +68,32 @@ body:not(.homepage) #quarto-document-content {
 /* -----------------------------------------------------
   ✅ HERO BANNER (homepage)
 ----------------------------------------------------- */
-/* Make hero full width and flush to top */
+/* Hero container takes full screen height */
 .hero-container {
   position: relative;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   overflow: hidden;
   margin: 0;
   padding: 0;
-  inset: 0;
 }
 
-/* Image fits full screen and is centered */
+/* Image fills the container, not the screen */
 .hero-image {
-  position: fixed; /* ✅ Prevents shifting */
+  position: absolute;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-image: url('website-creation/img/banner3.png'); /* Replace path */
-  background-size: cover;
-  background-position: center top;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
   z-index: -1;
-  filter: brightness(60%);
-  pointer-events: none;
+  filter: brightness(70%);
 }
 
-/* Overlayed text centered on banner */
-/* FIXED: Perfectly centered overlay */
+/* Text overlay stays centered relative to banner, not viewport */
 .hero-overlay {
-  position: fixed;
+  position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -108,8 +104,8 @@ body:not(.homepage) #quarto-document-content {
   border-radius: 10px;
   width: fit-content;
   max-width: 90%;
+  z-index: 1;
 }
-
 
 
 /* -----------------------------------------------------
