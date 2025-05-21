@@ -31,24 +31,28 @@ body.homepage .container-fluid {
   box-sizing: border-box;
 }
 
-body.homepage #quarto-content,
-body.homepage #quarto-document-content,
-body.homepage main.content,
-body.homepage body > main {
+body.homepage .margin-sidebar,
+body.homepage #quarto-margin-sidebar {
+  display: none !important;
+  width: 0 !important;
   margin: 0 !important;
   padding: 0 !important;
-  width: 100% !important;
-  max-width: 100% !important;
-  box-sizing: border-box;
-  display: block !important;
 }
 
-body.homepage .page-columns {
-  background: red;
+body.homepage {
+  padding-top: 0 !important;
 }
-body.homepage main.content {
-  background: yellow;
+
+body.homepage,
+body.homepage main.content,
+body.homepage .page-columns,
+body.homepage #quarto-content {
+  margin: 0 !important;
+  padding: 0 !important;
+  max-width: 100vw !important;
+  overflow-x: hidden;
 }
+
 
 /* ========== NON-HOMEPAGE PADDING FOR NAVBAR ========== */
 body:not(.homepage) main,
