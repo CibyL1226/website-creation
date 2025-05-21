@@ -69,6 +69,10 @@ body:not(.homepage) #quarto-document-content {
   ✅ HERO BANNER (homepage)
 ----------------------------------------------------- */
 /* Hero container takes full screen height */
+.hero-container * {
+  box-sizing: border-box;
+}
+
 .hero-container {
   position: relative;
   width: 100%;
@@ -105,6 +109,13 @@ body:not(.homepage) #quarto-document-content {
   width: fit-content;
   max-width: 90%;
   z-index: 1;
+}
+
+
+.hero-overlay h1,
+.hero-overlay p {
+  margin: 0;
+  padding: 0;
 }
 
 
