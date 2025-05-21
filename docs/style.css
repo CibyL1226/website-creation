@@ -30,24 +30,18 @@ body.homepage .container-fluid {
   padding: 0 !important;
   box-sizing: border-box;
 }
+body.homepage {
+  padding-top: 0 !important;
+}
 
-body.homepage #quarto-content,
-body.homepage #quarto-document-content,
+body.homepage,
 body.homepage main.content,
-body.homepage body > main {
+body.homepage .page-columns,
+body.homepage #quarto-content {
   margin: 0 !important;
   padding: 0 !important;
-  width: 100% !important;
-  max-width: 100% !important;
-  box-sizing: border-box;
-  display: block !important;
-}
-
-body.homepage .page-columns {
-  background: red;
-}
-body.homepage main.content {
-  background: yellow;
+  max-width: 100vw !important;
+  overflow-x: hidden;
 }
 
 /* ========== NON-HOMEPAGE PADDING FOR NAVBAR ========== */
@@ -63,51 +57,49 @@ body:not(.homepage) #quarto-document-content {
 /* -----------------------------------------------------
   ✅ HERO BANNER (homepage)
 ----------------------------------------------------- */
-.full-width-banner {
+/* Make hero full width and flush to top */
+.hero-container {
   position: relative;
-  width: 100%;
+  width: 100vw;
   height: 100vh;
-  background-image: url('img/banner3.png'); /* update path if needed */
-  background-size: cover;
-  background-position: center center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  overflow: hidden;
   margin: 0;
   padding: 0;
-  overflow: hidden;
+  inset: 0;
 }
 
-.full-width-banner::before {
-  content: "";
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.4); /* dimming overlay */
-  z-index: 1;
+/* Image fits full screen and is centered */
+.hero-image {
+  position: fixed; /* ✅ Prevents shifting */
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-image: url('imag/banner3.png'); /* Replace path */
+  background-size: cover;
+  background-position: center top;
+  z-index: -1;
+  filter: brightness(60%);
+  pointer-events: none;
 }
 
-.banner-text {
-  position: relative;
-  z-index: 2;
+/* Overlayed text centered on banner */
+/* FIXED: Perfectly centered overlay */
+.hero-overlay {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   text-align: center;
+  background-color: rgba(0, 0, 0, 0.5);
   color: white;
-  background-color: rgba(255, 255, 255, 0.1);
   padding: 2rem;
-  border-radius: 12px;
-  backdrop-filter: blur(10px);
+  border-radius: 10px;
+  width: fit-content;
+  max-width: 90%;
 }
 
-.banner-text h1 {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-}
 
-.banner-text p {
-  font-size: 1.2rem;
-  margin: 0;
-}
 
 /* -----------------------------------------------------
   ✅ NAVBAR — fixed, transparent on top, solid on scroll
