@@ -13,11 +13,11 @@ format:
 ---
 
 ```{=html}
-<div id="banner-wrapper">
-  <div class="full-width-banner">
-    <div class="banner-text">
-      <p>Explore research, applications, and more.</p>
-    </div>
+<div class="hero-container">
+  <img src="img/banner3.png" alt="Banner" class="hero-image">
+  <div class="hero-overlay">
+    <h1>Welcome to Jackie Ernest’s Website</h1>
+    <p>Explore research, applications, and more.</p>
   </div>
 </div>
 ```
