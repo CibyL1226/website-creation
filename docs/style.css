@@ -84,7 +84,7 @@ body:not(.homepage) #quarto-document-content {
 
 /* Image fills the container, not the screen */
 .hero-image {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
@@ -97,7 +97,7 @@ body:not(.homepage) #quarto-document-content {
 
 /* Text overlay stays centered relative to banner, not viewport */
 .hero-overlay {
-  position: fixed;
+  position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
