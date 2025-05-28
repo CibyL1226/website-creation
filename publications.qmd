@@ -24,7 +24,7 @@ format: html
       <div class="card-body">
         <h5 class="card-title"><strong>Optimizing hydroxychloroquine dosing for patients with COVID‐19: an integrative modeling approach for effective drug repurposing</strong></h5>
         <p class="card-text">Authors: Maria Garcia‐Cremades, Belen P Solans, Emma Hughes, Jacqueline P Ernest, Erika Wallender, Francesca Aweeka, Anne F Luetkemeyer, Radojka M Savic</p>
-        <p class="card-text"><strong>Year:</strong> 2028<br><strong>Journal:</strong>Clinical Pharmacology & Therapeutics</p>
+        <p class="card-text"><strong>Year:</strong> 2020<br><strong>Journal:</strong>Clinical Pharmacology & Therapeutics</p>
       </div>
       <div class="card-footer">
         <a href="https://ascpt.onlinelibrary.wiley.com/doi/abs/10.1002/cpt.1856" class="btn btn-primary w-100">View Publication</a>

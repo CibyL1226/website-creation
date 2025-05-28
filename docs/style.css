@@ -92,7 +92,7 @@ body:not(.homepage) #quarto-document-content {
   object-fit: cover;
   object-position: center top;
   z-index: -1;
-  filter: brightness(70%);
+  filter: brightness(60%);
 }
 
 /* Text overlay stays centered relative to banner, not viewport */

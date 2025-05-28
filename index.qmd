@@ -13,18 +13,14 @@ format:
 ---
 
 ```{=html}
-<div class="hero-container">
-  <img src="img/banner3.png" alt="Banner" class="hero-image">
-  <div class="hero-overlay">
+<div class="hero-overlay">
+  <img src="img/banner3.png" alt="Banner" class="hero-background">
+  <div class="hero-text">
     <h1>Welcome to Jackie Ernest’s Website</h1>
     <p>Explore research, applications, and more.</p>
   </div>
 </div>
-```
 
-
-
-```{=html}
 <script>
   window.addEventListener('scroll', function () {
     const navbar = document.querySelector('.navbar');
@@ -35,7 +31,53 @@ format:
     }
   });
 </script>
+
+
+<section class="content-below-hero">
+  <div class="inner">
+    <h2>About This Website</h2>
+    <p>This site showcases my portfolio of applications, simulations, and data projects.</p>
+
+    <h3>Sections You’ll Find</h3>
+    <ul>
+      <li>🧠 Research highlights</li>
+      <li>📊 Interactive simulations</li>
+      <li>📝 Publications and writing samples</li>
+    </ul>
+  </div>
+</section>
 ```
+
+
+
+
+---
+
+```markdown
+## About This Site
+
+Welcome to my personal and professional website. Here you'll find:
+
+- Applications I've built or contributed to
+- Research and data science work
+- Resources on computational biology and analytics
+- Tools, simulations, and publication links
+
+---
+
+## Featured Projects
+
+### CR Simulator
+An interactive application simulating concentration-response profiles in pharmacology.
+
+### PK Simulator
+A tool for exploring population PK dynamics in drug modeling.
+
+---
+
+## Contact & Links
+
+For more, visit the [Applications](applications.qmd) page or get in touch via the contact icon in the top right corner.
 
 
 
