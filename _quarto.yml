@@ -26,7 +26,6 @@ website:
             href: documents.qmd
           - text: "Additional Documents"
             href: html_docs/viewer.html
-            target: _blank
       - applications.qmd
       - publications.qmd
     tools:
