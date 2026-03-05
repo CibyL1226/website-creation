@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.31">
+<meta name="generator" content="quarto-1.8.27">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -32,13 +32,15 @@ ul.task-list li input[type="checkbox"] {
 <meta name="quarto:offset" content="./">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-2d2c3c1dc8fcebd689918bbad00a5354.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-28ce2f92125236a284ff4f393e5b0d14.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -71,7 +73,7 @@ ul.task-list li input[type="checkbox"] {
 <link rel="stylesheet" href="style.css">
 </head>
 
-<body class="nav-fixed quarto-light">
+<body class="nav-fixed fullcontent quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -130,74 +132,31 @@ ul.task-list li input[type="checkbox"] {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content column-page" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><h1 class="title display-7">Welcome to Jackie Ernest’s Website</h1></header>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><h1 class="title display-7">Welcome to Jackie Ernest's Website</h1></header>
 
 
 
 
-<div class="hero-overlay">
+<section class="hero-banner">
   <img src="img/banner3.png" alt="Banner" class="hero-background">
-  <div class="hero-text">
+  <div class="hero-overlay">
     
     <p>Explore research, applications, and more.</p>
   </div>
-</div>
-
-<script>
-  window.addEventListener('scroll', function () {
-    const navbar = document.querySelector('.navbar');
-    if (window.scrollY > 50) {
-      navbar.classList.add('scrolled');
-    } else {
-      navbar.classList.remove('scrolled');
-    }
-  });
-</script>
-
-
-<section class="content-below-hero">
-  <div class="inner">
-    <h2>About This Website</h2>
-    <p>This site showcases my portfolio of applications, simulations, and data projects.</p>
-
-    <h3>Sections You’ll Find</h3>
-    <ul>
-      <li>🧠 Research highlights</li>
-      <li>📊 Interactive simulations</li>
-      <li>📝 Publications and writing samples</li>
-    </ul>
-  </div>
 </section>
-<hr>
-<p>```markdown ## About This Site</p>
-<p>Welcome to my personal and professional website. Here you’ll find:</p>
+<section id="latest-projects" class="level2">
+<h2 class="anchored" data-anchor-id="latest-projects">Latest Projects</h2>
+<p>Welcome to my blog-style site! Here’s what you can explore:</p>
 <ul>
-<li>Applications I’ve built or contributed to</li>
-<li>Research and data science work</li>
-<li>Resources on computational biology and analytics</li>
-<li>Tools, simulations, and publication links</li>
+<li>🔬 Applications in data science</li>
+<li>🧪 Interactive simulations</li>
+<li>📝 Research summaries</li>
 </ul>
-<hr>
-<section id="featured-projects" class="level2">
-<h2 data-anchor-id="featured-projects">Featured Projects</h2>
-<section id="cr-simulator" class="level3">
-<h3 data-anchor-id="cr-simulator">CR Simulator</h3>
-<p>An interactive application simulating concentration-response profiles in pharmacology.</p>
-</section>
-<section id="pk-simulator" class="level3">
-<h3 data-anchor-id="pk-simulator">PK Simulator</h3>
-<p>A tool for exploring population PK dynamics in drug modeling.</p>
-<hr>
-</section>
-</section>
-<section id="contact-links" class="level2">
-<h2 data-anchor-id="contact-links">Contact &amp; Links</h2>
-<p>For more, visit the <a href="./applications.html">Applications</a> page or get in touch via the contact icon in the top right corner.</p>
 
 
 </section>
@@ -205,6 +164,13 @@ ul.task-list li input[type="checkbox"] {
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
     const isCodeAnnotation = (el) => {
       for (const clz of el.classList) {
         if (clz.startsWith('code-annotation-')) {                     
@@ -247,13 +213,14 @@ ul.task-list li input[type="checkbox"] {
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
@@ -282,11 +249,6 @@ ul.task-list li input[type="checkbox"] {
           if (link.dataset.originalHref !== undefined) {
             link.href = link.dataset.originalHref;
           }
-            // target, if specified
-            link.setAttribute("target", "_blank");
-            if (link.getAttribute("rel") === null) {
-              link.setAttribute("rel", "noopener");
-            }
         }
       }
     function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
