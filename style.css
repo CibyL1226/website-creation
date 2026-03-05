@@ -1,5 +1,5 @@
 /* -----------------------------------------------------
-  ✅ GLOBAL RESET: applies to everything
+  ✅ GLOBAL RESET
 ----------------------------------------------------- */
 * {
   box-sizing: border-box;
@@ -13,116 +13,148 @@ html, body {
 }
 
 /* -----------------------------------------------------
-  ✅ HOMEPAGE ONLY — full width, no margin/sidebar
-  Requires: `body-class: homepage` in index.qmd YAML
+  ✅ HOMEPAGE CONTAINER RESET
 ----------------------------------------------------- */
-/* ✅ HOMEPAGE ONLY — full width, no sidebar constraints */
-body.homepage #quarto-margin-sidebar,
-body.homepage #quarto-sidebar,
-body.homepage .margin-sidebar,
 body.homepage .page-columns,
-body.homepage .content,
-body.homepage .container,
-body.homepage .container-fluid {
-  display: block !important;
+body.homepage #quarto-content,
+body.homepage #quarto-document-content,
+body.homepage main,
+body.homepage main.content,
+body.homepage .content {
+  width: 100% !important;
+  max-width: 100% !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  box-sizing: border-box;
+}
+
+body.homepage #quarto-document-content.content.column-page {
+  max-width: 100% !important;
+  width: 100% !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+body.homepage main,
+body.homepage main.content,
+body.homepage .column-page {
+  max-width: 100% !important;
+  width: 100% !important;
+  padding: 0 !important;
+  margin: 0 auto !important;
+}
+
+body.homepage #quarto-content.quarto-container.page-columns {
   width: 100% !important;
   max-width: 100% !important;
   margin: 0 !important;
   padding: 0 !important;
+  box-sizing: border-box !important;
+  display: block !important;
+}
+
+body.homepage .column-page {
+  max-width: 100% !important;
+  width: 100% !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  box-sizing: border-box !important;
+}
+
+body.homepage #quarto-content,
+body.homepage .page-columns {
+  width: 100% !important;
+  max-width: 100% !important;
+  padding: 0 !important;
+  margin: 0 !important;
   box-sizing: border-box;
 }
 
-body.homepage .margin-sidebar,
-body.homepage #quarto-margin-sidebar {
-  display: none !important;
-  width: 0 !important;
+body.homepage main#quarto-document-content.content {
+  width: 100% !important;
+  max-width: 100% !important;
   margin: 0 !important;
   padding: 0 !important;
-}
-
-body.homepage {
-  padding-top: 0 !important;
-}
-
-body.homepage,
-body.homepage main.content,
-body.homepage .page-columns,
-body.homepage #quarto-content {
-  margin: 0 !important;
-  padding: 0 !important;
-  max-width: 100vw !important;
-  overflow-x: hidden;
-}
-
-
-/* ========== NON-HOMEPAGE PADDING FOR NAVBAR ========== */
-body:not(.homepage) main,
-body:not(.homepage) main.content,
-body:not(.homepage) #quarto-content,
-body:not(.homepage) #quarto-document-content {
-  padding-top: 50px;
-  max-width: 1000px;
-  margin: 0 auto;
+  box-sizing: border-box !important;
+  display: block !important;
 }
 
 /* -----------------------------------------------------
-  ✅ HERO BANNER (homepage)
+  ✅ NUCLEAR FULL-WIDTH OVERRIDE (Quarto Lark theme)
 ----------------------------------------------------- */
-/* Hero container takes full screen height */
-.hero-container * {
-  box-sizing: border-box;
+body.homepage .quarto-container,
+body.homepage #quarto-content,
+body.homepage .container,
+body.homepage .container-fluid {
+  max-width: 100% !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  margin: 0 !important;
 }
 
-.hero-container {
-  position: relative;
-  width: 100%;
+body.homepage .row {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+/* -----------------------------------------------------
+  ✅ HERO BANNER
+----------------------------------------------------- */
+.hero-banner {
+  width: 100vw !important;
+  position: relative !important;
+  left: 50% !important;
+  right: 50% !important;
+  margin-left: -50vw !important;
+  margin-right: -50vw !important;
   height: 100vh;
   overflow: hidden;
-  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 0;
+  background: black;
 }
 
-/* Image fills the container, not the screen */
-.hero-image {
-  position: fixed;
+.hero-background {
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center top;
-  z-index: -1;
-  filter: brightness(60%);
+  z-index: 0;
+  filter: brightness(70%);
 }
 
-/* Text overlay stays centered relative to banner, not viewport */
 .hero-overlay {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  background-color: rgba(0, 0, 0, 0.5);
-  color: white;
-  padding: 2rem;
-  border-radius: 10px;
-  width: fit-content;
-  max-width: 90%;
+  position: relative;
   z-index: 1;
+  text-align: center;
+  width: 100%;
+  max-width: 100%;
+  padding: 2rem;
+  color: white;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7);
 }
-
-
-.hero-overlay h1,
-.hero-overlay p {
-  margin: 0;
-  padding: 0;
-}
-
 
 /* -----------------------------------------------------
-  ✅ NAVBAR — fixed, transparent on top, solid on scroll
+  ✅ CONTENT BELOW BANNER
 ----------------------------------------------------- */
-/* Smooth transition and fixed position */
+.content-below-hero {
+  padding: 4rem 2rem;
+  width: 100%;
+  max-width: 100%;
+  background-color: white;
+  color: black;
+  line-height: 1.6;
+  box-sizing: border-box;
+}
+
+/* -----------------------------------------------------
+  ✅ NAVBAR
+----------------------------------------------------- */
 .navbar {
   position: fixed;
   top: 0;
@@ -131,14 +163,10 @@ body:not(.homepage) #quarto-document-content {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Prevent content jump */
 body {
-  padding-top: 70px; /* Adjust based on actual navbar height */
+  padding-top: 0px;
 }
 
-/* ---------------------------------------- */
-/* HOME PAGE — Initial (Transparent + White Text) */
-/* ---------------------------------------- */
 body.homepage .navbar {
   background-color: transparent !important;
   box-shadow: none;
@@ -149,12 +177,9 @@ body.homepage .navbar .nav-link {
   color: white !important;
 }
 
-/* ---------------------------------------- */
-/* HOME PAGE — After Scrolling (White Navbar + Black Text) */
-/* ---------------------------------------- */
 body.homepage .navbar.scrolled {
   background-color: white !important;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 body.homepage .navbar.scrolled .navbar-brand,
@@ -162,12 +187,9 @@ body.homepage .navbar.scrolled .nav-link {
   color: black !important;
 }
 
-/* ---------------------------------------- */
-/* OTHER PAGES — White Navbar + Black Text */
-/* ---------------------------------------- */
 body:not(.homepage) .navbar {
   background-color: white !important;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 body:not(.homepage) .navbar .navbar-brand,
@@ -175,7 +197,6 @@ body:not(.homepage) .navbar .nav-link {
   color: black !important;
 }
 
-/* Optional hover effect */
 .navbar .nav-link:hover {
   opacity: 0.8;
   text-decoration: underline;
