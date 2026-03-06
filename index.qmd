@@ -17,10 +17,3 @@ include-after-body:
   </div>
 </section>
 ```
-
-## Latest Projects
-Welcome to my blog-style site! Here's what you can explore:
-
-- 🔬 Applications in data science
-- 🧪 Interactive simulations
-- 📝 Research summaries
