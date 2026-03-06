@@ -1,16 +1,18 @@
 ---
-title: ""
+title: " "
 format:
   html:
     css: style.css
     toc: false
-    body-class: homepage
+include-after-body:
+  text: |
+    <script>document.body.classList.add('homepage');</script>
 ---
 ```{=html}
 <section class="hero-banner">
   <img src="img/banner3.png" alt="Banner" class="hero-background">
   <div class="hero-overlay">
-    <h1>Welcome to Jackie Ernest's Website</h1>
+    <h2>Welcome to Jackie Ernest's Website</h2>
     <p>Explore research, applications, and more.</p>
   </div>
 </section>
